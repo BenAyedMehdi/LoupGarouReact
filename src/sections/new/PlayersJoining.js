@@ -9,7 +9,7 @@ import { fShortenNumber } from '../../utils/formatNumber';
 // components
 import Iconify from '../../components/iconify';
 import TextWidget from './TextWidget';
-import PlayerWidget from './PlayerWidget';
+import StaticPlayerWidget from './StaticPlayerWidget';
 
 // ----------------------------------------------------------------------
 
@@ -40,22 +40,22 @@ export default function PlayersJoining() {
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           {showComponent1 ? (
-            <PlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
+            <StaticPlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
           ) : null}
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           {showComponent2 ? (
-            <PlayerWidget name="Khabir" color="error" iconUrl={'/assets/images/avatars/avatar_5.jpg'} />
+            <StaticPlayerWidget name="Khabir" color="error" iconUrl={'/assets/images/avatars/avatar_5.jpg'} />
           ) : null}
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           {showComponent3 ? (
-            <PlayerWidget name="Mehdi" color="error" iconUrl={'/assets/images/avatars/avatar_12.jpg'} />
+            <StaticPlayerWidget name="Mehdi" color="error" iconUrl={'/assets/images/avatars/avatar_12.jpg'} />
           ) : null}
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           {showComponent4 ? (
-            <PlayerWidget name="Oussama" color="error" iconUrl={'/assets/images/avatars/avatar_19.jpg'} />
+            <StaticPlayerWidget name="Oussama" color="error" iconUrl={'/assets/images/avatars/avatar_19.jpg'} />
           ) : null}
         </Grid>
       </Grid>

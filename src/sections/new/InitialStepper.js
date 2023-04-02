@@ -12,7 +12,7 @@ import { fShortenNumber } from '../../utils/formatNumber';
 // components
 import Iconify from '../../components/iconify';
 import TextWidget from './TextWidget';
-import PlayerWidget from './PlayerWidget';
+import PlayerWidget from './ClickablePlayerWidget';
 
 // ----------------------------------------------------------------------
 

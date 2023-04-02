@@ -4,19 +4,30 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { Stack, Grid, Container, Typography, Button, TextField } from '@mui/material';
 // components
-import { PlayersJoining, InitialStepper } from '../sections/new';
+import { PlayersJoining, InitialStepper, VoteForCheif } from '../sections/new';
 import Iconify from '../components/iconify';
 // ----------------------------------------------------------------------
 
 export default function JoinGamePage() {
-  const [joined, setJoined] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const steps = ['Join  a game', 'Players joining...', 'Vote for the cheif'];
-  const handleSubmit = (e) => {
+
+  const handleJoinGame = (e) => {
     e.preventDefault();
     console.log('player joined');
-    setJoined(true);
-    setCurrentStep(1)
+    setCurrentStep(1);
+  };
+
+  const handleReady = (e) => {
+    e.preventDefault();
+    setCurrentStep(2);
+    console.log('player ready');
+  };
+
+  const handleDone = (e) => {
+    e.preventDefault();
+    setCurrentStep(2);
+    console.log('player voted');
   };
   return (
     <>
@@ -26,22 +37,22 @@ export default function JoinGamePage() {
 
       <Container maxWidth="xl">
         <InitialStepper currentStep={currentStep} steps={steps} />
-        {!joined && (
+        {currentStep === 0 && (
           <>
-          <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" sx={{ mb: 5 }}>
-              Hi, enter your name and the game ID
-            </Typography>
-            <Button
-                  variant="contained"
-                  onClick={handleSubmit}
-                  sx={{ height: 56, marginTop: 2 }}
-                  startIcon={<Iconify icon="eva:plus-fill" />}
-                >
-                  Join the game
-                </Button>
+            <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
+              <Typography variant="h4" sx={{ mb: 5 }}>
+                Hi, enter your name and the game ID
+              </Typography>
+              <Button
+                variant="contained"
+                onClick={handleJoinGame}
+                sx={{ height: 56, marginTop: 2 }}
+                startIcon={<Iconify icon="eva:plus-fill" />}
+              >
+                Join the game
+              </Button>
             </Stack>
-           
+
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6} md={3}>
                 <TextField margin="normal" required id="outlined-required" label="Name" fullWidth />
@@ -50,17 +61,30 @@ export default function JoinGamePage() {
             </Grid>
           </>
         )}
-        {joined && (
+        {currentStep === 1 && (
           <>
             <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
               <Typography variant="h4" sx={{ mb: 5 }}>
                 The game will start when everyone join, be ready!
               </Typography>
-              <Button variant="contained" sx={{ width: 166, height: 66 }}>
+              <Button onClick={handleReady} variant="contained" sx={{ width: 166, height: 66 }}>
                 I am ready
               </Button>
             </Stack>
             <PlayersJoining />
+          </>
+        )}
+        {currentStep === 2 && (
+          <>
+            <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+              <Typography variant="h4" sx={{ mb: 5 }}>
+                Please vote for the player you want to lead the village
+              </Typography>
+              <Button onClick={handleDone} variant="contained" sx={{ width: 166, height: 66 }}>
+                Done
+              </Button>
+            </Stack>
+            <VoteForCheif key={1} />
           </>
         )}
       </Container>

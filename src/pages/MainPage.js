@@ -32,7 +32,7 @@ export default function MainPage() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button href='join-game' variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             Join a game
           </Button>
           </Grid>

@@ -26,13 +26,13 @@ export default function MainPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-          <Button href='create-game' variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button href='create-game' variant="contained" sx={{width: 166, height: 66 }} startIcon={<Iconify icon="eva:plus-fill" />}>
             New Game
           </Button>
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-          <Button href='join-game' variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button href='join-game' variant="contained" sx={{width: 166, height: 66 }} startIcon={<Iconify icon="eva:plus-fill" />}>
             Join a game
           </Button>
           </Grid>

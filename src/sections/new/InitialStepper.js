@@ -16,12 +16,8 @@ import PlayerWidget from './PlayerWidget';
 
 // ----------------------------------------------------------------------
 
-export default function InitialStepper({currentStep}) {
-  const steps = [
-    'Create a game',
-    'Players joining...',
-    'Vote for the cheif',
-  ];
+export default function InitialStepper({currentStep, steps}) {
+
   return (
     <>
      <Stepper sx={{marginBottom:15}} activeStep={currentStep} alternativeLabel>

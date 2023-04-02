@@ -15,7 +15,11 @@ import Iconify from '../components/iconify';
 export default function CreateGamePage() {
   const [created, setCreated] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
- 
+  const steps = [
+    'Create a game',
+    'Players joining...',
+    'Vote for the cheif',
+  ];
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Game created');
@@ -29,7 +33,7 @@ export default function CreateGamePage() {
       </Helmet>
 
       <Container maxWidth="xl">
-        <InitialStepper currentStep={currentStep} />
+        <InitialStepper currentStep={currentStep} steps={steps} />
         {currentStep===0 && (
           <>
           <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>

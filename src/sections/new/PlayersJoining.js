@@ -20,9 +20,9 @@ export default function PlayersJoining() {
   const [showComponent4, setShowComponent4] = useState(false);
   useEffect(() => {
     setTimeout(() => setShowComponent1(true), 0);
-    setTimeout(() => setShowComponent2(true), 4000);
-    setTimeout(() => setShowComponent3(true), 7000);
-    setTimeout(() => setShowComponent4(true), 10000);
+    setTimeout(() => setShowComponent2(true), 2000);
+    setTimeout(() => setShowComponent3(true), 4000);
+    setTimeout(() => setShowComponent4(true), 6000);
   }, []);
 
   return (

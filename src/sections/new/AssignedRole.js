@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
-import { Grid, LinearProgress } from '@mui/material';
+import { Grid, LinearProgress, Box } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../utils/formatNumber';
 // components
@@ -13,7 +13,7 @@ import StaticPlayerWidget from './StaticPlayerWidget';
 
 // ----------------------------------------------------------------------
 
-export default function VotingStatus() {
+export default function AssignedRole() {
   const [showComponent1, setShowComponent1] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
   const [showComponent3, setShowComponent3] = useState(false);
@@ -25,6 +25,13 @@ export default function VotingStatus() {
     setTimeout(() => setShowComponent4(true), 10000);
   }, []);
 
+  const StyledProductImg = styled('img')({
+    top: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    position: 'absolute',
+  });
   return (
     <>
       <Grid container spacing={3}>
@@ -37,21 +44,11 @@ export default function VotingStatus() {
             <>
               <LinearProgress color="warning" />
               <LinearProgress color="error" />
-              <TextWidget
-                title="Vote for village leader"
-                value="Waiting for everyone to vote..."
-                color="warning"
-                icon={'ant-design:windows-filled'}
-              />
+              <TextWidget value="Assigning role..." color="warning" icon={'ant-design:windows-filled'} />
             </>
           ) : null}
           {showComponent2 ? (
-            <TextWidget
-              title="Vote for village leader"
-              value="The leader of the village is"
-              color="warning"
-              icon={'ant-design:windows-filled'}
-            />
+            <TextWidget title="Your role is" value="Loup" color="warning" icon={'ant-design:windows-filled'} />
           ) : null}
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
@@ -62,7 +59,9 @@ export default function VotingStatus() {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           {showComponent3 ? (
-            <StaticPlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
+            <Box sx={{ pt: '100%', position: 'relative' }}>
+              <StyledProductImg alt={'card'} src={`/assets/images/cards/loup.png`} />
+            </Box>
           ) : null}
         </Grid>
         <Grid item xs={12} sm={6} md={4}>

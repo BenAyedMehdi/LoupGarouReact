@@ -4,13 +4,13 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { Stack, Grid, Container, Typography, Button, TextField } from '@mui/material';
 // components
-import { PlayersJoining, InitialStepper, VoteForCheif } from '../sections/new';
+import { PlayersJoining, InitialStepper, VoteForCheif, AssignedRole } from '../sections/new';
 import Iconify from '../components/iconify';
 // ----------------------------------------------------------------------
 
 export default function JoinGamePage() {
   const [currentStep, setCurrentStep] = useState(0);
-  const steps = ['Join  a game', 'Players joining...', 'Vote for the cheif'];
+  const steps = ['Join  a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
 
   const handleJoinGame = (e) => {
     e.preventDefault();
@@ -24,9 +24,15 @@ export default function JoinGamePage() {
     console.log('player ready');
   };
 
-  const handleDone = (e) => {
+  const handleStartVote = (e) => {
     e.preventDefault();
-    setCurrentStep(2);
+    setCurrentStep(3);
+    console.log('I know my role');
+  };
+
+  const handleVoted = (e) => {
+    e.preventDefault();
+    setCurrentStep(3);
     console.log('player voted');
   };
   return (
@@ -78,9 +84,22 @@ export default function JoinGamePage() {
           <>
             <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
               <Typography variant="h4" sx={{ mb: 5 }}>
+                Your role was assigned to you
+              </Typography>
+              <Button onClick={handleStartVote} variant="contained" sx={{ width: 166, height: 66 }}>
+                Done
+              </Button>
+            </Stack>
+            <AssignedRole/>
+          </>
+        )}
+        {currentStep === 3 && (
+          <>
+            <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+              <Typography variant="h4" sx={{ mb: 5 }}>
                 Please vote for the player you want to lead the village
               </Typography>
-              <Button onClick={handleDone} variant="contained" sx={{ width: 166, height: 66 }}>
+              <Button onClick={handleVoted} variant="contained" sx={{ width: 166, height: 66 }}>
                 Done
               </Button>
             </Stack>

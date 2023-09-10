@@ -29,7 +29,7 @@ StaticPlayerWidget.propTypes = {
   sx: PropTypes.object,
 };
 
-export default function StaticPlayerWidget({ id, name, total, iconUrl, color = 'primary', sx, ...other }) {
+export default function StaticPlayerWidget({ id, name, card, iconUrl, color = 'primary', sx, ...other }) {
   const onPress = () => {
     // Change the content of the card
     console.log("clicked")
@@ -60,6 +60,7 @@ export default function StaticPlayerWidget({ id, name, total, iconUrl, color = '
           <Avatar sx={{ width: 66, height: 66 }} alt={'avatar'} src={iconUrl} />
         </StyledIcon>
         <Typography variant="h3">{name}</Typography>
+        {card}
     </Card>
   );
 }

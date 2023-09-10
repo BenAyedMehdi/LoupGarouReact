@@ -12,6 +12,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import MainPage from './pages/MainPage';
 import CreateGamePage from './pages/CreateGamePage';
 import JoinGamePage from './pages/JoinGamePage';
+import StartGamePage from './pages/StartGamePage';
 
 // ----------------------------------------------------------------------
 
@@ -24,6 +25,7 @@ export default function Router() {
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'main', element: <MainPage /> },
         { path: 'create-game', element: <CreateGamePage /> },
+        { path: 'host', element: <StartGamePage /> },
         { path: 'join-game', element: <JoinGamePage /> },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },

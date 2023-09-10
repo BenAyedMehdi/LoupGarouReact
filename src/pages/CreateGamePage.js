@@ -89,7 +89,7 @@ export default function CreateGamePage() {
               <Typography variant="h4" sx={{ mb: 5 }}>
                 Please vote for the player you want to lead the village
               </Typography>
-              <Button variant="contained" sx={{ width: 166, height: 66 }}>
+              <Button href='host' variant="contained" sx={{ width: 166, height: 66 }}>
                 Start game
               </Button>
             </Stack>

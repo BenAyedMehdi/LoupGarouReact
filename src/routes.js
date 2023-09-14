@@ -13,6 +13,7 @@ import MainPage from './pages/MainPage';
 import CreateGamePage from './pages/CreateGamePage';
 import JoinGamePage from './pages/JoinGamePage';
 import StartGamePage from './pages/StartGamePage';
+import PlayerGame from './pages/PlayerGame';
 
 // ----------------------------------------------------------------------
 
@@ -22,11 +23,14 @@ export default function Router() {
       path: '/dashboard',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
+        { element: <Navigate to="/dashboard/main" />, index: true },
         { path: 'main', element: <MainPage /> },
         { path: 'create-game', element: <CreateGamePage /> },
         { path: 'host', element: <StartGamePage /> },
         { path: 'join-game', element: <JoinGamePage /> },
+        { path: 'game', element: <PlayerGame/> },
+        
+        
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
@@ -40,7 +44,7 @@ export default function Router() {
     {
       element: <SimpleLayout />,
       children: [
-        { element: <Navigate to="/dashboard/app" />, index: true },
+        { element: <Navigate to="/dashboard/main" />, index: true },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

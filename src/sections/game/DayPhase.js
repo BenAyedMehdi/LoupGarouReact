@@ -20,7 +20,7 @@ export default function DayPhase() {
   const [showComponent4, setShowComponent4] = useState(false);
   useEffect(() => {
     setTimeout(() => setShowComponent1(true), 0);
-    setTimeout(() => setShowComponent2(true), 2000);
+    setTimeout(() => setShowComponent2(true), 0);
     setTimeout(() => setShowComponent3(true), 0);
     setTimeout(() => setShowComponent4(true), 0);
   }, []);

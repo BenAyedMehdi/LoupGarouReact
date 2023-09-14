@@ -10,6 +10,7 @@ import Iconify from '../components/iconify';
 
 export default function JoinGamePage() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isVoted, setIsVoted] = useState(false);
   const steps = ['Join  a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
 
   const handleJoinGame = (e) => {
@@ -30,11 +31,10 @@ export default function JoinGamePage() {
     console.log('I know my role');
   };
 
-  const handleVoted = (e) => {
-    e.preventDefault();
-    setCurrentStep(3);
-    console.log('player voted');
+  const handleVote = () => {
+    setIsVoted(true);
   };
+
   return (
     <>
       <Helmet>
@@ -90,7 +90,7 @@ export default function JoinGamePage() {
                 Done
               </Button>
             </Stack>
-            <AssignedRole/>
+            <AssignedRole />
           </>
         )}
         {currentStep === 3 && (
@@ -99,11 +99,13 @@ export default function JoinGamePage() {
               <Typography variant="h4" sx={{ mb: 5 }}>
                 Please vote for the player you want to lead the village
               </Typography>
-              <Button onClick={handleVoted} variant="contained" sx={{ width: 166, height: 66 }}>
-                Done
-              </Button>
+              {isVoted && (
+                <Button href="game" variant="contained" sx={{ width: 166, height: 66 }}>
+                  Ready
+                </Button>
+              )}
             </Stack>
-            <VoteForCheif key={1} />
+            <VoteForCheif voted={handleVote} key={1} />
           </>
         )}
       </Container>

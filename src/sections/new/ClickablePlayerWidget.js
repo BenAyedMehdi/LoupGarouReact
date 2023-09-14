@@ -1,7 +1,8 @@
+import React, { useState, useEffect } from 'react';
 // @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
-import { Card, Typography, Avatar, CardActionArea } from '@mui/material';
+import { Card, Typography, Button, Avatar, CardActionArea } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../utils/formatNumber';
 // components
@@ -29,15 +30,21 @@ ClickablePlayerWidget.propTypes = {
   sx: PropTypes.object,
 };
 
-export default function ClickablePlayerWidget({ clicked, id, name, total, iconUrl, color = 'primary', sx, ...other }) {
+export default function ClickablePlayerWidget({ voted, clicked, id, name, total, iconUrl, color = 'primary', sx, ...other }) {
+  const [vote, setVote] = useState('');
 
   const PlayerClicked = () => {
-    console.log("clicked", id)
-    clicked(id)
+    clicked(id);
+  };
+  const handleVoted = (e) => {
+    e.preventDefault();
+    setVote(name);
+    voted();
+    console.log('player voted for: ', name);
   };
   return (
-    <Card 
-    onClick={PlayerClicked}
+    <Card
+      onClick={PlayerClicked}
       sx={{
         py: 5,
         cursor: 'pointer',
@@ -52,19 +59,22 @@ export default function ClickablePlayerWidget({ clicked, id, name, total, iconUr
       }}
       {...other}
     >
-        <StyledIcon
-          sx={{
-            color: (theme) => theme.palette[color].dark,
-            backgroundImage: (theme) =>
-              `linear-gradient(135deg, ${alpha(theme.palette[color].dark, 0)} 0%, ${alpha(
-                theme.palette[color].dark,
-                0.24
-              )} 100%)`,
-          }}
-        >
-          <Avatar sx={{ width: 66, height: 66 }} alt={'avatar'} src={iconUrl} />
-        </StyledIcon>
-        <Typography variant="h3">{name}</Typography>
+      <StyledIcon
+        sx={{
+          color: (theme) => theme.palette[color].dark,
+          backgroundImage: (theme) =>
+            `linear-gradient(135deg, ${alpha(theme.palette[color].dark, 0)} 0%, ${alpha(
+              theme.palette[color].dark,
+              0.24
+            )} 100%)`,
+        }}
+      >
+        <Avatar sx={{ width: 66, height: 66 }} alt={'avatar'} src={iconUrl} />
+      </StyledIcon>
+      <Typography variant="h3">{name}</Typography>
+      <Button onClick={handleVoted} variant="contained" sx={{ width: 166, height: 66 }}>
+        Vote
+      </Button>
     </Card>
   );
 }

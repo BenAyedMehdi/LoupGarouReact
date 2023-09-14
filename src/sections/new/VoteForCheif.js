@@ -10,11 +10,14 @@ import { fShortenNumber } from '../../utils/formatNumber';
 import Iconify from '../../components/iconify';
 import TextWidget from './TextWidget';
 import ClickablePlayerWidget from './ClickablePlayerWidget';
+import VotingStatus from './VotingStatus';
 
 // ----------------------------------------------------------------------
 
-export default function VoteForCheif() {
+export default function VoteForCheif({voted}) {
   const [selected, setSelected] = useState(1);
+  const [isVoted, setIsVoted] = useState(false);
+
   const PLAYERS = [
     { id: 1, name: 'Njoura', avatarUrl: '/assets/images/avatars/avatar_2.jpg' },
     { id: 2, name: 'Khabir', avatarUrl: '/assets/images/avatars/avatar_5.jpg' },
@@ -22,28 +25,48 @@ export default function VoteForCheif() {
     { id: 4, name: 'Oussama', avatarUrl: '/assets/images/avatars/avatar_19.jpg' },
   ];
   const changeChoice = (id) => {
-    console.log(id);
-    setSelected(id)
+    setSelected(id);
+  };
+  const handleVote = () => {
+    setIsVoted(true);
+    voted();
   };
   return (
     <>
-      <Grid container spacing={3}>
-        {PLAYERS.map((player) => {
-          if(player.id === selected){
-
+      {!isVoted && (
+        <Grid container spacing={3}>
+          {PLAYERS.map((player) => {
+            if (player.id === selected) {
+              return (
+                <Grid key={player.id} item xs={12} sm={6} md={3}>
+                  <ClickablePlayerWidget
+                    clicked={changeChoice}
+                    id={player.id}
+                    name={player.name}
+                    color="success"
+                    iconUrl={player.avatarUrl}
+                  />
+                </Grid>
+              );
+            }
             return (
               <Grid key={player.id} item xs={12} sm={6} md={3}>
-              <ClickablePlayerWidget clicked={changeChoice} id={player.id} name={player.name} color="success" iconUrl={player.avatarUrl} />
-            </Grid>
-          );
-        }
-        return (
-          <Grid key={player.id} item xs={12} sm={6} md={3}>
-          <ClickablePlayerWidget clicked={changeChoice} id={player.id} name={player.name} color="primary" iconUrl={player.avatarUrl} />
+                <ClickablePlayerWidget
+                  voted={handleVote}
+                  clicked={changeChoice}
+                  id={player.id}
+                  name={player.name}
+                  color="primary"
+                  iconUrl={player.avatarUrl}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
-      );
-        })}
-      </Grid>
+      )}
+      {isVoted && (
+        <VotingStatus />
+      )}
     </>
   );
 }

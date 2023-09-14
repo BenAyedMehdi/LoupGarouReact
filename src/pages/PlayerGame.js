@@ -82,6 +82,7 @@ export default function PlayerGame() {
     e.preventDefault();
     console.log('Reset');
     setCurrentStep(0);
+    setLight(false);
   };
 
   return (

@@ -7,3 +7,4 @@ export { default as StaticPlayerWidget } from './StaticPlayerWidget';
 export { default as VotingStatus } from './VotingStatus';
 export { default as AssignedRole } from './AssignedRole';
 export { default as CreateGameSettings } from './CreateGameSettings';
+export { default as PlayersListTable } from './PlayersListTable';

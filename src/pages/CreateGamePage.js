@@ -30,6 +30,7 @@ export default function CreateGamePage() {
     console.log('Starting vote');
     setCurrentStep(3);
   };
+
   return (
     <>
       <Helmet>

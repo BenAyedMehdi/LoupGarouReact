@@ -10,6 +10,7 @@ import { fShortenNumber } from '../../utils/formatNumber';
 import Iconify from '../../components/iconify';
 import TextWidget from './TextWidget';
 import StaticPlayerWidget from './StaticPlayerWidget';
+import PlayersListTable from './PlayersListTable';
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +30,7 @@ export default function PlayersJoining() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
+          <PlayersListTable/>
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>

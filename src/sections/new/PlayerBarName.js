@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 // @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
-import { Card,Box, Link, Typography, Button, Avatar, CardActionArea } from '@mui/material';
+import { Card, Box, Link, Typography, Button, Avatar, CardActionArea } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../utils/formatNumber';
 // components
@@ -26,36 +26,30 @@ const account = {
 
 // ----------------------------------------------------------------------
 
-export default function PlayerBarName({ voted, clicked, id, name, total, iconUrl, color = 'primary', sx, ...other }) {
+export default function PlayerBarName({ clicked, id, player }) {
   const [vote, setVote] = useState('');
 
   const PlayerClicked = () => {
     clicked(id);
   };
-  const handleVoted = (e) => {
-    e.preventDefault();
-    setVote(name);
-    voted();
-    console.log('player voted for: ', name);
-  };
+
   return (
     <Box sx={{ mb: 1, mx: 2.5 }}>
-        <Link underline="none">
-          <StyledAccount>
-            <Avatar src={account.photoURL} alt="photoURL" />
+      <Link underline="none">
+        <StyledAccount>
+          <Avatar src={account.photoURL} alt="photoURL" />
 
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
-              </Typography>
+          <Box sx={{ ml: 2 }}>
+            <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+              {player.name}
+            </Typography>
 
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
-              </Typography>
-            </Box>
-          </StyledAccount>
-        </Link>
-      </Box>
-
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              {account.role}
+            </Typography>
+          </Box>
+        </StyledAccount>
+      </Link>
+    </Box>
   );
 }

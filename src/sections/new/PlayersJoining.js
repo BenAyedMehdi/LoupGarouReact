@@ -11,6 +11,8 @@ import Iconify from '../../components/iconify';
 import TextWidget from './TextWidget';
 import StaticPlayerWidget from './StaticPlayerWidget';
 import PlayersListTable from './PlayersListTable';
+import PosterJoinGame from './PosterJoinGame';
+import CardsListTable from './CardsListTable';
 
 // ----------------------------------------------------------------------
 
@@ -30,35 +32,16 @@ export default function PlayersJoining() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-          <PlayersListTable/>
+          <PlayersListTable />
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
-          <TextWidget title="Game ID" value="NXHA" color="warning" icon={'ant-design:windows-filled'} />
+          <PosterJoinGame />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
+          <CardsListTable />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent1 ? (
-            <StaticPlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent2 ? (
-            <StaticPlayerWidget name="Khabir" color="error" iconUrl={'/assets/images/avatars/avatar_5.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent3 ? (
-            <StaticPlayerWidget name="Mehdi" color="error" iconUrl={'/assets/images/avatars/avatar_12.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent4 ? (
-            <StaticPlayerWidget name="Oussama" color="error" iconUrl={'/assets/images/avatars/avatar_19.jpg'} />
-          ) : null}
-        </Grid>
+        
       </Grid>
     </>
   );

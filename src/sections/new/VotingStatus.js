@@ -10,6 +10,8 @@ import { fShortenNumber } from '../../utils/formatNumber';
 import Iconify from '../../components/iconify';
 import TextWidget from './TextWidget';
 import StaticPlayerWidget from './StaticPlayerWidget';
+import PlayersListTable from './PlayersListTable';
+import CardsListTable from './CardsListTable';
 
 // ----------------------------------------------------------------------
 
@@ -28,8 +30,8 @@ export default function VotingStatus() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
-          <></>
+      <Grid item xs={12} sm={6} md={3}>
+          <PlayersListTable />
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
@@ -38,35 +40,24 @@ export default function VotingStatus() {
               <LinearProgress color="warning" />
               <LinearProgress color="error" />
               <TextWidget
-                title="Vote for village leader"
-                value="Waiting for everyone to vote..."
+                title="Waiting for everyone to vote"
+                value="Please vote.."
                 color="warning"
                 icon={'ant-design:windows-filled'}
               />
             </>
           ) : null}
           {showComponent2 ? (
-            <TextWidget
-              title="Vote for village leader"
-              value="The leader of the village is"
-              color="warning"
-              icon={'ant-design:windows-filled'}
+            <StaticPlayerWidget
+              name="Njoura"
+              description="is the village leader"
+              color="error"
+              iconUrl={'/assets/images/avatars/avatar_2.jpg'}
             />
           ) : null}
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <></>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          {showComponent3 ? (
-            <StaticPlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <></>
+          <CardsListTable  />
         </Grid>
       </Grid>
     </>

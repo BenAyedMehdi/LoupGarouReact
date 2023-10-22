@@ -10,11 +10,11 @@ import { fShortenNumber } from '../../utils/formatNumber';
 import Iconify from '../../components/iconify';
 import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
+import { CardsListTable, PlayersListTable } from '../new';
 
 // ----------------------------------------------------------------------
 
 export default function StartGameIntro() {
-
   const [showComponent1, setShowComponent1] = useState(false);
   const [showComponent2, setShowComponent2] = useState(false);
   const [showComponent3, setShowComponent3] = useState(false);
@@ -30,34 +30,19 @@ export default function StartGameIntro() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
+          <PlayersListTable />
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
-          <TextWidget value="Close your eyes" color="warning" icon={'ant-design:windows-filled'} />
+          <TextWidget
+            title="The night started"
+            value="Close your eyes"
+            color="warning"
+            icon={'ant-design:windows-filled'}
+          />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent1 ? (
-            <StaticPlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent2 ? (
-            <StaticPlayerWidget name="Khabir" color="error" iconUrl={'/assets/images/avatars/avatar_5.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent3 ? (
-            <StaticPlayerWidget name="Mehdi" color="error" iconUrl={'/assets/images/avatars/avatar_12.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent4 ? (
-            <StaticPlayerWidget name="Oussama" color="error" iconUrl={'/assets/images/avatars/avatar_19.jpg'} />
-          ) : null}
+          <CardsListTable />
         </Grid>
       </Grid>
     </>

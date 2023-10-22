@@ -13,35 +13,35 @@ import PlayerBarName from './PlayerBarName';
 // ----------------------------------------------------------------------
 const rows = [
   {
-    name: "Mehdi",
+    name: "Salvador",
    },
    {
-    name: "Njoura",
+    name: "Loup garou",
    },
    {
-    name: "Khabir",
+    name: "Loup garou",
    },
    {
-    name: "Jihed",
+    name: "Witch",
    },
    {
-    name: "Sahar",
+    name: "Hunter",
    },
    {
-    name: "Ghassen",
+    name: "Villager",
    },
    {
-    name: "Iheb",
+    name: "Villager",
    },
 ];
 
-export default function PlayersListTable() {
+export default function CardsListTable() {
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+      <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Players ({rows.length }) </TableCell>
+            <TableCell>Characters ({rows.length }) </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

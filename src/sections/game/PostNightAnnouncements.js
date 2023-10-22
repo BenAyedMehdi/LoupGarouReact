@@ -10,6 +10,7 @@ import { fShortenNumber } from '../../utils/formatNumber';
 import Iconify from '../../components/iconify';
 import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
+import { CardsListTable, PlayersListTable } from '../new';
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +30,7 @@ export default function PostNightAnnouncements() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
+          <PlayersListTable />
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
@@ -41,7 +42,7 @@ export default function PostNightAnnouncements() {
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
+          <CardsListTable />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           {showComponent1 ? (

@@ -10,6 +10,7 @@ import { fShortenNumber } from '../../utils/formatNumber';
 import Iconify from '../../components/iconify';
 import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
+import { CardsListTable, PlayersListTable } from '../new';
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +30,7 @@ export default function DayVote() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
+          <PlayersListTable/>
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
@@ -46,16 +47,26 @@ export default function DayVote() {
             </>
           ) : null}
           {showComponent2 ? (
+            <>
             <TextWidget
               title="The player who got the most votes is killed"
               value="The village voted on"
               color="warning"
               icon={'ant-design:windows-filled'}
-            />
+              />
+             <StaticPlayerWidget
+                sx={{ mt: 2, mx: '20%', higth: '70%', mb: 3 }}
+                name="Mehdi"
+                description="Salvador"
+                color="error"
+                iconUrl={'/assets/images/avatars/avatar_12.jpg'}
+              />
+              </>
+
           ) : null}
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
+          <CardsListTable/>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <></>

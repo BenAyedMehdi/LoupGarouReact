@@ -10,6 +10,7 @@ import { fShortenNumber } from '../../utils/formatNumber';
 import Iconify from '../../components/iconify';
 import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
+import { CardsListTable, PlayersListTable } from '../new';
 
 // ----------------------------------------------------------------------
 
@@ -29,43 +30,64 @@ export default function RoleNightTask({ card }) {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
+          <PlayersListTable />
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
           {card === 'Salvador' && (
-            <TextWidget
-              title={'Salvador'}
-              value={'Choose a player to protect this night'}
-              color="warning"
-              icon={'ant-design:windows-filled'}
-            />
+            <>
+              <StaticPlayerWidget
+                sx={{ marginLeft: '20%', marginRight: '20%', higth: '70%', mb: 3 }}
+                name="Salvador"
+                color="error"
+                iconUrl={'/assets/images/avatars/avatar_12.jpg'}
+              />
+
+              <TextWidget
+                value={'Choose a player to protect this night'}
+                color="warning"
+                icon={'ant-design:windows-filled'}
+              />
+            </>
           )}
           {card === 'Loup' && (
-            <TextWidget
-              title={'Find the other wolves'}
-              value={'Choose a player to kill this night'}
-              color="warning"
-              icon={'ant-design:windows-filled'}
-            />
+            <>
+              <StaticPlayerWidget
+                sx={{ marginLeft: '20%', marginRight: '20%', higth: '70%', mb: 3 }}
+                name="Loup Garou"
+                color="error"
+                iconUrl={'/assets/images/avatars/avatar_12.jpg'}
+              />
+
+              <TextWidget
+                title={'Find the other wolves'}
+                value={'Choose a player to kill this night'}
+                color="warning"
+                icon={'ant-design:windows-filled'}
+                />
+                </>
           )}
           {card === 'Sorciere' && (
             <>
+            <StaticPlayerWidget
+                sx={{ marginLeft: '20%', marginRight: '20%', higth: '70%', mb: 3 }}
+                name="Sorciere"
+                color="error"
+                iconUrl={'/assets/images/avatars/avatar_12.jpg'}
+              />
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={12} md={12}>
-                  <StaticPlayerWidget name="Mehdi" color="error" iconUrl={'/assets/images/avatars/avatar_12.jpg'} />
-                </Grid>
-                <Grid item xs={12} sm={12} md={12}>
+                <Grid item xs={12} sm={6} md={6}>
                   <TextWidget
-                    title={'This player was killed this night by the wolves'}
-                    value={'Would you like to bring this player back to life?'}
+                    title={'You can bring the dead back to life once in the game'}
+                    value={'Revive'}
                     color="warning"
                     icon={'ant-design:windows-filled'}
                   />
-                </Grid><Grid item xs={12} sm={12} md={12}>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6}>
                   <TextWidget
-                    title={'You can use your magic ptoion to kill someone'}
-                    value={'Would you like to choose a player to kill?'}
+                    title={'You can kill someone once in the game'}
+                    value={'Kill'}
                     color="warning"
                     icon={'ant-design:windows-filled'}
                   />
@@ -75,27 +97,7 @@ export default function RoleNightTask({ card }) {
           )}
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent1 ? (
-            <StaticPlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent2 ? (
-            <StaticPlayerWidget name="Khabir" color="error" iconUrl={'/assets/images/avatars/avatar_5.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent3 ? (
-            <StaticPlayerWidget name="Mehdi" color="error" iconUrl={'/assets/images/avatars/avatar_12.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent4 ? (
-            <StaticPlayerWidget name="Oussama" color="error" iconUrl={'/assets/images/avatars/avatar_19.jpg'} />
-          ) : null}
+          <CardsListTable />
         </Grid>
       </Grid>
     </>

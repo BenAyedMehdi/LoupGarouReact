@@ -11,6 +11,7 @@ import Iconify from '../../components/iconify';
 import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
 import GameUpdatesTimeline from '../new/GameUpdatesTimeline';
+import { CardsListTable, PlayersListTable } from '../new';
 
 // ----------------------------------------------------------------------
 
@@ -30,10 +31,13 @@ export default function DayPhase() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
+        <PlayersListTable/>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
           <GameUpdatesTimeline/>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={6}>
+        <Grid item xs={12} sm={6} md={3}>
         <Stack alignItems="center" spacing={3} >
          <Box
             component="img"
@@ -43,22 +47,7 @@ export default function DayPhase() {
           </Stack>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <></>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent1 ? (
-            <StaticPlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent2 ? (
-            <StaticPlayerWidget name="Khabir" color="error" iconUrl={'/assets/images/avatars/avatar_5.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent4 ? (
-            <StaticPlayerWidget name="Oussama" color="error" iconUrl={'/assets/images/avatars/avatar_19.jpg'} />
-          ) : null}
+          <CardsListTable/>
         </Grid>
       </Grid>
     </>

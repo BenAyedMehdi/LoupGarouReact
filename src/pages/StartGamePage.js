@@ -30,13 +30,22 @@ export default function StartGamePage() {
   const [light, setLight] = React.useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const steps = ['Intro', 'Salvador', 'Loups', 'Sorciere', 'Announcements', 'Day', 'Vote'];
+
   const handleNext = (e) => {
     e.preventDefault();
-    console.log('Next');
     setCurrentStep(currentStep + 1);
+    console.log(currentStep);
+    if (currentStep === 4) {
+      console.log('Day');
+      setLight(true);
+    }
+    if (currentStep === 6) {
+      console.log('Reset');
+      setCurrentStep(0);
+      setLight(false);
+    }
   };
 
-  
   const handleNightEnd = (e) => {
     e.preventDefault();
     console.log('Next');
@@ -65,101 +74,44 @@ export default function StartGamePage() {
         </Helmet>
 
         <Container maxWidth="xl">
-          <InitialStepper currentStep={currentStep} steps={steps} />
+          <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="stretch" justifyContent="space-between">
+            <InitialStepper currentStep={currentStep} steps={steps} />
+            <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 56 }}>
+              Next
+            </Button>
+          </Stack>
           {currentStep === 0 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  The night is falling, the game is starting!
-                </Typography>
-                <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 56 }}>
-                  Next
-                </Button>
-              </Stack>
               <StartGameIntro />
             </>
           )}
           {currentStep === 1 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  Salvador is waking up... Protect someone!
-                </Typography>
-                <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
               <RoleNightTask card="Salvador" />
             </>
           )}
           {currentStep === 2 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  Wolves are waking up... Kill someone!
-                </Typography>
-                <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
               <RoleNightTask card="Loup" />
             </>
           )}
           {currentStep === 3 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  Sorciere is waking up... Will you use your power?!
-                </Typography>
-                <Button onClick={handleNightEnd} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
               <RoleNightTask card="Sorciere" />
             </>
           )}
           {currentStep === 4 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  The night has ended, a new day starts
-                </Typography>
-                <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
-              <PostNightAnnouncements />
+            <PostNightAnnouncements />
             </>
           )}
           {currentStep === 5 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  Day
-                </Typography>
-                <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
               <DayPhase />
             </>
           )}
           {currentStep === 6 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  Vote
-                </Typography>
-                <Button onClick={handleReset} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
               <DayVote />
             </>
           )}

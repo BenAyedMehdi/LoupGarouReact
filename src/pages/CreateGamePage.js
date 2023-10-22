@@ -1,24 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 // @mui
-import { Box, Stack, Grid, Container, Typography, Button, TextField,FormGroup,FormControlLabel,Switch } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Grid,
+  Container,
+  Typography,
+  Button,
+  TextField,
+  FormGroup,
+  FormControlLabel,
+  Switch,
+} from '@mui/material';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 // sections
-import { TextWidget, PlayersJoining, InitialStepper, VotingStatus, CreateGameSettings} from '../sections/new';
+import { TextWidget, PlayersJoining, InitialStepper, VotingStatus, CreateGameSettings, PlayersListTable, CardsListTable } from '../sections/new';
 // components
 import Iconify from '../components/iconify';
 // ----------------------------------------------------------------------
 
 export default function CreateGamePage() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const steps = ['Create a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
-  const handleCreateGame = (e) => {
+  const handleNext = (e) => {
     e.preventDefault();
-    console.log('Game created');
-    setCurrentStep(1);
+    if (currentStep === 3) {
+      console.log('Create a game');
+      navigate('/dashboard/host');
+    }
+    setCurrentStep(currentStep + 1);
   };
   const handleBoardingComplete = (e) => {
     e.preventDefault();
@@ -37,64 +53,41 @@ export default function CreateGamePage() {
         <title> Create a game </title>
       </Helmet>
 
-      <Container maxWidth="xl">
-        <InitialStepper currentStep={currentStep} steps={steps} />
+      <Container sx={{ paddingTop: 5 }} maxWidth="xl">
+        <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="stretch" justifyContent="center">
+          <InitialStepper currentStep={currentStep} steps={steps} />
+          <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
+            Next
+          </Button>
+        </Stack>
         {currentStep === 0 && (
           <>
-            <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-              <Typography variant="h4" sx={{ mb: 5 }}>
-                Hi, you are the Host, let's create a game!
-              </Typography>
-              <Button
-                onClick={handleCreateGame}
-                variant="contained"
-                sx={{ width: 166, height: 56 }}
-                startIcon={<Iconify icon="eva:plus-fill" />}
-              >
-                Create a game
-              </Button>
-            </Stack>
-            <CreateGameSettings/>
+            <CreateGameSettings />
           </>
         )}
         {currentStep === 1 && (
           <>
-            <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-              <Typography variant="h4" sx={{ mb: 5 }}>
-                Game created! Please join using the game ID
-              </Typography>
-              <Button onClick={handleBoardingComplete} variant="contained" sx={{ width: 166, height: 66 }}>
-                Boarding Complete
-              </Button>
-            </Stack>
-
             <PlayersJoining />
           </>
         )}
         {currentStep === 2 && (
           <>
-            <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-              <Typography variant="h4" sx={{ mb: 5 }}>
-                Assigning roles...
-              </Typography>
-              <Button onClick={handleStartVote} variant="contained" sx={{ width: 166, height: 66 }}>
-                Vote for the leader
-              </Button>
-            </Stack>
-            <TextWidget value="Please check your phone" color="warning" icon={'ant-design:windows-filled'} />
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6} md={3}>
+                <PlayersListTable />
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={6}>
+                <TextWidget value="Please check your role" color="warning" icon={'ant-design:windows-filled'} />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <CardsListTable />
+              </Grid>
+            </Grid>
           </>
         )}
         {currentStep === 3 && (
           <>
-            <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-              <Typography variant="h4" sx={{ mb: 5 }}>
-                Please vote for the player you want to lead the village
-              </Typography>
-              <Button href='host' variant="contained" sx={{ width: 166, height: 66 }}>
-                Start game
-              </Button>
-            </Stack>
-
             <VotingStatus />
           </>
         )}

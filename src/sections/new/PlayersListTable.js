@@ -6,6 +6,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper
 import { fShortenNumber } from '../../utils/formatNumber';
 // components
 import Iconify from '../../components/iconify';
+import PlayerBarName from './PlayerBarName';
 
 
 
@@ -26,16 +27,9 @@ export default function PlayersListTable() {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              key={row}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+               <PlayerBarName/>
             </TableRow>
           ))}
         </TableBody>

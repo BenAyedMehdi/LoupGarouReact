@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 // @mui
 import { styled, alpha } from '@mui/material/styles';
 import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@mui/material';
+import PlayerBarName from '../../../sections/new/PlayerBarName';
 // mock
 import account from '../../../_mock/account';
 // hooks
@@ -74,7 +75,7 @@ export default function Nav({ openNav, onCloseNav }) {
           </StyledAccount>
         </Link>
       </Box>
-
+      <PlayerBarName/>
       <NavSection data={navConfig} />
 
       <Box sx={{ flexGrow: 1 }} />

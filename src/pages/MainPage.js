@@ -38,21 +38,7 @@ export default function MainPage() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <AppOrderTimeline
-              title="Story Timeline"
-              list={[...Array(5)].map((_, index) => ({
-                id: faker.datatype.uuid(),
-                title: [
-                  'Met dhib',
-                  'Met salvador',
-                  'Metet sorciere',
-                  'Metet l 9arya lkol',
-                  'Met l narrateur',
-                ][index],
-                type: `order${index + 1}`,
-                time: faker.date.past(),
-              }))}
-            />
+            <></>
           </Grid>
         </Grid>
       </Container>

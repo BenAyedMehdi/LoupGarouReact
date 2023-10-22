@@ -10,6 +10,7 @@ import { fShortenNumber } from '../../utils/formatNumber';
 import Iconify from '../../components/iconify';
 import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
+import GameUpdatesTimeline from '../new/GameUpdatesTimeline';
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +30,7 @@ export default function DayPhase() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-        <></>
+          <GameUpdatesTimeline/>
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>

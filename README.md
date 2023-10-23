@@ -1,3 +1,4 @@
+#[(Demo)](https://loupgarou.netlify.app)
 ## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
 
 We should update README.md file

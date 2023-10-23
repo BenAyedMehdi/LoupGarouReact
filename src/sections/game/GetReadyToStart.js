@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import useSound from 'use-sound';
 // @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
@@ -15,21 +14,7 @@ import { CardsListTable, PlayersListTable } from '../new';
 
 // ----------------------------------------------------------------------
 
-export default function StartGameIntro() {
-  const [showComponent1, setShowComponent1] = useState(false);
-  const [showComponent2, setShowComponent2] = useState(false);
-  const [showComponent3, setShowComponent3] = useState(false);
-  const [showComponent4, setShowComponent4] = useState(false);
-  const [playSound] = useSound('/assets/sounds/NightStart.m4a');
-  const [audio, SetAudio] = useState("");
-
-  useEffect(() => {
-    setTimeout(() => setShowComponent1(true), 0);
-    setTimeout(() => setShowComponent2(true), 0);
-    setTimeout(() => setShowComponent3(true), 0);
-    setTimeout(() => setShowComponent4(true), 0);
-  }, []);
-
+export default function GetReadyToStart() {
   return (
     <>
       <Grid container spacing={3}>
@@ -38,10 +23,9 @@ export default function StartGameIntro() {
         </Grid>
 
         <Grid item xs={12} sm={6} md={6}>
-        <button onClick={playSound}>Start</button>
           <TextWidget
-            title="The night started"
-            value="Close your eyes"
+            title="Is everyone ready?"
+            value='Press "Ready"'
             color="warning"
             icon={'ant-design:windows-filled'}
           />

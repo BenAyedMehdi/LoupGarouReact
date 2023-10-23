@@ -45,11 +45,13 @@ export default function CardsListTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <TableRow
-              key={row}
+              key={index}
             >
+              <td>
                <PlayerBarName player={row}/>
+              </td>
             </TableRow>
           ))}
         </TableBody>

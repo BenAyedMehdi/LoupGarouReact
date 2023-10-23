@@ -12,7 +12,6 @@ import TextWidget from './TextWidget';
 const StyledProductImg = styled('img')({
   width: '200px',
   height: '200px',
-  objectFit: 'cover',
 });
 
 export default function PosterJoinGame({ title, value, color = 'primary', sx, ...other }) {
@@ -36,7 +35,7 @@ export default function PosterJoinGame({ title, value, color = 'primary', sx, ..
             Navigate to this link
           </Typography>
 
-          <Typography variant="h2" sx={{ opacity: 0.72 }}>
+          <Typography variant="h2" sx={{mr: 2, opacity: 0.72 }}>
             loupgarou.com
           </Typography>
           </div>
@@ -44,7 +43,11 @@ export default function PosterJoinGame({ title, value, color = 'primary', sx, ..
           <Typography variant="h6" sx={{ opacity: 0.72 }}>
             Or use the QR code
           </Typography>
-            <StyledProductImg alt={'card'} src={`/assets/images/qrcode.png`} />
+          <Box
+            component="img"
+            src="/assets/images/qrcode.png"
+            sx={{ width: 200,  pt: 2}}
+          />
           </Box>
         </Stack>
         <TextWidget title="Game ID" value="XYZK" color="warning" sx={{ m: 3 }} />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import useSound from 'use-sound';
 
 // @mui
 import PropTypes from 'prop-types';
@@ -15,11 +16,13 @@ import { CardsListTable, PlayersListTable } from '../new';
 // ----------------------------------------------------------------------
 
 export default function RoleNightTask({ card }) {
+  const [audio, SetAudio] = useState("");
   const [showComponent1, setShowComponent1] = useState(false);
   const [showComponent2, setShowComponent2] = useState(false);
   const [showComponent3, setShowComponent3] = useState(false);
   const [showComponent4, setShowComponent4] = useState(false);
   useEffect(() => {
+
     setTimeout(() => setShowComponent1(true), 0);
     setTimeout(() => setShowComponent2(true), 0);
     setTimeout(() => setShowComponent3(true), 0);

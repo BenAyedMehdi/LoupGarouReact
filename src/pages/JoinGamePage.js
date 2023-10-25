@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 // @mui
 import { Stack, Grid, Container, Typography, Button, TextField } from '@mui/material';
+import useResponsive from '../hooks/useResponsive';
 // components
-import { PlayersJoining, InitialStepper, VoteForCheif, AssignedRole } from '../sections/new';
+import { HostLobby, InitialStepper, VoteForCheif, AssignedRole, PlayersLobby } from '../sections/new';
 import Iconify from '../components/iconify';
 // ----------------------------------------------------------------------
 
 export default function JoinGamePage() {
+  const isDesktop = useResponsive('up', 'lg');
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [isVoted, setIsVoted] = useState(false);
   const steps = ['Join  a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
 
-  const handleJoinGame = (e) => {
+  const handleNext = (e) => {
     e.preventDefault();
-    console.log('player joined');
-    setCurrentStep(1);
+    if (currentStep === 3) {
+      console.log('Joined the game');
+      navigate('/dashboard/game');
+    }
+    setCurrentStep(currentStep + 1);
   };
 
   const handleReady = (e) => {
@@ -41,70 +48,50 @@ export default function JoinGamePage() {
         <title> Join a game </title>
       </Helmet>
 
-      <Container maxWidth="xl">
-        <InitialStepper currentStep={currentStep} steps={steps} />
+      <Container sx={{ paddingTop: 5 }} maxWidth="xl">
+        <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" mb={5}>
+          {isDesktop ? (
+            <>
+              <InitialStepper currentStep={currentStep} steps={steps} />
+            </>
+          ) : (
+            <></>
+          )}
+          <Button
+            variant="contained"
+            onClick={handleNext}
+            sx={{ width: '70%', height: 66, mb: 3 }}
+            startIcon={<Iconify icon="eva:plus-fill" />}
+          >
+            Next
+          </Button>
+        </Stack>
         {currentStep === 0 && (
-          <>
-            <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-              <Typography variant="h4" sx={{ mb: 5 }}>
-                Hi, enter your name and the game ID
-              </Typography>
-              <Button
-                variant="contained"
-                onClick={handleJoinGame}
-                sx={{ height: 56, marginTop: 2 }}
-                startIcon={<Iconify icon="eva:plus-fill" />}
-              >
-                Join the game
-              </Button>
-            </Stack>
-
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6} md={3}>
-                <TextField margin="normal" required id="outlined-required" label="Name" fullWidth />
-                <TextField margin="normal" required id="outlined-required" label="Game ID" fullWidth />
-              </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={3} md={4}>
+              <></>
             </Grid>
-          </>
+            <Grid item xs={12} sm={6} md={4}>
+              <TextField margin="normal" required id="outlined-required" label="Name" fullWidth />
+              <TextField margin="normal" required id="outlined-required" label="Game ID" fullWidth />
+            </Grid>
+            <Grid item xs={12} sm={3} md={4}>
+              <></>
+            </Grid>
+          </Grid>
         )}
         {currentStep === 1 && (
           <>
-            <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-              <Typography variant="h4" sx={{ mb: 5 }}>
-                The game will start when everyone join, be ready!
-              </Typography>
-              <Button onClick={handleReady} variant="contained" sx={{ width: 166, height: 66 }}>
-                I am ready
-              </Button>
-            </Stack>
-            <PlayersJoining />
+            <PlayersLobby />
           </>
         )}
         {currentStep === 2 && (
           <>
-            <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-              <Typography variant="h4" sx={{ mb: 5 }}>
-                Your role was assigned to you
-              </Typography>
-              <Button onClick={handleStartVote} variant="contained" sx={{ width: 166, height: 66 }}>
-                Done
-              </Button>
-            </Stack>
             <AssignedRole />
           </>
         )}
         {currentStep === 3 && (
           <>
-            <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-              <Typography variant="h4" sx={{ mb: 5 }}>
-                Please vote for the player you want to lead the village
-              </Typography>
-              {isVoted && (
-                <Button href="game" variant="contained" sx={{ width: 166, height: 66 }}>
-                  Ready
-                </Button>
-              )}
-            </Stack>
             <VoteForCheif voted={handleVote} key={1} />
           </>
         )}

@@ -22,7 +22,7 @@ import useResponsive from '../hooks/useResponsive';
 // sections
 import {
   TextWidget,
-  PlayersJoining,
+  HostLobby,
   InitialStepper,
   VotingStatus,
   CreateGameSettings,
@@ -38,6 +38,7 @@ export default function CreateGamePage() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const steps = ['Create a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
+  
   const handleNext = (e) => {
     e.preventDefault();
     if (currentStep === 3) {
@@ -83,7 +84,7 @@ export default function CreateGamePage() {
         )}
         {currentStep === 1 && (
           <>
-            <PlayersJoining />
+            <HostLobby />
           </>
         )}
         {currentStep === 2 && (

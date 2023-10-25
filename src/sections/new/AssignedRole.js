@@ -35,11 +35,11 @@ export default function AssignedRole() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={12} md={3}>
           <></>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={6}>
+        <Grid item xs={12} sm={12} md={6}>
           {showComponent1 ? (
             <>
               <LinearProgress color="warning" />
@@ -48,23 +48,15 @@ export default function AssignedRole() {
             </>
           ) : null}
           {showComponent2 ? (
+            <>
             <TextWidget title="Your role is" value="Loup" color="warning" icon={'ant-design:windows-filled'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <></>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <></>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          {showComponent3 ? (
-            <Box sx={{ pt: '100%', position: 'relative' }}>
+            <Box sx={{ mt: 3, pt: '100%', position: 'relative' }}>
               <StyledProductImg alt={'card'} src={`/assets/images/cards/loup.png`} />
             </Box>
+            </>
           ) : null}
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={12} md={3}>
           <></>
         </Grid>
       </Grid>

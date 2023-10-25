@@ -36,8 +36,8 @@ export default function VotingStatus() {
               <LinearProgress color="warning" />
               <LinearProgress color="error" />
               <TextWidget
-                title="Waiting for everyone to vote"
-                value="Please vote.."
+                title="Voting for village chief"
+                value="Waiting for everyone to vote"
                 color="warning"
                 icon={'ant-design:windows-filled'}
               />

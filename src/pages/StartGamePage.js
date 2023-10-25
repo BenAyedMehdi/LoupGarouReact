@@ -24,7 +24,7 @@ import useResponsive from '../hooks/useResponsive';
 import GetReadyToStart from '../sections/game/GetReadyToStart';
 import StartGameIntro from '../sections/game/StartGameIntro';
 import { DayVote, PostNightAnnouncements, RoleNightTask } from '../sections/game';
-import { TextWidget, PlayersJoining, InitialStepper, VotingStatus, CreateGameSettings } from '../sections/new';
+import { TextWidget, InitialStepper, VotingStatus, CreateGameSettings } from '../sections/new';
 // components
 import Iconify from '../components/iconify';
 import DayPhase from '../sections/game/DayPhase';

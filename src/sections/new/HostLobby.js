@@ -16,7 +16,7 @@ import CardsListTable from './CardsListTable';
 
 // ----------------------------------------------------------------------
 
-export default function PlayersJoining() {
+export default function HostLobby() {
   const [showComponent1, setShowComponent1] = useState(false);
   const [showComponent2, setShowComponent2] = useState(false);
   const [showComponent3, setShowComponent3] = useState(false);

@@ -72,7 +72,7 @@ export default function ClickablePlayerWidget({ voted, clicked, id, name, total,
         <Avatar sx={{ width: 66, height: 66 }} alt={'avatar'} src={iconUrl} />
       </StyledIcon>
       <Typography variant="h3">{name}</Typography>
-      <Button onClick={handleVoted} variant="contained" sx={{ width: 166, height: 66 }}>
+      <Button onClick={handleVoted} variant="contained" sx={{ width: "80%", height: 66 }}>
         Vote
       </Button>
     </Card>

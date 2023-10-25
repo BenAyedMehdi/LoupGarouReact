@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
-import { Grid, Box, Stack} from '@mui/material';
+import { Grid, Box, Stack } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../utils/formatNumber';
 // components
@@ -30,24 +30,24 @@ export default function DayPhase() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
-        <PlayersListTable/>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <GameUpdatesTimeline/>
+        <Grid item xs={12} sm={6} md= {3}>
+          <GameUpdatesTimeline />
         </Grid>
 
         <Grid item xs={12} sm={6} md={3}>
-        <Stack alignItems="center" spacing={3} >
-         <Box
-            component="img"
-            src="/assets/illustrations/sun-icon.jpg"
-            sx={{ width: 100, top: -50 , pt: 5, borderRadius: 2, position: 'relative' }}
-          />
+          <Stack alignItems="center" spacing={3}>
+            <Box
+              component="img"
+              src="/assets/illustrations/sun-icon.jpg"
+              sx={{ width: 100, top: -50, pt: 5, borderRadius: 2, position: 'relative' }}
+            />
           </Stack>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <CardsListTable/>
+          <PlayersListTable />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <CardsListTable />
         </Grid>
       </Grid>
     </>

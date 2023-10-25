@@ -30,10 +30,6 @@ export default function VotingStatus() {
   return (
     <>
       <Grid container spacing={3}>
-      <Grid item xs={12} sm={6} md={3}>
-          <PlayersListTable />
-        </Grid>
-
         <Grid item xs={12} sm={6} md={6}>
           {showComponent1 ? (
             <>
@@ -56,8 +52,11 @@ export default function VotingStatus() {
             />
           ) : null}
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <CardsListTable  />
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
+          <PlayersListTable />
+        </Grid>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
+          <CardsListTable />
         </Grid>
       </Grid>
     </>

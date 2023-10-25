@@ -14,12 +14,14 @@ import {
   FormGroup,
   FormControlLabel,
   Switch,
+  autocompleteClasses,
 } from '@mui/material';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+import useResponsive from '../hooks/useResponsive';
 // sections
-import GetReadyToStart  from '../sections/game/GetReadyToStart';
+import GetReadyToStart from '../sections/game/GetReadyToStart';
 import StartGameIntro from '../sections/game/StartGameIntro';
 import { DayVote, PostNightAnnouncements, RoleNightTask } from '../sections/game';
 import { TextWidget, PlayersJoining, InitialStepper, VotingStatus, CreateGameSettings } from '../sections/new';
@@ -29,18 +31,19 @@ import DayPhase from '../sections/game/DayPhase';
 // ----------------------------------------------------------------------
 
 export default function StartGamePage() {
+  const isDesktop = useResponsive('up', 'lg');
   const [light, setLight] = React.useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const steps = ['GetReady','Intro', 'Salvador', 'Loups', 'Sorciere', 'Announcements', 'Day', 'Vote'];
-  const currentSound = `/assets/sounds/${steps[currentStep+1]}.m4a`;
-  const [playSound, {stop}] = useSound(currentSound);
-  
+  const steps = ['GetReady', 'Intro', 'Salvador', 'Loups', 'Sorciere', 'Announcements', 'Day', 'Vote'];
+  const currentSound = `/assets/sounds/${steps[currentStep + 1]}.m4a`;
+  const [playSound, { stop }] = useSound(currentSound);
+
   const handleNext = (e) => {
     stop(); // Not working yet
     e.preventDefault();
     playSound();
     setCurrentStep(currentStep + 1);
-    console.log(currentSound)
+    console.log(currentSound);
     if (currentStep === 5) {
       console.log('Day');
       setLight(true);
@@ -56,21 +59,27 @@ export default function StartGamePage() {
     <>
       <div
         style={{
+          minHeight:500,
           backgroundColor: light ? '#FFFCA2' : '#D4D4D4',
-          padding: '20px',
-          paddingBottom: '60px',
+          paddingBottom: '100%',
         }}
       >
         <Helmet>
           <title> Game Started </title>
         </Helmet>
 
-        <Container maxWidth="xl">
-          <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="stretch" justifyContent="space-between">
-            <InitialStepper currentStep={currentStep} steps={steps} />
-            <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 56 }}>
-            {currentStep === 0 && ("Start")}
-            {currentStep !== 0 && ("Next")}
+        <Container sx={{ paddingTop: 5 }} maxWidth="xl">
+          <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center">
+            {isDesktop ? (
+              <>
+                <InitialStepper currentStep={currentStep} steps={steps} />
+              </>
+            ) : (
+              <></>
+            )}
+            <Button onClick={handleNext} variant="contained" sx={{ width: "70%", height: 66, mb: 3 }}>
+              {currentStep === 0 && 'Start'}
+              {currentStep !== 0 && 'Next'}
             </Button>
           </Stack>
           {currentStep === 0 && (

@@ -11,17 +11,12 @@ import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
 import { CardsListTable, PlayersListTable } from '../new';
 
-
 // ----------------------------------------------------------------------
 
 export default function GetReadyToStart() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
-          <PlayersListTable />
-        </Grid>
-
         <Grid item xs={12} sm={6} md={6}>
           <TextWidget
             title="Is everyone ready?"
@@ -30,7 +25,10 @@ export default function GetReadyToStart() {
             icon={'ant-design:windows-filled'}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
+          <PlayersListTable />
+        </Grid>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <CardsListTable />
         </Grid>
       </Grid>

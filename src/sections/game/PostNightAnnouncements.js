@@ -29,10 +29,6 @@ export default function PostNightAnnouncements() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
-          <PlayersListTable />
-        </Grid>
-
         <Grid item xs={12} sm={6} md={6}>
           <TextWidget
             title={'The game continues...'}
@@ -41,23 +37,12 @@ export default function PostNightAnnouncements() {
             icon={'ant-design:windows-filled'}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={6} sm={6} md={3}>
+          <PlayersListTable />
+        </Grid>
+
+        <Grid item xs={6} sm={6} md={3}>
           <CardsListTable />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent1 ? (
-            <StaticPlayerWidget name="Njoura" color="error" iconUrl={'/assets/images/avatars/avatar_2.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent2 ? (
-            <StaticPlayerWidget name="Khabir" color="error" iconUrl={'/assets/images/avatars/avatar_5.jpg'} />
-          ) : null}
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          {showComponent4 ? (
-            <StaticPlayerWidget name="Oussama" color="error" iconUrl={'/assets/images/avatars/avatar_19.jpg'} />
-          ) : null}
         </Grid>
       </Grid>
     </>

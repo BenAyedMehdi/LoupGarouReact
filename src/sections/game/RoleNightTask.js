@@ -16,13 +16,12 @@ import { CardsListTable, PlayersListTable } from '../new';
 // ----------------------------------------------------------------------
 
 export default function RoleNightTask({ card }) {
-  const [audio, SetAudio] = useState("");
+  const [audio, SetAudio] = useState('');
   const [showComponent1, setShowComponent1] = useState(false);
   const [showComponent2, setShowComponent2] = useState(false);
   const [showComponent3, setShowComponent3] = useState(false);
   const [showComponent4, setShowComponent4] = useState(false);
   useEffect(() => {
-
     setTimeout(() => setShowComponent1(true), 0);
     setTimeout(() => setShowComponent2(true), 0);
     setTimeout(() => setShowComponent3(true), 0);
@@ -32,10 +31,6 @@ export default function RoleNightTask({ card }) {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
-          <PlayersListTable />
-        </Grid>
-
         <Grid item xs={12} sm={6} md={6}>
           {card === 'Salvador' && (
             <>
@@ -67,12 +62,12 @@ export default function RoleNightTask({ card }) {
                 value={'Choose a player to kill this night'}
                 color="warning"
                 icon={'ant-design:windows-filled'}
-                />
-                </>
+              />
+            </>
           )}
           {card === 'Sorciere' && (
             <>
-            <StaticPlayerWidget
+              <StaticPlayerWidget
                 sx={{ marginLeft: '20%', marginRight: '20%', higth: '70%', mb: 3 }}
                 name="Sorciere"
                 color="error"
@@ -99,7 +94,10 @@ export default function RoleNightTask({ card }) {
             </>
           )}
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
+          <PlayersListTable />
+        </Grid>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <CardsListTable />
         </Grid>
       </Grid>

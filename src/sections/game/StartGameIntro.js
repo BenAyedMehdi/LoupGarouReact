@@ -12,7 +12,6 @@ import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
 import { CardsListTable, PlayersListTable } from '../new';
 
-
 // ----------------------------------------------------------------------
 
 export default function StartGameIntro() {
@@ -21,7 +20,7 @@ export default function StartGameIntro() {
   const [showComponent3, setShowComponent3] = useState(false);
   const [showComponent4, setShowComponent4] = useState(false);
   const [playSound] = useSound('/assets/sounds/NightStart.m4a');
-  const [audio, SetAudio] = useState("");
+  const [audio, SetAudio] = useState('');
 
   useEffect(() => {
     setTimeout(() => setShowComponent1(true), 0);
@@ -33,12 +32,7 @@ export default function StartGameIntro() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
-          <PlayersListTable />
-        </Grid>
-
         <Grid item xs={12} sm={6} md={6}>
-        <button onClick={playSound}>Start</button>
           <TextWidget
             title="The night started"
             value="Close your eyes"
@@ -46,7 +40,10 @@ export default function StartGameIntro() {
             icon={'ant-design:windows-filled'}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
+          <PlayersListTable />
+        </Grid>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <CardsListTable />
         </Grid>
       </Grid>

@@ -31,6 +31,9 @@ export default function RoleNightTask({ card }) {
   return (
     <>
       <Grid container spacing={3}>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
+          <PlayersListTable />
+        </Grid>
         <Grid item xs={12} sm={6} md={6}>
           {card === 'Salvador' && (
             <>
@@ -93,9 +96,6 @@ export default function RoleNightTask({ card }) {
               </Grid>
             </>
           )}
-        </Grid>
-        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <PlayersListTable />
         </Grid>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <CardsListTable />

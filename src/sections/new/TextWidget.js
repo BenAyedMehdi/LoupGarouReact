@@ -47,7 +47,7 @@ export default function TextWidget({ title, value, color = 'primary', sx, ...oth
         {title}
       </Typography>
 
-      <Typography variant="h1" sx={{ opacity: 0.72 }}>
+      <Typography variant="h2" sx={{ opacity: 0.72 }}>
         {value}
       </Typography>
     </Card>

@@ -30,23 +30,18 @@ export default function DayPhase() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md= {3}>
-          <GameUpdatesTimeline />
-        </Grid>
-
-        <Grid item xs={12} sm={6} md={3}>
-          <Stack alignItems="center" spacing={3}>
-            <Box
-              component="img"
-              src="/assets/illustrations/sun-icon.jpg"
-              sx={{ width: 100, top: -50, pt: 5, borderRadius: 2, position: 'relative' }}
-            />
-          </Stack>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <PlayersListTable />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={6}>
+          <TextWidget
+            title="The chief will now organize the village"
+            value='Speak, accuse, and get ready to vote'
+            color="warning"
+            icon={'ant-design:windows-filled'}
+          />
+        </Grid>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <CardsListTable />
         </Grid>
       </Grid>

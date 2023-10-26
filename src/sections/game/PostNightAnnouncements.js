@@ -11,6 +11,7 @@ import Iconify from '../../components/iconify';
 import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
 import { CardsListTable, PlayersListTable } from '../new';
+import GameUpdatesTimeline from '../new/GameUpdatesTimeline';
 
 // ----------------------------------------------------------------------
 
@@ -29,19 +30,29 @@ export default function PostNightAnnouncements() {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={6}>
-          <TextWidget
-            title={'The game continues...'}
-            value={'Mehdi died and he was a Salvador'}
-            color="warning"
-            icon={'ant-design:windows-filled'}
-          />
-        </Grid>
-        <Grid item xs={6} sm={6} md={3}>
+        <Grid sx={{ display: { xs: 'none', sm: 'block' } }} item xs={6} sm={6} md={3}>
           <PlayersListTable />
         </Grid>
-
-        <Grid item xs={6} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={6}>
+          <>
+            <TextWidget
+              title="The game continues"
+              value="A player died at night"
+              color="warning"
+              icon={'ant-design:windows-filled'}
+            />
+            <StaticPlayerWidget
+              sx={{ mt: 2, mx: '20%', higth: '70%', mb: 3 }}
+              name="Mehdi"
+              description="Salvador"
+              card={'-Dead-'}
+              color="error"
+              iconUrl={'/assets/images/avatars/avatar_12.jpg'}
+            />
+            <GameUpdatesTimeline />
+          </>
+        </Grid>
+        <Grid sx={{ display: { xs: 'none', sm: 'block' } }} item xs={6} sm={6} md={3}>
           <CardsListTable />
         </Grid>
       </Grid>

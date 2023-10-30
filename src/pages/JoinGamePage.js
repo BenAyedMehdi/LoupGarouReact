@@ -26,19 +26,7 @@ export default function JoinGamePage() {
     setCurrentStep(currentStep + 1);
   };
 
-  const handleReady = (e) => {
-    e.preventDefault();
-    setCurrentStep(2);
-    console.log('player ready');
-  };
-
-  const handleStartVote = (e) => {
-    e.preventDefault();
-    setCurrentStep(3);
-    console.log('I know my role');
-  };
-
-  const handleVote = () => {
+  const handleVote = (id) => {
     setIsVoted(true);
   };
 
@@ -49,7 +37,7 @@ export default function JoinGamePage() {
       </Helmet>
 
       <Container sx={{ paddingTop: 5 }} maxWidth="xl">
-        <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" mb={5}>
+        <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" mb={2}>
           {isDesktop ? (
             <>
               <InitialStepper currentStep={currentStep} steps={steps} />

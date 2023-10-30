@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { faker } from '@faker-js/faker'; 
 // @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
@@ -41,6 +42,7 @@ export default function GameUpdatesTimeline({ voted, clicked, id, name, total, i
     <AppOrderTimeline
               title="Story Timeline"
               list={[...Array(5)].map((_, index) => ({
+                id: faker.datatype.uuid(),
                 title: [
                   'Met dhib',
                   'Met salvador',

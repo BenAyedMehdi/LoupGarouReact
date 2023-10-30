@@ -29,12 +29,11 @@ export default function VoteForCheif({ voted }) {
     { id: 8, name: 'Oussama', avatarUrl: '/assets/images/avatars/avatar_19.jpg' },
   ];
   const changeChoice = (id) => {
-    console.log(id);
     setSelected(id);
   };
-  const handleVote = () => {
+  const handleVote = (id) => {
     setIsVoted(true);
-    voted();
+    voted(id);
   };
   return (
     <>
@@ -47,7 +46,7 @@ export default function VoteForCheif({ voted }) {
             {PLAYERS.map((player) => {
               if (player.id === selected) {
                 return (
-                  <Grid key={player.id} item xs={4} sm={3} md={2}>
+                  <Grid key={player.id} item xs={6} sm={3} md={2}>
                     <ClickablePlayerWidget
                       voted={handleVote}
                       clicked={changeChoice}
@@ -60,7 +59,7 @@ export default function VoteForCheif({ voted }) {
                 );
               }
               return (
-                <Grid key={player.id} item xs={4} sm={3} md={2}>
+                <Grid key={player.id} item xs={6} sm={3} md={2}>
                   <ClickablePlayerWidget
                     voted={handleVote}
                     clicked={changeChoice}

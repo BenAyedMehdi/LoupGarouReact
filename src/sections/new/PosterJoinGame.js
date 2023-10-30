@@ -28,26 +28,21 @@ export default function PosterJoinGame({ title, value, color = 'primary', sx, ..
         }}
         {...other}
       >
-        <Stack direction="row" alignItems="center" justifyContent="space-between" m={5} mb={2}>
-          <div>
+        <Stack direction={{ xs: 'column', sm: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" m={5} mb={2}>
+          <Box>
+            <Typography variant="h6" sx={{ opacity: 0.72 }}>
+              Navigate to this link
+            </Typography>
 
-          <Typography variant="h6" sx={{ opacity: 0.72 }}>
-            Navigate to this link
-          </Typography>
-
-          <Typography variant="h2" sx={{mr: 2, opacity: 0.72 }}>
-            loupgarou.com
-          </Typography>
-          </div>
-          <Box sx={{ position: 'relative' }}>
-          <Typography variant="h6" sx={{ opacity: 0.72 }}>
-            Or use the QR code
-          </Typography>
-          <Box
-            component="img"
-            src="/assets/images/qrcode.png"
-            sx={{ width: 200,  pt: 2}}
-          />
+            <Typography variant="h2" sx={{ mr: 2, opacity: 0.72 }}>
+              loupgarou.com
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant="h6" sx={{ opacity: 0.72 }}>
+              Or use the QR code
+            </Typography>
+            <Box component="img" src="/assets/images/qrcode.png" sx={{ minWidth:100, width: "100%", pt: 2 }} />
           </Box>
         </Stack>
         <TextWidget title="Game ID" value="XYZK" color="warning" sx={{ m: 3 }} />

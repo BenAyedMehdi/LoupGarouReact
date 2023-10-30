@@ -36,12 +36,12 @@ export default function PlayerBarName({ clicked, id, player }) {
   return (
     <Box sx={{ mb: 1, mx: 2.5 }}>
       <Link underline="none">
-        <StyledAccount>
+        <StyledAccount sx={[(player.isDead)&& {backgroundColor:'error.main'}]}>
           <Avatar src={account.photoURL} alt="photoURL" />
 
           <Box sx={{ ml: 2 }}>
             <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-              {player.name}
+              {player.name} 
             </Typography>
 
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>

@@ -39,8 +39,8 @@ export default function ClickablePlayerWidget({ voted, clicked, id, name, total,
   const handleVoted = (e) => {
     e.preventDefault();
     setVote(name);
-    voted();
-    console.log('player voted for: ', name);
+    voted(id);
+    console.log('player voted for: ', id);
   };
   return (
     <Card
@@ -71,6 +71,7 @@ export default function ClickablePlayerWidget({ voted, clicked, id, name, total,
       >
         <Avatar sx={{ width: 66, height: 66 }} alt={'avatar'} src={iconUrl} />
       </StyledIcon>
+      <Typography variant="h5">{header}</Typography>
       <Typography variant="h3">{name}</Typography>
       <Button onClick={handleVoted} variant="contained" sx={{ width: "80%", height: 66 }}>
         Vote

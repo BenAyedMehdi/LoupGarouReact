@@ -29,14 +29,24 @@ StaticPlayerWidget.propTypes = {
   sx: PropTypes.object,
 };
 
-export default function StaticPlayerWidget({ id, name, description, card, iconUrl, color = 'primary', sx, ...other }) {
+export default function StaticPlayerWidget({
+  id,
+  header,
+  name,
+  description,
+  card,
+  iconUrl,
+  color = 'primary',
+  sx,
+  ...other
+}) {
   const onPress = () => {
     // Change the content of the card
-    console.log("clicked")
+    console.log('clicked');
   };
   return (
-    <Card 
-    onClick={onPress}
+    <Card
+      onClick={onPress}
       sx={{
         py: 2,
         boxShadow: 0,
@@ -47,21 +57,22 @@ export default function StaticPlayerWidget({ id, name, description, card, iconUr
       }}
       {...other}
     >
-        <StyledIcon
-          sx={{
-            color: (theme) => theme.palette[color].dark,
-            backgroundImage: (theme) =>
-              `linear-gradient(135deg, ${alpha(theme.palette[color].dark, 0)} 0%, ${alpha(
-                theme.palette[color].dark,
-                0.24
-              )} 100%)`,
-          }}
-        >
-          <Avatar sx={{ width: 66, height: 66 }} alt={'avatar'} src={iconUrl} />
-        </StyledIcon>
-        <Typography variant="h3">{name}</Typography>
-        <Typography variant="h6">{description}</Typography>
-        {card}
+      <StyledIcon
+        sx={{
+          color: (theme) => theme.palette[color].dark,
+          backgroundImage: (theme) =>
+            `linear-gradient(135deg, ${alpha(theme.palette[color].dark, 0)} 0%, ${alpha(
+              theme.palette[color].dark,
+              0.24
+            )} 100%)`,
+        }}
+      >
+        <Avatar sx={{ width: 66, height: 66 }} alt={'avatar'} src={iconUrl} />
+      </StyledIcon>
+      <Typography variant="h5">{header}</Typography>
+      <Typography variant="h3">{name}</Typography>
+      <Typography variant="h6">{description}</Typography>
+      {card}
     </Card>
   );
 }

@@ -10,3 +10,4 @@ export { default as CreateGameSettings } from './CreateGameSettings';
 export { default as PlayersListTable } from './PlayersListTable';
 export { default as CardsListTable } from './CardsListTable';
 export { default as PlayersLobby } from './PlayersLobby';
+export { default as VotingPlayersGrid } from './VotingPlayersGrid';

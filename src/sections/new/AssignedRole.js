@@ -44,7 +44,7 @@ export default function AssignedRole() {
             <>
               <LinearProgress color="warning" />
               <LinearProgress color="error" />
-              <TextWidget title="Assigning role..." value={"Hide your phone"} color="warning"/>
+              <TextWidget title="Ass>igning role..." value={"Hide your phone"} color="warning"/>
             </>
           ) : null}
           {showComponent2 ? (

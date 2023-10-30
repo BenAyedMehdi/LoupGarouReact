@@ -11,6 +11,7 @@ import Iconify from '../../components/iconify';
 import TextWidget from './TextWidget';
 import ClickablePlayerWidget from './ClickablePlayerWidget';
 import VotingStatus from './VotingStatus';
+import VotingPlayersGrid from './VotingPlayersGrid';
 
 // ----------------------------------------------------------------------
 
@@ -42,36 +43,7 @@ export default function VoteForCheif({ voted }) {
           <Typography align="center" variant="h3" sx={{ mb: 3 }}>
             Please Vote For Your Village Chief
           </Typography>
-          <Grid container spacing={3}>
-            {PLAYERS.map((player) => {
-              if (player.id === selected) {
-                return (
-                  <Grid key={player.id} item xs={6} sm={3} md={2}>
-                    <ClickablePlayerWidget
-                      voted={handleVote}
-                      clicked={changeChoice}
-                      id={player.id}
-                      name={player.name}
-                      color="success"
-                      iconUrl={player.avatarUrl}
-                    />
-                  </Grid>
-                );
-              }
-              return (
-                <Grid key={player.id} item xs={6} sm={3} md={2}>
-                  <ClickablePlayerWidget
-                    voted={handleVote}
-                    clicked={changeChoice}
-                    id={player.id}
-                    name={player.name}
-                    color="primary"
-                    iconUrl={player.avatarUrl}
-                  />
-                </Grid>
-              );
-            })}
-          </Grid>
+          <VotingPlayersGrid voted={handleVote}/>
         </>
       )}
       {isVoted && <VotingStatus />}

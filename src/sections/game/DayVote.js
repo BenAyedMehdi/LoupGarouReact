@@ -15,13 +15,15 @@ import { CardsListTable, PlayersListTable } from '../new';
 // ----------------------------------------------------------------------
 
 export default function DayVote() {
+  const [deadPlayerName,setDeadPlayerName]  = useState("");
   const [showComponent1, setShowComponent1] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
   const [showComponent3, setShowComponent3] = useState(false);
   const [showComponent4, setShowComponent4] = useState(false);
   useEffect(() => {
     setTimeout(() => setShowComponent1(false), 4000);
-    setTimeout(() => setShowComponent2(true), 4000);
+    setTimeout(() => {setShowComponent2(true);
+                      setDeadPlayerName("Mehdi")}, 4000);
     setTimeout(() => setShowComponent3(true), 4500);
     setTimeout(() => setShowComponent4(true), 10000);
   }, []);
@@ -30,7 +32,7 @@ export default function DayVote() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={3}>
-          <PlayersListTable />
+        <PlayersListTable deadPlayer={deadPlayerName} />
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           {showComponent1 ? (

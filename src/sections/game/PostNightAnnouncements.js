@@ -31,7 +31,7 @@ export default function PostNightAnnouncements() {
     <>
       <Grid container spacing={3}>
         <Grid sx={{ display: { xs: 'none', sm: 'block' } }} item xs={6} sm={6} md={3}>
-          <PlayersListTable />
+          <PlayersListTable deadPlayer={"Mehdi"} />
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           <>

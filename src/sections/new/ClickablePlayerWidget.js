@@ -39,8 +39,8 @@ export default function ClickablePlayerWidget({ voted, clicked, id, name, total,
   const handleVoted = (e) => {
     e.preventDefault();
     setVote(name);
-    voted();
-    console.log('player voted for: ', name);
+    voted(id);
+    console.log('player voted for: ', id);
   };
   return (
     <Card

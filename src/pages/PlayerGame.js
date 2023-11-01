@@ -120,7 +120,7 @@ export default function PlayerGame() {
             <>
               <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
                 <Typography variant="h4" sx={{ mb: 5 }}>
-                  Sorciere is waking up... Will you use your power?!
+                  TODO
                 </Typography>
                 <Button onClick={handleNightEnd} variant="contained" sx={{ width: 166, height: 66 }}>
                   Next

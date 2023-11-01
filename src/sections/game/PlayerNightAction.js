@@ -15,8 +15,9 @@ import { CardsListTable, PlayersListTable, VoteForCheif, VotingPlayersGrid } fro
 
 // ----------------------------------------------------------------------
 
-export default function PlayerNightAction({ card }) {
+export default function PlayerNightAction({ card, voted }) {
   const [audio, SetAudio] = useState('');
+  const [hasVoted, setHasVoted] = React.useState(false);
   const [showComponent1, setShowComponent1] = useState(false);
   const [showComponent2, setShowComponent2] = useState(false);
   const [showComponent3, setShowComponent3] = useState(false);
@@ -30,6 +31,8 @@ export default function PlayerNightAction({ card }) {
 
   const handleVote = (id) => {
     console.log(id);
+    setHasVoted(true);
+    voted(id);
   };
 
   return (
@@ -48,14 +51,23 @@ export default function PlayerNightAction({ card }) {
                 color="error"
                 iconUrl={'/assets/images/avatars/avatar_12.jpg'}
               />
-
-              <TextWidget
-                sx={{ mb: 3 }}
-                value={'Choose a player to protect this night'}
-                color="warning"
-                icon={'ant-design:windows-filled'}
-              />
+              {!hasVoted && (
+                <TextWidget
+                  sx={{ mb: 3 }}
+                  value={'Choose a player to protect this night'}
+                  color="warning"
+                  icon={'ant-design:windows-filled'}
+                />
+              )}
               <VotingPlayersGrid voted={handleVote} />
+              {hasVoted && (
+                <TextWidget
+                  sx={{ m: 3 }}
+                  value={'You can close your eyes now'}
+                  color="warning"
+                  icon={'ant-design:windows-filled'}
+                />
+              )}
             </>
           )}
           {card === 'Loup' && (

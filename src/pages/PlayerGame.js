@@ -30,41 +30,10 @@ import Iconify from '../components/iconify';
 import DayPhase from '../sections/game/DayPhase';
 // ----------------------------------------------------------------------
 
-const themeLight = createTheme({
-  /* 
- 
-        <ThemeProvider theme={light ? themeLight : themeDark}>
-          <CssBaseline />
-
- palette: {
-    backgroundColor: {
-      default: '#ffffff',
-    },
-    background: {
-      default: '#ffffff',
-    },
-  },
-  */
-});
-
-const themeDark = createTheme({
-  palette: {
-    mode: 'dark',
-    background: {
-      default: '#000000',
-    },
-    backgroundColor: {
-      default: '#000000',
-    },
-    text: {
-      default: '#000000',
-    },
-  },
-});
-
 export default function PlayerGame() {
   const isDesktop = useResponsive('up', 'lg');
   const [light, setLight] = React.useState(false);
+  const [voted, setVoted] = React.useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const steps = ['GetReady','Intro', 'Salvador', 'Loups', 'Sorciere', 'Announcements', 'Day', 'Vote'];
   
@@ -80,6 +49,11 @@ export default function PlayerGame() {
       setCurrentStep(0);
       setLight(false);
     }
+  };
+
+  const handleVote = (id) => {
+    console.log('voted', id);
+    setVoted(true);
   };
 
   const handleNightEnd = (e) => {
@@ -134,7 +108,7 @@ export default function PlayerGame() {
           )}
           {currentStep === 2 && (
             <>
-              <PlayerNightAction card="Salvador" />
+              <PlayerNightAction voted={handleVote} card="Salvador" />
             </>
           )}
           {currentStep === 3 && (

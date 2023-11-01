@@ -113,16 +113,7 @@ export default function PlayerGame() {
           )}
           {currentStep === 3 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  Wolves are waking up... Kill someone!
-                </Typography>
-                <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
-              <RoleNightTask card="Loup" />
+              <PlayerNightAction voted={handleVote} card="Loup" />
             </>
           )}
           {currentStep === 4 && (

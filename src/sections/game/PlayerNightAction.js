@@ -75,16 +75,28 @@ export default function PlayerNightAction({ card, voted }) {
               <StaticPlayerWidget
                 sx={{ marginLeft: '20%', marginRight: '20%', higth: '70%', mb: 3 }}
                 name="Loup Garou"
+                card="It's your turn"
                 color="error"
                 iconUrl={'/assets/images/avatars/avatar_12.jpg'}
               />
-
-              <TextWidget
-                title={'Find the other wolves'}
-                value={'Choose a player to kill this night'}
-                color="warning"
-                icon={'ant-design:windows-filled'}
-              />
+              {!hasVoted && (
+                <TextWidget
+                  title={'All wolves must vote on the same player'}
+                  value={'Choose a player to kill this night'}
+                  color="warning"
+                  icon={'ant-design:windows-filled'}
+                  sx={{ mb: 3 }}
+                />
+              )}
+              <VotingPlayersGrid voted={handleVote} />
+              {hasVoted && (
+                <TextWidget
+                  sx={{ m: 3 }}
+                  value={'You can close your eyes now'}
+                  color="warning"
+                  icon={'ant-design:windows-filled'}
+                />
+              )}
             </>
           )}
           {card === 'Sorciere' && (

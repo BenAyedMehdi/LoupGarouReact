@@ -118,23 +118,14 @@ export default function PlayerGame() {
           )}
           {currentStep === 4 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  TODO
-                </Typography>
-                <Button onClick={handleNightEnd} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
-              <RoleNightTask card="Sorciere" />
+              <PlayerNightAction voted={handleVote} card="Sorciere" />
             </>
           )}
           {currentStep === 5 && (
             <>
               <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
                 <Typography variant="h4" sx={{ mb: 5 }}>
-                  The night has ended, a new day starts
+                 TODO
                 </Typography>
                 <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
                   Next

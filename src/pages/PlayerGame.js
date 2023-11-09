@@ -24,7 +24,7 @@ import useResponsive from '../hooks/useResponsive';
 // sections
 import StartGameIntro from '../sections/game/StartGameIntro';
 import {PlayerNightAction,  DayVote, PlayerSleeping, PostNightAnnouncements, RoleNightTask } from '../sections/game';
-import { TextWidget, HostLobby, InitialStepper, VotingStatus, CreateGameSettings } from '../sections/new';
+import { TextWidget, HostLobby, InitialStepper, VotingStatus, CreateGameSettings, VotingPlayersGrid } from '../sections/new';
 // components
 import Iconify from '../components/iconify';
 import DayPhase from '../sections/game/DayPhase';
@@ -123,44 +123,24 @@ export default function PlayerGame() {
           )}
           {currentStep === 5 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                 TODO
-                </Typography>
-                <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
               <PostNightAnnouncements />
             </>
           )}
           {currentStep === 6 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  Day
-                </Typography>
-                <Button onClick={handleNext} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
               <DayPhase />
             </>
           )}
           {currentStep === 7 && (
             <>
-              <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center" justifyContent="space-between" mb={5}>
-                <Typography variant="h4" sx={{ mb: 5 }}>
-                  Vote
-                </Typography>
-                <Button onClick={handleReset} variant="contained" sx={{ width: 166, height: 66 }}>
-                  Next
-                </Button>
-              </Stack>
-
-              <DayVote />
+            <TextWidget
+              title={'One player will die at the end of the day'}
+              value={'Vote on the player you would like to eliminate'}
+              color="warning"
+              icon={'ant-design:windows-filled'}
+              sx={{ mb: 3 }}
+            />
+            <VotingPlayersGrid voted={handleVote} />
             </>
           )}
         </Container>

@@ -1,43 +1,26 @@
-#[(Demo)](https://loupgarou.netlify.app)
-## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
+# [(Demo)](https://loupgarou.netlify.app)
 
-We should update README.md file
+![preview](public/assets/preview1.jpg)
+![preview](public/assets/preview6.jpg)
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-> Free React Admin Dashboard made with Material-UI components and React.
+## About the game:
+Loup Garou is a social game that takes place over a series of game rounds. Each round has two phases - day and night. During the day the village discusses who they think is guilty, during the night players may use special powers and the werewolves make their kill. One narrator is needed to moderate the game. 
 
-![preview](public/assets/preview.jpg)
 
-| [Minimal Free](https://minimal-kit-react.vercel.app/) | [Minimal](https://material-ui.com/store/items/minimal-dashboard/) |
-| ----------------------------------------------------- | :---------------------------------------------------------------- |
-| **6** Demo pages                                      | **50+** demo pages                                                |
-| -                                                     | ✓ Multi-language                                                  |
-| -                                                     | ✓ Dark/Light Mode 🌓                                              |
-| -                                                     | ✓ [More components](https://minimals.cc/components)               |
-| -                                                     | ✓ Next.js version                                                 |
-| -                                                     | ✓ TypeScript version                                              |
-| -                                                     | ✓ Design files (Figma & Sketch)                                   |
+## About the Project:
+This website is replacing the narrator of the game. The solution is assigning roles to players, tell them what to do, record thir votes and decisions, and ensure the game rules are being respected. A server of the game is created, players can join with their phones. The concept is a bit similar to Kahoot or JackBox. The server-side development is ongoing.
 
-## Page demo
+## Possible frontend improvements
 
-- [Dashboard](https://minimal-kit-react.vercel.app/dashboard/app)
-- [Users](https://minimal-kit-react.vercel.app/dashboard/user)
-- [Product](https://minimal-kit-react.vercel.app/dashboard/products)
-- [Blog](https://minimal-kit-react.vercel.app/dashboard/blog)
-- [Login](https://minimal-kit-react.vercel.app/login)
-- [Not Found](https://minimal-kit-react.vercel.app/404)
+- Improve CreateGameSettings component
+- Improve commands/ text/ infos..
+- Delete non-used pages and components
+- Add GameOver component (wolves won / villagers won)
 
-## Getting started
 
-- Recommended `node js 16.x` and `npm 6+`. (suggestion v16.15.0)
-- Install dependencies: `npm install` / `yarn install`
-- Start the project: `npm run start` / `yarn start`
+## Contributers
 
-## License
+-  [Mehdi Ben Ayed](https://github.com/BenAyedMehdi) 
+-  [Hatem Khabir](https://github.com/HatemKhabir) 
 
-Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
-
-## Contact us
-
-Email Us: support@minimals.cc

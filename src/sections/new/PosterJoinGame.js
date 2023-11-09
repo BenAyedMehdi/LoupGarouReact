@@ -35,7 +35,7 @@ export default function PosterJoinGame({ title, value, color = 'primary', sx, ..
             </Typography>
 
             <Typography variant="h2" sx={{ mr: 2, opacity: 0.72 }}>
-              loupgarou.com
+              loupgarou.netlify.app
             </Typography>
           </Box>
           <Box>

@@ -44,12 +44,12 @@ export default function AssignedRole() {
             <>
               <LinearProgress color="warning" />
               <LinearProgress color="error" />
-              <TextWidget title="Ass>igning role..." value={"Hide your phone"} color="warning"/>
+              <TextWidget title="Assigning role..." value={"Hide your phone"} color="warning"/>
             </>
           ) : null}
           {showComponent2 ? (
             <>
-            <TextWidget title="Your role is" value="Loup" color="warning" icon={'ant-design:windows-filled'} />
+            <TextWidget title="Your role is" value="Loup Garou" color="warning" icon={'ant-design:windows-filled'} />
             <Box sx={{ mt: 3, pt: '100%', position: 'relative' }}>
               <StyledProductImg alt={'card'} src={`/assets/images/cards/loup.png`} />
             </Box>

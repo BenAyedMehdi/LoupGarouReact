@@ -1,4 +1,4 @@
-# [(Demo)](https://loupgarou.netlify.app)
+# [Demo](https://loupgarou.netlify.app)
 
 ![preview](public/assets/preview1.jpg)
 ![preview](public/assets/preview6.jpg)

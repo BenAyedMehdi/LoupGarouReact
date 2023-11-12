@@ -1,15 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-// @mui
-import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/material/styles';
-import { Grid, Typography } from '@mui/material';
-// utils
-import { fShortenNumber } from '../../utils/formatNumber';
-// components
-import Iconify from '../../components/iconify';
-import TextWidget from './TextWidget';
-import ClickablePlayerWidget from './ClickablePlayerWidget';
+import { Typography } from '@mui/material';
 import VotingStatus from './VotingStatus';
 import VotingPlayersGrid from './VotingPlayersGrid';
 

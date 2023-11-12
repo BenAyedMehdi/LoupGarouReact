@@ -32,7 +32,6 @@
     "react/jsx-key": 1,
     "import/no-cycle": 0,
     "arrow-body-style": 1,
-    "react/prop-types": 1,
     "no-param-reassign": 0,
     "no-nested-ternary": 0,
     "default-param-last": 0,
@@ -63,12 +62,8 @@
     "react/no-unstable-nested-components": 0,
     "react/function-component-definition": 0,
     "react/jsx-no-constructed-context-values": 0,
-    "no-unused-vars": [
-      1,
-      {
-        "ignoreRestSiblings": false
-      }
-    ],
+    "no-unused-vars": 0,
+    "react/prop-types": 0,
     "prefer-destructuring": [
       1,
       {

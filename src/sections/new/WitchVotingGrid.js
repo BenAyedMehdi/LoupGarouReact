@@ -1,16 +1,9 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 
-// @mui
-import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/material/styles';
-import { Grid, Typography } from '@mui/material';
-// utils
-import { fShortenNumber } from '../../utils/formatNumber';
-// components
-import Iconify from '../../components/iconify';
-import TextWidget from './TextWidget';
-import ClickablePlayerWidget from './ClickablePlayerWidget';
-import VotingStatus from './VotingStatus';
+import { useState } from 'react';
+
+import { Grid } from '@mui/material';
 import StaticPlayerWidget from './StaticPlayerWidget';
 import YesOrNoWidget from './YesOrNoWidget';
 import VotingPlayersGrid from './VotingPlayersGrid';

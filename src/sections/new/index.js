@@ -11,3 +11,4 @@ export { default as PlayersListTable } from './PlayersListTable';
 export { default as CardsListTable } from './CardsListTable';
 export { default as PlayersLobby } from './PlayersLobby';
 export { default as VotingPlayersGrid } from './VotingPlayersGrid';
+export {default as AppOrderTimeline} from '../@dashboard/AppOrderTimeline';

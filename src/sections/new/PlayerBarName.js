@@ -1,12 +1,6 @@
-import React, { useState, useEffect } from 'react';
-// @mui
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { alpha, styled } from '@mui/material/styles';
-import { Card, Box, Link, Typography, Button, Avatar, CardActionArea } from '@mui/material';
-// utils
-import { fShortenNumber } from '../../utils/formatNumber';
-// components
-import Iconify from '../../components/iconify';
+import { Box, Link, Typography, Avatar } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

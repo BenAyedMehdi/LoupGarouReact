@@ -10,7 +10,7 @@ import VotingPlayersGrid from './VotingPlayersGrid';
 
 // ----------------------------------------------------------------------
 
-export default function WitchVotingGrid({ voted }) {
+export default function WitchVotingGrid({ voted,deadPlayer }) {
   const [selected, setSelected] = useState(2);
   const [vote, setVote] = useState(1);
   const [reviveVoted, setReviveVoted] = useState(false);
@@ -64,7 +64,7 @@ export default function WitchVotingGrid({ voted }) {
             <Grid item xs={12} sm={4} md={4}>
               <StaticPlayerWidget
                 header={'The wolves killed'}
-                name={'Mehdi'}
+                name={deadPlayer}
                 color="success"
                 iconUrl={'/assets/images/avatars/avatar_12.jpg'}
               />

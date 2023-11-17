@@ -1,3 +1,7 @@
+// VotingPlayersGrid to ClickablePlayerWidget:
+// Within the VotingPlayersGrid, the ClickablePlayerWidget component is used to represent individual players for voting.
+// The handleVoted function within ClickablePlayerWidget is triggered when the "Vote" button is clicked. This function calls voted(id) (passed down as voted={handleVote} from the PlayerNightAction), informing the VotingPlayersGrid of the voted player's id.
+
 import { useState } from 'react';
 
 import { Grid } from '@mui/material';
@@ -7,28 +11,26 @@ import StaticPlayerWidget from './StaticPlayerWidget';
 // ----------------------------------------------------------------------
 
 export default function VotingPlayersGrid({ voted }) {
-  const [selected, setSelected] = useState(2);
-  const [vote, setVote] = useState(1);
+  const [selected, setSelected] = useState(0);
+  const [vote, setVote] = useState(0);
   const [isVoted, setIsVoted] = useState(false);
 
   const PLAYERS = [
-    { id: 1, name: 'Njoura', avatarUrl: '/assets/images/avatars/avatar_2.jpg' },
-    { id: 2, name: 'Khabir', avatarUrl: '/assets/images/avatars/avatar_5.jpg' },
-    { id: 3, name: 'Mehdi', avatarUrl: '/assets/images/avatars/avatar_12.jpg' },
-    { id: 4, name: 'Oussama', avatarUrl: '/assets/images/avatars/avatar_19.jpg' },
-    { id: 5, name: 'Njoura', avatarUrl: '/assets/images/avatars/avatar_2.jpg' },
-    { id: 6, name: 'Khabir', avatarUrl: '/assets/images/avatars/avatar_5.jpg' },
-    { id: 7, name: 'Mehdi', avatarUrl: '/assets/images/avatars/avatar_12.jpg' },
-    { id: 8, name: 'Oussama', avatarUrl: '/assets/images/avatars/avatar_19.jpg' },
+    { id: 1, name: 'Mehdi', avatarUrl: '/assets/images/avatars/avatar_2.jpg' },
+    { id: 2, name: 'Njoura', avatarUrl: '/assets/images/avatars/avatar_5.jpg' },
+    { id: 3, name: 'Khabir', avatarUrl: '/assets/images/avatars/avatar_12.jpg' },
+    { id: 4, name: 'Jihed', avatarUrl: '/assets/images/avatars/avatar_19.jpg' },
+    { id: 5, name: 'Sahar', avatarUrl: '/assets/images/avatars/avatar_2.jpg' },
+    { id: 6, name: 'Ghassen', avatarUrl: '/assets/images/avatars/avatar_5.jpg' },
+    { id: 7, name: 'Iheb', avatarUrl: '/assets/images/avatars/avatar_12.jpg' },
   ];
   const changeChoice = (id) => {
     setSelected(id);
   };
-  const handleVote = (id) => {
+  const handleVote = (id,name) => {
     setIsVoted(true);
     setVote(id);
-    console.log(id);
-    voted(id);
+    voted(name);
   };
   return (
     <>

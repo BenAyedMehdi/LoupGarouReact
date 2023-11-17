@@ -1,6 +1,13 @@
+// PlayerNightAction to VotingPlayersGrid:
+// In the PlayerNightAction component, the handleVote function is passed down as voted={handleVote} to the VotingPlayersGrid component.
+// When a player is selected and the vote is confirmed within the VotingPlayersGrid, the handleVote function is called, which updates the state within the PlayerNightAction to denote that a vote has been made (setHasVoted(true)).
+
+
+
+
 /* eslint-disable react/prop-types */
 
-import React,{useState}  from 'react';
+import React,{useState,useEffect, useContext}  from 'react';
 
 // @mui
 import { Grid } from '@mui/material';
@@ -10,22 +17,33 @@ import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
 import { CardsListTable, PlayersListTable,VotingPlayersGrid } from '../new';
 import WitchVotingGrid from '../new/WitchVotingGrid';
-
 // ----------------------------------------------------------------------
 export default function PlayerNightAction({ card, voted }) {
   const [hasVoted, setHasVoted] = useState(false);
+  const [protectedPlayer,setProtectedPlayer]=useState("");
+  const [deadPlayer,setDeadPlayer]=useState("");
+
 
   const handleVote = (id) => {
-    console.log(id);
     setHasVoted(true);
     voted(id);
+    if (card==='Salvador'){
+    setProtectedPlayer(id);
+    }
+  if (card==='Loup')
+  {setDeadPlayer(id);
+  }
   };
+  useEffect(() => {
+    console.log(`Dead Player in PlayerNightAction: ${deadPlayer}`);
+  }, [deadPlayer]);
 
   return (
     <>
       <Grid container spacing={3}>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <PlayersListTable />
+        {/* if the protectedPlayer state is updated using useState and it's passed as a prop to the PlayerListTable component, every time the protectedPlayer state changes, the PlayerListTable component will re-render. */}
+          <PlayersListTable deadPlayer={deadPlayer} protectedPlayer={protectedPlayer}/>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           {card === 'Salvador' && (
@@ -47,7 +65,7 @@ export default function PlayerNightAction({ card, voted }) {
               )}
               <VotingPlayersGrid voted={handleVote} />
               {hasVoted && (
-                <TextWidget
+                <TextWidget 
                   sx={{ m: 3 }}
                   value={'You can close your eyes now'}
                   color="warning"
@@ -94,7 +112,7 @@ export default function PlayerNightAction({ card, voted }) {
                 color="error"
                 iconUrl={'/assets/images/avatars/avatar_12.jpg'}
               />
-              <WitchVotingGrid voted={handleVote}/>
+              <WitchVotingGrid voted={handleVote} deadPlayer={deadPlayer}/>
               {hasVoted && (
                 <TextWidget
                 sx={{ m: 3 }}

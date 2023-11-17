@@ -36,7 +36,7 @@ export default function ClickablePlayerWidget({ voted, clicked, id, name, total,
   const handleVoted = (e) => {
     e.preventDefault();
     setVote(name);
-    voted(id);
+    voted(id,name);
     console.log('player voted for: ', id);
   };
   return (

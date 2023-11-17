@@ -1,39 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
 // @mui
-import {
-  Box,
-  Stack,
-  Grid,
-  Container,
-  Typography,
-  Button,
-  TextField,
-  FormGroup,
-  FormControlLabel,
-  Switch,
-} from '@mui/material';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import { Stack, Container, Button } from '@mui/material';
 import useResponsive from '../hooks/useResponsive';
 
 // sections
 import StartGameIntro from '../sections/game/StartGameIntro';
-import {PlayerNightAction,  DayVote, PlayerSleeping, PostNightAnnouncements, RoleNightTask } from '../sections/game';
-import { TextWidget, HostLobby, InitialStepper, VotingStatus, CreateGameSettings, VotingPlayersGrid } from '../sections/new';
-// components
-import Iconify from '../components/iconify';
+import { PlayerNightAction, PlayerSleeping, PostNightAnnouncements } from '../sections/game';
+import { TextWidget, InitialStepper, VotingPlayersGrid } from '../sections/new';
 import DayPhase from '../sections/game/DayPhase';
 // ----------------------------------------------------------------------
 
+
 export default function PlayerGame() {
+  const [deadPlayer,setDeadPlayer]=useState("");
   const isDesktop = useResponsive('up', 'lg');
-  const [light, setLight] = React.useState(false);
-  const [voted, setVoted] = React.useState(false);
+  const [light, setLight] = useState(false);
+  const [voted, setVoted] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const steps = ['GetReady','Intro', 'Salvador', 'Loups', 'Sorciere', 'Announcements', 'Day', 'Vote'];
   
@@ -52,7 +35,6 @@ export default function PlayerGame() {
   };
 
   const handleVote = (id) => {
-    console.log('voted', id);
     setVoted(true);
   };
 

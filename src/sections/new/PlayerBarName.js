@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Link, Typography, Avatar } from '@mui/material';
 
@@ -21,7 +21,6 @@ const account = {
 // ----------------------------------------------------------------------
 
 export default function PlayerBarName({ clicked, id, player }) {
-  const [vote, setVote] = useState('');
 
   const PlayerClicked = () => {
     clicked(id);
@@ -30,7 +29,7 @@ export default function PlayerBarName({ clicked, id, player }) {
   return (
     <Box sx={{ mb: 1, mx: 2.5 }}>
       <Link underline="none">
-        <StyledAccount sx={[(player.isDead)&& {backgroundColor:'error.main'}]}>
+      <StyledAccount sx={[(player.isDead && { backgroundColor: 'error.main' }),(player.isProtected&&{backgroundColor:'#03a9f4'})]}>
           <Avatar src={account.photoURL} alt="photoURL" />
 
           <Box sx={{ ml: 2 }}>

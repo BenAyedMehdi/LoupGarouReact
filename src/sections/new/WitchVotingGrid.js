@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 
-// @mui
-import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/material/styles';
-import { Grid, Typography } from '@mui/material';
-// utils
-import { fShortenNumber } from '../../utils/formatNumber';
-// components
-import Iconify from '../../components/iconify';
-import TextWidget from './TextWidget';
-import ClickablePlayerWidget from './ClickablePlayerWidget';
-import VotingStatus from './VotingStatus';
+import { useState } from 'react';
+
+import { Grid } from '@mui/material';
 import StaticPlayerWidget from './StaticPlayerWidget';
 import YesOrNoWidget from './YesOrNoWidget';
 import VotingPlayersGrid from './VotingPlayersGrid';
 
 // ----------------------------------------------------------------------
 
-export default function WitchVotingGrid({ voted }) {
+export default function WitchVotingGrid({ voted,deadPlayer }) {
   const [selected, setSelected] = useState(2);
   const [vote, setVote] = useState(1);
   const [reviveVoted, setReviveVoted] = useState(false);
@@ -71,7 +64,7 @@ export default function WitchVotingGrid({ voted }) {
             <Grid item xs={12} sm={4} md={4}>
               <StaticPlayerWidget
                 header={'The wolves killed'}
-                name={'Mehdi'}
+                name={deadPlayer}
                 color="success"
                 iconUrl={'/assets/images/avatars/avatar_12.jpg'}
               />

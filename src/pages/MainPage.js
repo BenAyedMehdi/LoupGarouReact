@@ -6,7 +6,6 @@ import { Grid, Container, Typography, Button } from '@mui/material';
 import { TextWidget } from '../sections/new';
 import Iconify from '../components/iconify';
 // sections
-import { AppOrderTimeline } from '../sections/@dashboard/app';
 
 // ----------------------------------------------------------------------
 

@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { faker } from '@faker-js/faker'; 
-// @mui
-import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/material/styles';
-import { Card, Typography, Button, Avatar, CardActionArea } from '@mui/material';
-// utils
-import { fShortenNumber } from '../../utils/formatNumber';
-// components
-import Iconify from '../../components/iconify';
-import { AppOrderTimeline } from '../@dashboard/app';
-
+import { useState } from 'react';
+import { faker } from '@faker-js/faker';
+import { styled } from '@mui/material/styles';
+import AppOrderTimeline from '../@dashboard/AppOrderTimeline';
 // ----------------------------------------------------------------------
 
 const StyledIcon = styled('div')(({ theme }) => ({

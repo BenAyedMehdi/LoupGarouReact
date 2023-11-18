@@ -1,11 +1,10 @@
+/* eslint-disable react/prop-types */
+
+import { useEffect } from 'react';
 // @mui
-import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/material/styles';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
 // utils
-import { fShortenNumber } from '../../utils/formatNumber';
 // components
-import Iconify from '../../components/iconify';
 import PlayerBarName from './PlayerBarName';
 
 // ----------------------------------------------------------------------
@@ -13,40 +12,53 @@ const rows = [
   {
     name: 'Mehdi',
     isDead:false,
+    isProtected:false,
   },
   {
     name: 'Njoura',
     isDead:false,
+    isProtected:false,
   },
   {
     name: 'Khabir',
     isDead:false,
+    isProtected:false,
   },
   {
     name: 'Jihed',
     isDead:false,
+    isProtected:false,
   },
   {
     name: 'Sahar',
     isDead:false,
+    isProtected:false,
   },
   {
     name: 'Ghassen',
     isDead:false,
+    isProtected:false,
   },
   {
     name: 'Iheb',
     isDead:false,
+    isProtected:false,
   },
 ];
 
-export default function PlayersListTable({deadPlayer}) {
+export default function PlayersListTable({deadPlayer ,protectedPlayer }) {
   let updatedRows = [];
   updatedRows = rows.map((row) => {
     if (row.name === deadPlayer) {
       return {
         ...row,
         isDead: true,
+      };
+    }
+    if (row.name === protectedPlayer) {
+      return {
+        ...row,
+        isProtected: true,
       };
     }
     return row;

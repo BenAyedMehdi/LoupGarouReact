@@ -29,8 +29,6 @@ import {
   PlayersListTable,
   CardsListTable,
 } from '../sections/new';
-// components
-import Iconify from '../components/iconify';
 // ----------------------------------------------------------------------
 
 export default function CreateGamePage() {

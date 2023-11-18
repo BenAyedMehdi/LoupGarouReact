@@ -1,47 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import useSound from 'use-sound';
+// PlayerNightAction to VotingPlayersGrid:
+// In the PlayerNightAction component, the handleVote function is passed down as voted={handleVote} to the VotingPlayersGrid component.
+// When a player is selected and the vote is confirmed within the VotingPlayersGrid, the handleVote function is called, which updates the state within the PlayerNightAction to denote that a vote has been made (setHasVoted(true)).
+
+
+
+
+/* eslint-disable react/prop-types */
+
+import React,{useState,useEffect, useContext}  from 'react';
 
 // @mui
-import PropTypes from 'prop-types';
-import { alpha, styled } from '@mui/material/styles';
 import { Grid } from '@mui/material';
-// utils
-import { fShortenNumber } from '../../utils/formatNumber';
+
 // components
-import Iconify from '../../components/iconify';
 import TextWidget from '../new/TextWidget';
 import StaticPlayerWidget from '../new/StaticPlayerWidget';
-import { CardsListTable, PlayersListTable, VoteForCheif, VotingPlayersGrid } from '../new';
-import YesOrNoWidget from '../new/YesOrNoWidget';
+import { CardsListTable, PlayersListTable,VotingPlayersGrid } from '../new';
 import WitchVotingGrid from '../new/WitchVotingGrid';
-
 // ----------------------------------------------------------------------
-
 export default function PlayerNightAction({ card, voted }) {
-  const [audio, SetAudio] = useState('');
-  const [hasVoted, setHasVoted] = React.useState(false);
-  const [showComponent1, setShowComponent1] = useState(false);
-  const [showComponent2, setShowComponent2] = useState(false);
-  const [showComponent3, setShowComponent3] = useState(false);
-  const [showComponent4, setShowComponent4] = useState(false);
-  useEffect(() => {
-    setTimeout(() => setShowComponent1(true), 0);
-    setTimeout(() => setShowComponent2(true), 0);
-    setTimeout(() => setShowComponent3(true), 0);
-    setTimeout(() => setShowComponent4(true), 0);
-  }, []);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [protectedPlayer,setProtectedPlayer]=useState("");
+  const [deadPlayer,setDeadPlayer]=useState("");
+
 
   const handleVote = (id) => {
-    console.log(id);
     setHasVoted(true);
     voted(id);
+    if (card==='Salvador'){
+    setProtectedPlayer(id);
+    }
+  if (card==='Loup')
+  {setDeadPlayer(id);
+  }
   };
+  useEffect(() => {
+    console.log(`Dead Player in PlayerNightAction: ${deadPlayer}`);
+  }, [deadPlayer]);
 
   return (
     <>
       <Grid container spacing={3}>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <PlayersListTable />
+        {/* if the protectedPlayer state is updated using useState and it's passed as a prop to the PlayerListTable component, every time the protectedPlayer state changes, the PlayerListTable component will re-render. */}
+          <PlayersListTable deadPlayer={deadPlayer} protectedPlayer={protectedPlayer}/>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           {card === 'Salvador' && (
@@ -63,7 +65,7 @@ export default function PlayerNightAction({ card, voted }) {
               )}
               <VotingPlayersGrid voted={handleVote} />
               {hasVoted && (
-                <TextWidget
+                <TextWidget 
                   sx={{ m: 3 }}
                   value={'You can close your eyes now'}
                   color="warning"
@@ -110,7 +112,7 @@ export default function PlayerNightAction({ card, voted }) {
                 color="error"
                 iconUrl={'/assets/images/avatars/avatar_12.jpg'}
               />
-              <WitchVotingGrid voted={handleVote}/>
+              <WitchVotingGrid voted={handleVote} deadPlayer={deadPlayer}/>
               {hasVoted && (
                 <TextWidget
                 sx={{ m: 3 }}

@@ -42,6 +42,7 @@
     "@emotion/styled": "^11.10.6",
     "@faker-js/faker": "^7.6.0",
     "@iconify/react": "^4.1.0",
+    "@mui/icons-material": "^5.14.14",
     "@mui/lab": "^5.0.0-alpha.103",
     "@mui/material": "^5.11.10",
     "apexcharts": "^3.37.0",
@@ -59,6 +60,7 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.1",
     "simplebar-react": "^3.2.1",
+    "use-sound": "^4.0.1",
     "web-vitals": "^3.1.1"
   },
   "devDependencies": {

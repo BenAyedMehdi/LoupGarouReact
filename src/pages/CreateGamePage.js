@@ -35,15 +35,25 @@ export default function CreateGamePage() {
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
+  const [game, setGame] = useState({});
   const steps = ['Create a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
   
   const handleNext = (e) => {
     e.preventDefault();
+    nextStep();
+  };
+  
+  const nextStep = () => {
     if (currentStep === 3) {
       console.log('Create a game');
       navigate('/dashboard/host');
     }
     setCurrentStep(currentStep + 1);
+  };
+  const handleGameCreated = (g) => {
+    setGame(g);
+    localStorage.setItem("game", JSON.stringify(g));
+    nextStep();
   };
   const handleBoardingComplete = (e) => {
     e.preventDefault();
@@ -77,7 +87,7 @@ export default function CreateGamePage() {
         </Stack>
         {currentStep === 0 && (
           <>
-            <CreateGameSettings />
+            <CreateGameSettings returnedGame={handleGameCreated} />
           </>
         )}
         {currentStep === 1 && (

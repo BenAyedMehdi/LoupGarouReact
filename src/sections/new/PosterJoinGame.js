@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import { Stack, Box, Card, Typography } from '@mui/material';
 import TextWidget from './TextWidget';
@@ -9,6 +10,11 @@ const StyledProductImg = styled('img')({
 });
 
 export default function PosterJoinGame({ title, value, color = 'primary', sx, ...other }) {
+
+  const gameJson = localStorage.getItem('game')
+  const gameCode = gameJson ? JSON.parse(gameJson).gameCode : 'XYZK'
+
+
   return (
     <>
       <Card
@@ -39,7 +45,7 @@ export default function PosterJoinGame({ title, value, color = 'primary', sx, ..
             <Box component="img" src="/assets/images/qrcode.png" sx={{ minWidth:100, width: "100%", pt: 2 }} />
           </Box>
         </Stack>
-        <TextWidget title="Game ID" value="XYZK" color="warning" sx={{ m: 3 }} />
+        <TextWidget title="Game ID" value={gameCode} color="warning" sx={{ m: 3 }} />
       </Card>
     </>
   );

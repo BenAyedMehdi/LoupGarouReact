@@ -1,28 +1,38 @@
+import React, { useState, useEffect } from 'react';
 import { Button, Grid, TextField, Switch } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import apiCalls from '../../apiCalls';
 
 // ----------------------------------------------------------------------
 
-export default function CreateGameSettings() {
-  const handleNext = async (e) => {
+export default function CreateGameSettings({returnedGame}) {
+  const [error, setError] = useState(false);
+
+  const handleCreateGame = async (e) => {
     e.preventDefault();
-    console.log('Create a game function');
-    const response = await apiCalls.createGame({
-      numberOfPlayers: 5,
-      characters: [
-        {
-          characterName: 'Loup',
-        },
-      ],
-    });
-    console.log(response);
+    const game = await apiCalls.createGame();
+    console.log(game === null ? 'Network error' : game.gameCode);
+    if (game === null) {
+      setError(true);
+    }else{
+      returnedGame(game);
+    }
   };
 
   return (
     <>
       <Grid container spacing={3}>
+        {error && (
+          <Grid item xs={12} sm={12} md={12}>
+            <Alert severity="error">
+              <AlertTitle>Error</AlertTitle>
+              Unable to connect to the server.
+            </Alert>
+          </Grid>
+        )}
         <Grid item xs={12} sm={6} md={4}>
-          <Button onClick={handleNext} variant="contained" sx={{ width: '70%', height: 66, mb: 3 }}>
+          <Button onClick={handleCreateGame} variant="contained" sx={{ width: '70%', height: 66, mb: 3 }}>
             Create Game
           </Button>
         </Grid>

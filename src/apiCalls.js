@@ -13,4 +13,14 @@ export default class apiCalls {
     }
     return null;
   };
+
+  static addPlayer = async (createPlayerRequest) => {
+    try {
+      const response = await axios.post(`${url}/api/players`, createPlayerRequest);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+    return null;
+  };
 }

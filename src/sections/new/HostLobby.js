@@ -49,7 +49,7 @@ export default function HostLobby() {
             </Alert>
           </Grid>
         )}
-        <Button onClick={handleRefreshPlayers} variant="contained" sx={{ width: '100%', height: 66, mb: 3 }}>
+        <Button onClick={handleRefreshPlayers} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
           Refresh
         </Button>
         <Grid item xs={12} sm={6} md={3}>

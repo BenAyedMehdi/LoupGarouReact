@@ -32,7 +32,7 @@ export default function CreateGameSettings({returnedGame}) {
           </Grid>
         )}
         <Grid item xs={12} sm={6} md={4}>
-          <Button onClick={handleCreateGame} variant="contained" sx={{ width: '70%', height: 66, mb: 3 }}>
+          <Button onClick={handleCreateGame} variant="contained" sx={{ width: '70%', height: 66, m: 3 }}>
             Create Game
           </Button>
         </Grid>

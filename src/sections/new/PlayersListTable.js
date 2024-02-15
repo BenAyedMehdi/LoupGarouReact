@@ -47,21 +47,21 @@ const rows = [
 ];
 
 export default function PlayersListTable({players, deadPlayer ,protectedPlayer }) {
-  let updatedRows = [];
-  updatedRows = rows.map((row) => {
-    if (row.name === deadPlayer) {
+  let updatedRows = players===null || players === undefined ? rows : players;
+  updatedRows = updatedRows.map((player) => {
+    if (player.name === deadPlayer) {
       return {
-        ...row,
+        ...player,
         isDead: true,
       };
     }
-    if (row.name === protectedPlayer) {
+    if (player.name === protectedPlayer) {
       return {
-        ...row,
+        ...player,
         isProtected: true,
       };
     }
-    return row;
+    return player;
   });
 
   return (

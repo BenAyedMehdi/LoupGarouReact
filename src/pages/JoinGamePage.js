@@ -33,14 +33,14 @@ export default function JoinGamePage() {
   };
   const handlePlayerCreated = (p) => {
     setPlayer(p);
-    localStorage.setItem('player', JSON.stringify(player));
+    localStorage.setItem('player', JSON.stringify(p));
     nextStep();
   };
 
   const handleVote = (id) => {
     setIsVoted(true);
   };
-  
+
   return (
     <>
       <Helmet>

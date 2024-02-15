@@ -46,7 +46,7 @@ const rows = [
   },
 ];
 
-export default function PlayersListTable({deadPlayer ,protectedPlayer }) {
+export default function PlayersListTable({players, deadPlayer ,protectedPlayer }) {
   let updatedRows = [];
   updatedRows = rows.map((row) => {
     if (row.name === deadPlayer) {

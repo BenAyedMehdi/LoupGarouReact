@@ -23,4 +23,14 @@ export default class apiCalls {
     }
     return null;
   };
+
+  static getGamePlayers = async (gameId) => {
+    try {
+      const response = await axios.get(`${url}/api/games/${gameId}/players`);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+    return null;
+  };
 }

@@ -8,7 +8,22 @@ import apiCalls from '../../apiCalls';
 
 export default function CreateGameSettings({returnedGame}) {
   const [error, setError] = useState(false);
+  const [allRoles,setAllRoles ] = useState([]);
 
+  useEffect(  () => {
+    getGamePlayers();
+  }, [])
+
+  const getGamePlayers = async (e) => {
+    const roles = await apiCalls.getAllRoles();
+      console.log(roles === null ? 'Network error' :roles);
+      if (roles === null) {
+        setError(true);
+      } else {
+        setError(false);
+        setAllRoles(roles);
+      }
+  }
   const handleCreateGame = async (e) => {
     e.preventDefault();
     const game = await apiCalls.createGame();

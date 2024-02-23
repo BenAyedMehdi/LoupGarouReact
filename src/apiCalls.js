@@ -33,4 +33,14 @@ export default class apiCalls {
     }
     return null;
   };
+
+  static getAllRoles = async () => {
+    try {
+      const response = await axios.get(`${url}/api/roles`);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+    return null;
+  };
 }

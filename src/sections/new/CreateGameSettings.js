@@ -3,34 +3,35 @@ import { Button, Grid, TextField, Switch } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import apiCalls from '../../apiCalls';
+import RolesCountBar from './RolesCountBar';
 
 // ----------------------------------------------------------------------
 
-export default function CreateGameSettings({returnedGame}) {
+export default function CreateGameSettings({ returnedGame }) {
   const [error, setError] = useState(false);
-  const [allRoles,setAllRoles ] = useState([]);
+  const [allRoles, setAllRoles] = useState([]);
 
-  useEffect(  () => {
+  useEffect(() => {
     getGamePlayers();
-  }, [])
+  }, []);
 
   const getGamePlayers = async (e) => {
     const roles = await apiCalls.getAllRoles();
-      console.log(roles === null ? 'Network error' :roles);
-      if (roles === null) {
-        setError(true);
-      } else {
-        setError(false);
-        setAllRoles(roles);
-      }
-  }
+    console.log(roles === null ? 'Network error' : roles);
+    if (roles === null) {
+      setError(true);
+    } else {
+      setError(false);
+      setAllRoles(roles);
+    }
+  };
   const handleCreateGame = async (e) => {
     e.preventDefault();
     const game = await apiCalls.createGame();
     console.log(game === null ? 'Network error' : game.gameCode);
     if (game === null) {
       setError(true);
-    }else{
+    } else {
       returnedGame(game);
     }
   };
@@ -46,23 +47,30 @@ export default function CreateGameSettings({returnedGame}) {
             </Alert>
           </Grid>
         )}
-        <Grid item xs={12} sm={6} md={4}>
-          <Button onClick={handleCreateGame} variant="contained" sx={{ width: '70%', height: 66, m: 3 }}>
+        <Grid item xs={12} sm={6} md={6}>
+          <Button onClick={handleCreateGame} variant="contained" sx={{ width: '90%', height: 56, mx: 3 }}>
             Create Game
           </Button>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6} md={6}>
           <TextField
             id="outlined-number"
             label="Number of players"
             type="number"
+            fullWidth
             required
             InputLabelProps={{
               shrink: true,
             }}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6} md={6}>
+          <RolesCountBar clicked={(id) => console.log(id)} id={1} role={{ name: 'Warewolf' }} />
+          <RolesCountBar clicked={(id) => console.log(id)} id={1} role={{ name: 'Warewolf' }} />
+          <RolesCountBar clicked={(id) => console.log(id)} id={1} role={{ name: 'Warewolf' }} />
+          <RolesCountBar clicked={(id) => console.log(id)} id={1} role={{ name: 'Warewolf' }} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={6}>
           <Grid container direction="row" justifyContent="center" alignItems="center" spacing={3}>
             <Grid item xs={4} sm={4} md={4}>
               <Switch />

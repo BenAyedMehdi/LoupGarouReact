@@ -22,14 +22,14 @@ const account = {
 
 // ----------------------------------------------------------------------
 
-export default function RolesCountBar({ clicked, id, role }) {
+export default function RolesCountBar({ role, addCards }) {
 
   const handleValueChanged = (newValue) => {
     const cardsToAdd = {
       role,
       count: newValue
     }
-    console.log(cardsToAdd)
+    addCards(cardsToAdd);
   };
 
   return (

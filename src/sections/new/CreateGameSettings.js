@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Grid, Typography, Container } from '@mui/material';
+import { Button, Grid, Typography, Container, CircularProgress } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import apiCalls from '../../apiCalls';
@@ -9,15 +9,17 @@ import RolesCountBar from './RolesCountBar';
 
 export default function CreateGameSettings({ returnedGame }) {
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [allRoles, setAllRoles] = useState([]);
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     getAllRolesInDb();
   }, []);
 
   useEffect(() => {
-    setCards(allRoles.map(role => ({ role, count: 1 })));
+    setCards(allRoles.map((role) => ({ role, count: 1 })));
   }, [allRoles]);
 
   useEffect(() => {
@@ -29,9 +31,11 @@ export default function CreateGameSettings({ returnedGame }) {
     console.log(roles === null ? 'Network error' : roles);
     if (roles === null) {
       setError(true);
+      setLoading(false);
     } else {
       setError(false);
       setAllRoles(roles);
+      setLoading(false);
     }
   };
 
@@ -82,6 +86,12 @@ export default function CreateGameSettings({ returnedGame }) {
               Total number of Players: 8
             </Typography>
           </Grid>
+          {loading && (
+            <Grid item xs={12} sm={12} md={12}>
+              <CircularProgress />
+            </Grid>
+          )}
+
           <Grid item xs={12} sm={12} md={12}>
             <div>
               {allRoles.map((role, index) => (

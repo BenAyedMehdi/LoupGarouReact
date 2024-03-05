@@ -12,10 +12,10 @@ export default function CreateGameSettings({ returnedGame }) {
   const [allRoles, setAllRoles] = useState([]);
 
   useEffect(() => {
-    getGamePlayers();
+    getAllRolesInDb();
   }, []);
 
-  const getGamePlayers = async (e) => {
+  const getAllRolesInDb = async (e) => {
     const roles = await apiCalls.getAllRoles();
     console.log(roles === null ? 'Network error' : roles);
     if (roles === null) {
@@ -65,10 +65,11 @@ export default function CreateGameSettings({ returnedGame }) {
           />
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
-          <RolesCountBar clicked={(id) => console.log(id)} id={1} role={{ name: 'Warewolf' }} />
-          <RolesCountBar clicked={(id) => console.log(id)} id={1} role={{ name: 'Warewolf' }} />
-          <RolesCountBar clicked={(id) => console.log(id)} id={1} role={{ name: 'Warewolf' }} />
-          <RolesCountBar clicked={(id) => console.log(id)} id={1} role={{ name: 'Warewolf' }} />
+          <div>
+            {allRoles.map((role, index) => (
+              <RolesCountBar key={index} role={role} />
+            ))}
+          </div>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           <Grid container direction="row" justifyContent="center" alignItems="center" spacing={3}>

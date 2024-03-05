@@ -23,8 +23,13 @@ const account = {
 // ----------------------------------------------------------------------
 
 export default function RolesCountBar({ clicked, id, role }) {
-  const PlayerClicked = () => {
-    clicked(id);
+
+  const handleValueChanged = (newValue) => {
+    const cardsToAdd = {
+      role,
+      count: newValue
+    }
+    console.log(cardsToAdd)
   };
 
   return (
@@ -34,7 +39,7 @@ export default function RolesCountBar({ clicked, id, role }) {
           <div>
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {role.name}
+                {role.roleName}
               </Typography>
 
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
@@ -42,7 +47,7 @@ export default function RolesCountBar({ clicked, id, role }) {
               </Typography>
             </Box>
           </div>
-          <InputSlider />
+          <InputSlider valueChanged={handleValueChanged} />
           <Avatar src={account.photoURL} alt="photoURL" />
         </StyledAccount>
       </Link>

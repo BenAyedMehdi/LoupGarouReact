@@ -11,15 +11,19 @@ const Input = styled(MuiInput)`
   width: 42px;
 `;
 
-export default function InputSlider() {
+export default function InputSlider({valueChanged}) {
   const [value, setValue] = React.useState(1);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
+    valueChanged(newValue);
   };
 
   const handleInputChange = (event) => {
-    setValue(event.target.value === '' ? 0 : Number(event.target.value));
+    const value = event.target.value === '' ? 0 : Number(event.target.value);
+    const newValue = value>10 ? 10 : value;
+    setValue(newValue);
+    valueChanged(newValue);
   };
 
   const handleBlur = () => {

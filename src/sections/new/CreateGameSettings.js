@@ -12,6 +12,7 @@ export default function CreateGameSettings({ returnedGame }) {
   const [loading, setLoading] = useState(false);
   const [allRoles, setAllRoles] = useState([]);
   const [cards, setCards] = useState([]);
+  const [totalPlayers, setTotalPlayers] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -19,11 +20,13 @@ export default function CreateGameSettings({ returnedGame }) {
   }, []);
 
   useEffect(() => {
-    setCards(allRoles.map((role) => ({ role, count: 1 })));
+    setCards(allRoles.map((role) => ({ role, numberOfCards: 1 })));
   }, [allRoles]);
 
   useEffect(() => {
-    console.log(cards);
+    const total = cards.reduce((sum, card) => sum + card.numberOfCards, 0);
+    console.log("total: ", total)
+    setTotalPlayers(total);
   }, [cards]);
 
   const getAllRolesInDb = async (e) => {
@@ -41,13 +44,19 @@ export default function CreateGameSettings({ returnedGame }) {
 
   const handleCreateGame = async (e) => {
     e.preventDefault();
-    const game = await apiCalls.createGame();
+    const request = {
+      numberOfPlayers: totalPlayers,
+      gameCards: cards
+    }
+    console.log(request)
+    const game = await apiCalls.createGame(request);
     console.log(game === null ? 'Network error' : game.gameCode);
     if (game === null) {
       setError(true);
     } else {
       returnedGame(game);
-    }
+      setError(false);
+    } 
   };
 
   const handleCardsCountChange = (cardsToAdd) => {
@@ -83,13 +92,13 @@ export default function CreateGameSettings({ returnedGame }) {
           </Grid>
           <Grid item xs={12} sm={12} md={12}>
             <Typography align="center" variant="h3" sx={{ m: 1 }}>
-              Total number of Players: 8
+              Total number of Players: {totalPlayers}
             </Typography>
           </Grid>
           {loading && (
-            <Grid item xs={12} sm={12} md={12}>
+            <Container style={{ display: 'flex', height: '10vh', alignItems: 'center', justifyContent: 'center' }}>
               <CircularProgress />
-            </Grid>
+            </Container>
           )}
 
           <Grid item xs={12} sm={12} md={12}>

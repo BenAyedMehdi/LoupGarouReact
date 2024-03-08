@@ -27,7 +27,7 @@ export default function RolesCountBar({ role, addCards }) {
   const handleValueChanged = (newValue) => {
     const cardsToAdd = {
       role,
-      count: newValue
+      numberOfCards: newValue
     }
     addCards(cardsToAdd);
   };

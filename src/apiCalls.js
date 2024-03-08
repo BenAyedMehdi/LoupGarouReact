@@ -4,9 +4,9 @@ const url = 'https://localhost:7074';
 
 
 export default class apiCalls {
-  static createGame = async () => {
+  static createGame = async (request) => {
     try {
-      const response = await axios.post(`${url}/api/games`);
+      const response = await axios.post(`${url}/api/games`, request);
       return response.data;
     } catch (e) {
       console.log(e);

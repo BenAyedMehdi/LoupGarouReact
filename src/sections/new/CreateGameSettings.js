@@ -2,52 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { Button, Grid, Typography, Container, CircularProgress } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import apiCalls from '../../apiCalls';
 import RolesCountBar from './RolesCountBar';
+import apiCalls from '../../apiCalls';
+import DTOs from '../../DTOs';
 
 // ----------------------------------------------------------------------
 
 export default function CreateGameSettings({ returnedGame }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [allRoles, setAllRoles] = useState([]);
-  const [cards, setCards] = useState([]);
+  const [allCardsFromDb, setAllCardsFromDb] = useState([]);
+  const [chosenCards, setChosenCards] = useState([]);
   const [totalPlayers, setTotalPlayers] = useState(0);
 
   useEffect(() => {
     setLoading(true);
-    getAllRolesInDb();
+    getAllCardsInDb();
   }, []);
 
   useEffect(() => {
-    setCards(allRoles.map((role) => ({ role, numberOfCards: 1 })));
-  }, [allRoles]);
+    setChosenCards(allCardsFromDb.map((card) => ({ card, numberOfCards: 1 })));
+  }, [allCardsFromDb]);
 
   useEffect(() => {
-    const total = cards.reduce((sum, card) => sum + card.numberOfCards, 0);
+    const total = chosenCards.reduce((sum, card) => sum + card.numberOfCards, 0);
     console.log("total: ", total)
     setTotalPlayers(total);
-  }, [cards]);
+  }, [chosenCards]);
 
-  const getAllRolesInDb = async (e) => {
-    const roles = await apiCalls.getAllRoles();
-    console.log(roles === null ? 'Network error' : roles);
-    if (roles === null) {
+  const getAllCardsInDb = async (e) => {
+    const cardsfromDb = await apiCalls.getAllCards();
+    console.log(cardsfromDb === null ? 'Network error' : cardsfromDb);
+    if (cardsfromDb === null) {
       setError(true);
       setLoading(false);
     } else {
       setError(false);
-      setAllRoles(roles);
+      setAllCardsFromDb(cardsfromDb);
       setLoading(false);
     }
   };
 
   const handleCreateGame = async (e) => {
     e.preventDefault();
-    const request = {
-      numberOfPlayers: totalPlayers,
-      gameCards: cards
-    }
+    const request = DTOs.createGameRequest(totalPlayers, chosenCards);
     console.log(request)
     const game = await apiCalls.createGame(request);
     console.log(game === null ? 'Network error' : game.gameCode);
@@ -60,8 +58,8 @@ export default function CreateGameSettings({ returnedGame }) {
   };
 
   const handleCardsCountChange = (cardsToAdd) => {
-    setCards((prevCards) => {
-      const existingCardIndex = prevCards.findIndex((card) => card.role.roleId === cardsToAdd.role.roleId);
+    setChosenCards((prevCards) => {
+      const existingCardIndex = prevCards.findIndex((cardsGroup) => cardsGroup.card.cardId === cardsToAdd.card.cardId);
       if (existingCardIndex > -1) {
         // If the card already exists, update its count
         const updatedCards = [...prevCards];
@@ -103,8 +101,8 @@ export default function CreateGameSettings({ returnedGame }) {
 
           <Grid item xs={12} sm={12} md={12}>
             <div>
-              {allRoles.map((role, index) => (
-                <RolesCountBar key={index} role={role} addCards={handleCardsCountChange} />
+              {allCardsFromDb.map((card, index) => (
+                <RolesCountBar key={index} card={card} addCards={handleCardsCountChange} />
               ))}
             </div>
           </Grid>

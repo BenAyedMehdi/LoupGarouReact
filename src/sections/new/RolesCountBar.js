@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Link, Typography, Avatar } from '@mui/material';
 import InputSlider from './InputSlider';
+import DTOs from '../../DTOs';
 
 // ----------------------------------------------------------------------
 
@@ -22,13 +23,10 @@ const account = {
 
 // ----------------------------------------------------------------------
 
-export default function RolesCountBar({ role, addCards }) {
+export default function RolesCountBar({ card, addCards }) {
 
   const handleValueChanged = (newValue) => {
-    const cardsToAdd = {
-      role,
-      numberOfCards: newValue
-    }
+    const cardsToAdd = DTOs.createSameCardsGroup(newValue, card);
     addCards(cardsToAdd);
   };
 
@@ -39,11 +37,11 @@ export default function RolesCountBar({ role, addCards }) {
           <div>
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {role.roleName}
+                {card.cardName}
               </Typography>
 
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                Role
+                Card
               </Typography>
             </Box>
           </div>

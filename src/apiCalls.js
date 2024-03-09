@@ -34,9 +34,9 @@ export default class apiCalls {
     return null;
   };
 
-  static getAllRoles = async () => {
+  static getAllCards = async () => {
     try {
-      const response = await axios.get(`${url}/api/roles`);
+      const response = await axios.get(`${url}/api/cards`);
       return response.data;
     } catch (e) {
       console.log(e);

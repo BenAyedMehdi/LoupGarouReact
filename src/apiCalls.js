@@ -26,30 +26,30 @@ export default class apiCalls {
   static getGamePlayers = async (gameId) => {
     try {
       const response = await axios.get(`${url}/api/games/${gameId}/players`);
-      return response.data;
+      return { data: response.data, error: null };
     } catch (e) {
       console.log(e);
+      return { data: null, error: e };
     }
-    return null;
   };
 
   static getAllCards = async () => {
     try {
       const response = await axios.get(`${url}/api/cards`);
-      return response.data;
+      return { data: response.data, error: null };
     } catch (e) {
       console.log(e);
+      return { data: null, error: e };
     }
-    return null;
   };
 
   static getGameRoles = async (gameId) => {
     try {
       const response = await axios.get(`${url}/api/games/${gameId}/roles`);
-      return response.data;
+      return { data: response.data, error: null };
     } catch (e) {
       console.log(e);
+      return { data: null, error: e };
     }
-    return null;
   };
 }

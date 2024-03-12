@@ -32,13 +32,14 @@ export default function CreateGameSettings({ returnedGame }) {
   }, [chosenCards]);
 
   const getAllCardsInDb = async (e) => {
-    const cardsfromDb = await apiCalls.getAllCards();
-    console.log(cardsfromDb === null ? 'Network error' : cardsfromDb);
-    if (cardsfromDb === null) {
+    const res = await apiCalls.getAllCards();
+    console.log(res);
+    if (res.error) {
       setError(true);
       setLoading(false);
     } else {
       setError(false);
+      const cardsfromDb = res.data;
       setAllCardsFromDb(cardsfromDb);
       setLoading(false);
     }

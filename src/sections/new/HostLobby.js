@@ -22,19 +22,20 @@ export default function HostLobby() {
   }, []);
 
   useEffect(() => {
-      setAllplayersJoined(gameRoles.length === gamePlayers.length);
+    setAllplayersJoined(gameRoles.length === gamePlayers.length);
   }, [gamePlayers, gameRoles]);
 
   const getGameRoles = async (e) => {
     const gameJson = localStorage.getItem('game');
     const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
     if (gameId !== null) {
-      const roles = await apiCalls.getGameRoles(gameId);
-      console.log(roles === null ? 'Network error' : roles);
-      if (roles === null) {
+      const res = await apiCalls.getGameRoles(gameId);
+      console.log(res);
+      if (res.error) {
         setError(true);
       } else {
         setError(false);
+        const roles = res.data;
         setGameRoles(roles);
       }
     }
@@ -43,12 +44,15 @@ export default function HostLobby() {
   const getGamePlayers = async (e) => {
     const gameJson = localStorage.getItem('game');
     const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
+    
     if (gameId !== null) {
-      const players = await apiCalls.getGamePlayers(gameId);
-      console.log(players === null ? 'Network error' : players);
-      if (players === null) {
+      const res = await apiCalls.getGamePlayers(gameId);
+      console.log(res);
+      
+      if (res.error) {
         setError(true);
       } else {
+        const players = res.data;
         setError(false);
         setGamePlayers(players);
       }
@@ -58,6 +62,12 @@ export default function HostLobby() {
   const handleRefreshPlayers = async (e) => {
     e.preventDefault();
     await getGamePlayers();
+  };
+
+  // TODO: Implement this function
+  const handleStartGame = async (e) => {
+    e.preventDefault();
+    console.log("Start Game")
   };
 
   return (
@@ -77,7 +87,7 @@ export default function HostLobby() {
           </Button>
         )}
         {allplayersJoined && (
-          <Button onClick={handleRefreshPlayers} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+          <Button onClick={handleStartGame} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
             Start Game
           </Button>
         )}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { Grid, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';  
+import AlertTitle from '@mui/material/AlertTitle';
 import apiCalls from '../../apiCalls';
 import PlayersListTable from './PlayersListTable';
 import PosterJoinGame from './PosterJoinGame';
@@ -13,10 +13,27 @@ import CardsListTable from './CardsListTable';
 export default function HostLobby() {
   const [error, setError] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
+  const [gameRoles, setGameRoles] = useState([]);
 
-  useEffect(  () => {
+  useEffect(() => {
+    getGameRoles();
     getGamePlayers();
-  }, [])
+  }, []);
+
+  const getGameRoles = async (e) => {
+    const gameJson = localStorage.getItem('game');
+    const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
+    if (gameId !== null) {
+      const roles = await apiCalls.getGameRoles(gameId);
+      console.log(roles === null ? 'Network error' : roles);
+      if (roles === null) {
+        setError(true);
+      } else {
+        setError(false);
+        setGameRoles(roles);
+      }
+    }
+  };
 
   const getGamePlayers = async (e) => {
     const gameJson = localStorage.getItem('game');
@@ -31,8 +48,8 @@ export default function HostLobby() {
         setGamePlayers(players);
       }
     }
-  }
-  
+  };
+
   const handleRefreshPlayers = async (e) => {
     e.preventDefault();
     await getGamePlayers();
@@ -59,7 +76,7 @@ export default function HostLobby() {
           <PosterJoinGame />
         </Grid>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <CardsListTable />
+          <CardsListTable roles={gameRoles}/>
         </Grid>
       </Grid>
     </>

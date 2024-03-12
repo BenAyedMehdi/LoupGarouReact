@@ -3,50 +3,47 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper
 // utils
 // components
 import PlayerBarName from './PlayerBarName';
-
-
+import CardBarName from './CardBarName';
 
 // ----------------------------------------------------------------------
 const rows = [
   {
-    name: "Salvador",
-   },
-   {
-    name: "Loup garou",
-   },
-   {
-    name: "Loup garou",
-   },
-   {
-    name: "Witch",
-   },
-   {
-    name: "Hunter",
-   },
-   {
-    name: "Villager",
-   },
-   {
-    name: "Villager",
-   },
+    name: 'Salvador',
+  },
+  {
+    name: 'Loup garou',
+  },
+  {
+    name: 'Loup garou',
+  },
+  {
+    name: 'Witch',
+  },
+  {
+    name: 'Hunter',
+  },
+  {
+    name: 'Villager',
+  },
+  {
+    name: 'Villager',
+  },
 ];
 
-export default function CardsListTable() {
+export default function CardsListTable({ roles }) {
   return (
     <TableContainer component={Paper}>
-      <Table  aria-label="simple table">
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Characters ({rows.length }) </TableCell>
+            <TableCell>Characters ({roles.length}) </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow
-              key={index}
-            >
+          {roles.map((role, index) => (
+            <TableRow key={index}>
               <td>
-               <PlayerBarName player={row}/>
+                <CardBarName card={role.card} />
               </td>
             </TableRow>
           ))}

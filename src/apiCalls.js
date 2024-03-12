@@ -43,4 +43,15 @@ export default class apiCalls {
     }
     return null;
   };
+
+  static getGameRoles = async (gameId) => {
+    try {
+      const response = await axios.get(`${url}/api/games/${gameId}/roles`);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+    return null;
+  };
+
 }

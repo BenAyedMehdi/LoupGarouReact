@@ -17,11 +17,11 @@ export default class apiCalls {
   static addPlayer = async (createPlayerRequest) => {
     try {
       const response = await axios.post(`${url}/api/players`, createPlayerRequest);
-      return response.data;
+      return { data: response.data, error: null };
     } catch (e) {
       console.log(e);
+      return { data: null, error: e };
     }
-    return null;
   };
 
   static getGamePlayers = async (gameId) => {

@@ -8,6 +8,7 @@ import apiCalls from '../../apiCalls';
 
 export default function PlayerJoiningForm({ returnedPlayer }) {
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('Unable to connect to the server.');
   const [name, setName] = useState('');
   const [gameID, setGameID] = useState('');
   const [valid, setValid] = useState(true);
@@ -30,11 +31,19 @@ export default function PlayerJoiningForm({ returnedPlayer }) {
         playerName: name,
       };
 
-      const player = await apiCalls.addPlayer(req);
-      console.log(player === null ? 'Network error' : player);
-      if (player === null) {
+      const res = await apiCalls.addPlayer(req);
+      console.log(res);
+
+      if (res.error) {
         setError(true);
+        if (res.error.code === 'ERR_BAD_REQUEST' || res.error.code === 'ERR_NOT_FOUND') {
+          setErrorMessage(res.error.response.data);
+        } else {
+          setErrorMessage('Unable to connect to the server.');
+        }
       } else {
+        const player = res.data;
+        console.log(player);
         setError(false);
         returnedPlayer(player);
       }
@@ -44,11 +53,10 @@ export default function PlayerJoiningForm({ returnedPlayer }) {
   return (
     <>
       <Grid container spacing={3}>
-      {error && (
+        {error && (
           <Grid item xs={12} sm={12} md={12}>
             <Alert severity="error">
-              <AlertTitle>Error</AlertTitle>
-              Unable to connect to the server.
+              <AlertTitle>{errorMessage}</AlertTitle>
             </Alert>
           </Grid>
         )}

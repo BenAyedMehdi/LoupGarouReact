@@ -12,6 +12,7 @@ import CardsListTable from './CardsListTable';
 
 export default function HostLobby() {
   const [error, setError] = useState(false);
+  const [allplayersJoined, setAllplayersJoined] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
   const [gameRoles, setGameRoles] = useState([]);
 
@@ -19,6 +20,10 @@ export default function HostLobby() {
     getGameRoles();
     getGamePlayers();
   }, []);
+
+  useEffect(() => {
+      setAllplayersJoined(gameRoles.length === gamePlayers.length);
+  }, [gamePlayers, gameRoles]);
 
   const getGameRoles = async (e) => {
     const gameJson = localStorage.getItem('game');
@@ -66,9 +71,16 @@ export default function HostLobby() {
             </Alert>
           </Grid>
         )}
-        <Button onClick={handleRefreshPlayers} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
-          Refresh
-        </Button>
+        {!allplayersJoined && (
+          <Button onClick={handleRefreshPlayers} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+            Refresh
+          </Button>
+        )}
+        {allplayersJoined && (
+          <Button onClick={handleRefreshPlayers} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+            Start Game
+          </Button>
+        )}
         <Grid item xs={12} sm={6} md={3}>
           <PlayersListTable players={gamePlayers} />
         </Grid>
@@ -76,7 +88,7 @@ export default function HostLobby() {
           <PosterJoinGame />
         </Grid>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <CardsListTable roles={gameRoles}/>
+          <CardsListTable roles={gameRoles} />
         </Grid>
       </Grid>
     </>

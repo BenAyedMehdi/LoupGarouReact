@@ -11,10 +11,27 @@ import CardsListTable from './CardsListTable';
 export default function PlayersLobby() {
   const [error, setError] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
+  const [gameRoles, setGameRoles] = useState([]);
 
   useEffect(() => {
+    getGameRoles();
     getGamePlayers();
   }, []);
+
+  const getGameRoles = async (e) => {
+    const playerJson = localStorage.getItem('player');
+    const gameId = playerJson ? JSON.parse(playerJson).gameId : null;
+    if (gameId !== null) {
+      const roles = await apiCalls.getGameRoles(gameId);
+      console.log(roles === null ? 'Network error' : roles);
+      if (roles === null) {
+        setError(true);
+      } else {
+        setError(false);
+        setGameRoles(roles);
+      }
+    }
+  };
 
   const getGamePlayers = async (e) => {
     const playerJson = localStorage.getItem('player');
@@ -61,7 +78,7 @@ export default function PlayersLobby() {
         </Grid>
 
         <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} xs={12} sm={6} md={3}>
-          <CardsListTable />
+          <CardsListTable roles={gameRoles}/>
         </Grid>
       </Grid>
     </>

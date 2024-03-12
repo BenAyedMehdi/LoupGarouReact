@@ -10,6 +10,7 @@ import DTOs from '../../DTOs';
 
 export default function CreateGameSettings({ returnedGame }) {
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('Unable to connect to the server.');
   const [loading, setLoading] = useState(false);
   const [allCardsFromDb, setAllCardsFromDb] = useState([]);
   const [chosenCards, setChosenCards] = useState([]);
@@ -26,7 +27,7 @@ export default function CreateGameSettings({ returnedGame }) {
 
   useEffect(() => {
     const total = chosenCards.reduce((sum, card) => sum + card.numberOfCards, 0);
-    console.log("total: ", total)
+    console.log('total: ', total);
     setTotalPlayers(total);
   }, [chosenCards]);
 
@@ -45,16 +46,26 @@ export default function CreateGameSettings({ returnedGame }) {
 
   const handleCreateGame = async (e) => {
     e.preventDefault();
+
     const request = DTOs.createGameRequest(totalPlayers, chosenCards);
-    console.log(request)
-    const game = await apiCalls.createGame(request);
-    console.log(game === null ? 'Network error' : game.gameCode);
-    if (game === null) {
+    console.log(request);
+
+    const res = await apiCalls.createGame(request);
+    console.log(res);
+
+    if (res.error) {
       setError(true);
+      if (res.error.code === 'ERR_BAD_REQUEST' || res.error.code === 'ERR_NOT_FOUND') {
+        setErrorMessage(res.error.response.data);
+      } else {
+        setErrorMessage('Unable to connect to the server.');
+      }
     } else {
+      const game = res.data;
+      console.log(game);
       returnedGame(game);
       setError(false);
-    } 
+    }
   };
 
   const handleCardsCountChange = (cardsToAdd) => {
@@ -78,8 +89,7 @@ export default function CreateGameSettings({ returnedGame }) {
           {error && (
             <Grid item xs={12} sm={12} md={12}>
               <Alert severity="error">
-                <AlertTitle>Error</AlertTitle>
-                Unable to connect to the server.
+                <AlertTitle>{errorMessage}</AlertTitle>
               </Alert>
             </Grid>
           )}

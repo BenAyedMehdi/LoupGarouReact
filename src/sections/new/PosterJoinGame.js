@@ -11,7 +11,7 @@ const StyledProductImg = styled('img')({
 
 export default function PosterJoinGame({ title, value, color = 'primary', sx, ...other }) {
 
-  const gameJson = localStorage.getItem('game')
+  const gameJson = localStorage.getItem('memoryObject')
   const gameCode = gameJson ? JSON.parse(gameJson).gameCode : 'XYZK'
 
 

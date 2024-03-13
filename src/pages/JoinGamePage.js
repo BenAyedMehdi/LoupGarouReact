@@ -33,7 +33,7 @@ export default function JoinGamePage() {
   };
   const handlePlayerCreated = (p) => {
     setPlayer(p);
-    localStorage.setItem('player', JSON.stringify(p));
+    localStorage.setItem('memoryObject', JSON.stringify(p));
     nextStep();
   };
 

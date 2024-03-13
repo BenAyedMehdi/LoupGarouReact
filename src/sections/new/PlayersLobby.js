@@ -19,8 +19,9 @@ export default function PlayersLobby() {
   }, []);
 
   const getGameRoles = async (e) => {
-    const playerJson = localStorage.getItem('player');
+    const playerJson = localStorage.getItem('memoryObject');
     const gameId = playerJson ? JSON.parse(playerJson).gameId : null;
+    
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
       console.log(res);
@@ -35,7 +36,7 @@ export default function PlayersLobby() {
   };
 
   const getGamePlayers = async (e) => {
-    const playerJson = localStorage.getItem('player');
+    const playerJson = localStorage.getItem('memoryObject');
     const gameId = playerJson ? JSON.parse(playerJson).gameId : null;
     
     if (gameId !== null) {

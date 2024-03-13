@@ -50,15 +50,16 @@ export default function CreateGamePage() {
     }
     setCurrentStep(currentStep + 1);
   };
+
   const handleGameCreated = (g) => {
     setGame(g);
-    localStorage.setItem("game", JSON.stringify(g));
+    localStorage.setItem("memoryObject", JSON.stringify(g));
     nextStep();
   };
-  const handleBoardingComplete = (e) => {
-    e.preventDefault();
+
+  const handleBoardingComplete = () => {
     console.log('Boarding complete');
-    setCurrentStep(2);
+    nextStep();
   };
   const handleStartVote = (e) => {
     e.preventDefault();
@@ -92,7 +93,7 @@ export default function CreateGamePage() {
         )}
         {currentStep === 1 && (
           <>
-            <HostLobby />
+            <HostLobby boardingCompleted={handleBoardingComplete}/>
           </>
         )}
         {currentStep === 2 && (

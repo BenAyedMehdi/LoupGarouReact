@@ -10,7 +10,7 @@ import CardsListTable from './CardsListTable';
 
 // ----------------------------------------------------------------------
 
-export default function HostLobby() {
+export default function HostLobby({boardingCompleted}) {
   const [error, setError] = useState(false);
   const [allplayersJoined, setAllplayersJoined] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
@@ -25,8 +25,8 @@ export default function HostLobby() {
     setAllplayersJoined(gameRoles.length === gamePlayers.length);
   }, [gamePlayers, gameRoles]);
 
-  const getGameRoles = async (e) => {
-    const gameJson = localStorage.getItem('game');
+  const getGameRoles = async () => {
+    const gameJson = localStorage.getItem('memoryObject');
     const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
@@ -41,8 +41,8 @@ export default function HostLobby() {
     }
   };
 
-  const getGamePlayers = async (e) => {
-    const gameJson = localStorage.getItem('game');
+  const getGamePlayers = async () => {
+    const gameJson = localStorage.getItem('memoryObject');
     const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
     
     if (gameId !== null) {
@@ -64,10 +64,10 @@ export default function HostLobby() {
     await getGamePlayers();
   };
 
-  // TODO: Implement this function
   const handleStartGame = async (e) => {
     e.preventDefault();
     console.log("Start Game")
+    boardingCompleted();
   };
 
   return (

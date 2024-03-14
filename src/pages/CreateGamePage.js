@@ -18,16 +18,14 @@ import {
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+import RolesDistribution from '../sections/new/RolesDistribution';
 import useResponsive from '../hooks/useResponsive';
 // sections
 import {
-  TextWidget,
   HostLobby,
   InitialStepper,
   VotingStatus,
   CreateGameSettings,
-  PlayersListTable,
-  CardsListTable,
 } from '../sections/new';
 // ----------------------------------------------------------------------
 
@@ -98,17 +96,7 @@ export default function CreateGamePage() {
         )}
         {currentStep === 2 && (
           <>
-            <Grid container spacing={3}>
-              <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-                <PlayersListTable />
-              </Grid>
-              <Grid item xs={12} sm={6} md={6}>
-                <TextWidget title="Make sure to hide your phone from everyone" value="Check your role" color="warning" icon={'ant-design:windows-filled'} />
-              </Grid>
-              <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-                <CardsListTable />
-              </Grid>
-            </Grid>
+            <RolesDistribution />
           </>
         )}
         {currentStep === 3 && (

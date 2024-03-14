@@ -52,4 +52,14 @@ export default class apiCalls {
       return { data: null, error: e };
     }
   };
+ 
+  static assignRolesToPlayer = async (gameId) => {
+    try {
+      const response = await axios.put(`${url}/api/games/${gameId}`);
+      return { data: response.data, error: null };
+    } catch (e) {
+      console.log(e);
+      return { data: null, error: e };
+    }
+  };
 }

@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { Grid, LinearProgress, Box } from '@mui/material';
 // utils
 // components
+import apiCalls from '../../apiCalls';
 import TextWidget from './TextWidget';
 
 // ----------------------------------------------------------------------
@@ -12,6 +13,26 @@ import TextWidget from './TextWidget';
 export default function AssignedRole() {
   const [showComponent1, setShowComponent1] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
+  const [role, setRole] = useState({});
+
+  useEffect(() => {
+    getPlayerRole();
+  }, []);
+
+  const getPlayerRole = async () => {
+    const jsonPlayer = localStorage.getItem('memoryObject');
+    const playerId = jsonPlayer ? JSON.parse(jsonPlayer).playerId : null;
+    
+    console.log(playerId)
+    if (playerId !== null) {
+      const res = await apiCalls.getPlayerRole(playerId);
+      console.log(res)
+      if (!res.error) {
+        const role = res.data;
+        setRole(role);
+      }
+    }
+  };
 
   useEffect(() => {
     setTimeout(() => setShowComponent1(false), 4000);
@@ -42,9 +63,9 @@ export default function AssignedRole() {
           ) : null}
           {showComponent2 ? (
             <>
-            <TextWidget title="Your role is" value="Loup Garou" color="warning" icon={'ant-design:windows-filled'} />
+            <TextWidget title="Your role is" value={role.card.cardName} color="warning" icon={'ant-design:windows-filled'} />
             <Box sx={{ mt: 3, pt: '100%', position: 'relative' }}>
-              <StyledProductImg alt={'card'} src={`/assets/images/cards/loup.png`} />
+              <StyledProductImg alt={'card'} src={`/assets/images/cards/${role.card.imageName}.png`} />
             </Box>
             </>
           ) : null}

@@ -62,4 +62,14 @@ export default class apiCalls {
       return { data: null, error: e };
     }
   };
+
+  static getPlayerRole = async (playerId) => {
+    try {
+      const response = await axios.get(`${url}/api/players/${playerId}/role`);
+      return { data: response.data, error: null };
+    } catch (e) {
+      console.log(e);
+      return { data: null, error: e };
+    }
+  };
 }

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import { Stack, Box, Card, Typography } from '@mui/material';
 import TextWidget from './TextWidget';
+import GameContext from "../../contexts/GameContext"
 
 // ----------------------------------------------------------------------
 const StyledProductImg = styled('img')({
@@ -11,8 +12,8 @@ const StyledProductImg = styled('img')({
 
 export default function PosterJoinGame({ title, value, color = 'primary', sx, ...other }) {
 
-  const gameJson = localStorage.getItem('memoryObject')
-  const gameCode = gameJson ? JSON.parse(gameJson).gameCode : 'XYZK'
+  const [gameDetails, setGameDetails] = useContext(GameContext);
+
 
 
   return (
@@ -45,7 +46,7 @@ export default function PosterJoinGame({ title, value, color = 'primary', sx, ..
             <Box component="img" src="/assets/images/qrcode.png" sx={{ minWidth:100, width: "100%", pt: 2 }} />
           </Box>
         </Stack>
-        <TextWidget title="Game ID" value={gameCode} color="warning" sx={{ m: 3 }} />
+        <TextWidget title="Game ID" value={gameDetails.gameCode} color="warning" sx={{ m: 3 }} />
       </Card>
     </>
   );

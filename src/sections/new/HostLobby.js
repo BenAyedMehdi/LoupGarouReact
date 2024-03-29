@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import { Grid, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
@@ -7,6 +7,7 @@ import apiCalls from '../../apiCalls';
 import PlayersListTable from './PlayersListTable';
 import PosterJoinGame from './PosterJoinGame';
 import CardsListTable from './CardsListTable';
+import GameContext from "../../contexts/GameContext"
 
 // ----------------------------------------------------------------------
 
@@ -15,11 +16,13 @@ export default function HostLobby({boardingCompleted}) {
   const [allplayersJoined, setAllplayersJoined] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
   const [gameRoles, setGameRoles] = useState([]);
+  const [gameDetails, setGameDetails] = useContext(GameContext);
 
   useEffect(() => {
+    console.log("from lobby checking context",gameDetails)
     getGameRoles();
     getGamePlayers();
-  }, []);
+  }, [gameDetails]);
 
   useEffect(() => {
     setAllplayersJoined(gameRoles.length === gamePlayers.length);
@@ -44,7 +47,6 @@ export default function HostLobby({boardingCompleted}) {
   const getGamePlayers = async () => {
     const gameJson = localStorage.getItem('memoryObject');
     const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
-    
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
       console.log(res);
@@ -95,7 +97,7 @@ export default function HostLobby({boardingCompleted}) {
           <PlayersListTable players={gamePlayers} />
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
-          <PosterJoinGame />
+          <PosterJoinGame  />
         </Grid>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <CardsListTable roles={gameRoles} />

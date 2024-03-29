@@ -15,12 +15,8 @@ export default function AssignedRole() {
   const [showComponent2, setShowComponent2] = useState(false);
   const [role, setRole] = useState({});
 
-  useEffect(() => {
-    getPlayerRole();
-  }, []);
-
   const getPlayerRole = async () => {
-    const jsonPlayer = localStorage.getItem('memoryObject');
+    const jsonPlayer = localStorage.getItem('playerObject');
     const playerId = jsonPlayer ? JSON.parse(jsonPlayer).playerId : null;
     
     console.log(playerId)
@@ -33,6 +29,11 @@ export default function AssignedRole() {
       }
     }
   };
+  useEffect(() => {
+    getPlayerRole();
+  }, []);
+
+
 
   useEffect(() => {
     setTimeout(() => setShowComponent1(false), 4000);

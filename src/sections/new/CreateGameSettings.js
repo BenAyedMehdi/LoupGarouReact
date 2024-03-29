@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Grid, Typography, Container, CircularProgress } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import RolesCountBar from './RolesCountBar';
 import apiCalls from '../../apiCalls';
 import DTOs from '../../DTOs';
+import GameContext from "../../contexts/GameContext"
 
 // ----------------------------------------------------------------------
 
-export default function CreateGameSettings({ returnedGame }) {
+export default function CreateGameSettings({nextStepCall}) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('Unable to connect to the server.');
   const [loading, setLoading] = useState(false);
   const [allCardsFromDb, setAllCardsFromDb] = useState([]);
   const [chosenCards, setChosenCards] = useState([]);
   const [totalPlayers, setTotalPlayers] = useState(0);
+  const [gameDetails, setGameDetails] = useContext(GameContext);
 
   useEffect(() => {
     setLoading(true);
@@ -64,10 +66,16 @@ export default function CreateGameSettings({ returnedGame }) {
     } else {
       const game = res.data;
       console.log(game);
-      returnedGame(game);
+      setGameDetails(game)
+      localStorage.setItem("gameObject", JSON.stringify(game));
+      nextStepCall();      
       setError(false);
     }
   };
+  useEffect(()=>{
+    console.log("from context",gameDetails)
+
+  },[gameDetails])
 
   const handleCardsCountChange = (cardsToAdd) => {
     setChosenCards((prevCards) => {

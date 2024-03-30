@@ -24,7 +24,7 @@ export default function VotingStatus() {
     
     if (gameId !== null) {
       const req = DTOs.createVotingSessionRequest(gameId, 'chief');
-      const res = await apiCalls.creqteVotingSession(req);
+      const res = await apiCalls.createVotingSession(req);
       console.log(res);
       
       if (res.error) {

@@ -73,9 +73,19 @@ export default class apiCalls {
     }
   };
 
-  static creqteVotingSession = async (request) => {
+  static createVotingSession = async (request) => {
     try {
       const response = await axios.post(`${url}/api/votingSessions`, request);
+      return { data: response.data, error: null };
+    } catch (e) {
+      console.log(e);
+      return { data: null, error: e };
+    }
+  };
+  
+  static getCurrentVotingSession = async (gameId) => {
+    try {
+      const response = await axios.get(`${url}/api/games/${gameId}/votingSessions/current`);
       return { data: response.data, error: null };
     } catch (e) {
       console.log(e);

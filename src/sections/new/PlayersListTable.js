@@ -26,7 +26,6 @@ export default function PlayersListTable({players}) {
   const getGamePlayers = async () => {
     const jsonObject = localStorage.getItem('memoryObject');
     const gameId = jsonObject ? JSON.parse(jsonObject).gameId : null;
-    console.log(gameId)
 
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);

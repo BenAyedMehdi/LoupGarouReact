@@ -26,7 +26,6 @@ export default function CardsListTable({roles}) {
     const jsonObject = localStorage.getItem('memoryObject');
     const gameId = jsonObject ? JSON.parse(jsonObject).gameId : null;
     
-    console.log(gameId)
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
       if (!res.error) {

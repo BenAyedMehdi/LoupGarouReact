@@ -7,6 +7,7 @@ import { Grid, LinearProgress, Box } from '@mui/material';
 // components
 import apiCalls from '../../apiCalls';
 import TextWidget from './TextWidget';
+import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 
@@ -20,8 +21,7 @@ export default function AssignedRole() {
   }, []);
 
   const getPlayerRole = async () => {
-    const jsonPlayer = localStorage.getItem('memoryObject');
-    const playerId = jsonPlayer ? JSON.parse(jsonPlayer).playerId : null;
+    const playerId = storage.getPlayerId();
     
     console.log(playerId)
     if (playerId !== null) {
@@ -30,6 +30,8 @@ export default function AssignedRole() {
       if (!res.error) {
         const role = res.data;
         setRole(role);
+      }else{
+        setRole({card:{cardName:'Error',imageName:'error'}});
       }
     }
   };

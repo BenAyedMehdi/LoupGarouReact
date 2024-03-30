@@ -4,22 +4,38 @@ import { Typography } from '@mui/material';
 import VotingStatus from './VotingStatus';
 import VotingPlayersGrid from './VotingPlayersGrid';
 import apiCalls from '../../apiCalls';
+import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 
 export default function VoteForCheif({ voted }) {
   const [playersList, setPlayersList] = useState([]);
+  const [votingSession, setVotingSession] = useState({});
   const [selected, setSelected] = useState(2);
   const [isVoted, setIsVoted] = useState(false);
   
   useEffect(() => {
     getGamePlayers();
+    getCurrentVotingSession();
   }, []);
   
+  const gameId = storage.getGameId();
+
+  const getCurrentVotingSession = async () => {
+
+    if (gameId !== null) {
+      const res = await apiCalls.getCurrentVotingSession(gameId);
+      console.log(res);
+        
+      if (!res.error) {
+        const votingSession = res.data;
+        setVotingSession(votingSession);
+      }
+    }
+  }
+
+
   const getGamePlayers = async () => {
-    const jsonObject = localStorage.getItem('memoryObject');
-    const gameId = jsonObject ? JSON.parse(jsonObject).gameId : null;
-    console.log(gameId)
 
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);

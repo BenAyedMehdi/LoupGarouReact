@@ -1,25 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Typography } from '@mui/material';
 import VotingStatus from './VotingStatus';
 import VotingPlayersGrid from './VotingPlayersGrid';
+import apiCalls from '../../apiCalls';
 
 // ----------------------------------------------------------------------
 
 export default function VoteForCheif({ voted }) {
+  const [playersList, setPlayersList] = useState([]);
   const [selected, setSelected] = useState(2);
   const [isVoted, setIsVoted] = useState(false);
+  
+  useEffect(() => {
+    getGamePlayers();
+  }, []);
+  
+  const getGamePlayers = async () => {
+    const jsonObject = localStorage.getItem('memoryObject');
+    const gameId = jsonObject ? JSON.parse(jsonObject).gameId : null;
+    console.log(gameId)
 
-  const PLAYERS = [
-    { id: 1, name: 'Njoura', avatarUrl: '/assets/images/avatars/avatar_2.jpg' },
-    { id: 2, name: 'Khabir', avatarUrl: '/assets/images/avatars/avatar_5.jpg' },
-    { id: 3, name: 'Mehdi', avatarUrl: '/assets/images/avatars/avatar_12.jpg' },
-    { id: 4, name: 'Oussama', avatarUrl: '/assets/images/avatars/avatar_19.jpg' },
-    { id: 5, name: 'Njoura', avatarUrl: '/assets/images/avatars/avatar_2.jpg' },
-    { id: 6, name: 'Khabir', avatarUrl: '/assets/images/avatars/avatar_5.jpg' },
-    { id: 7, name: 'Mehdi', avatarUrl: '/assets/images/avatars/avatar_12.jpg' },
-    { id: 8, name: 'Oussama', avatarUrl: '/assets/images/avatars/avatar_19.jpg' },
-  ];
+    if (gameId !== null) {
+      const res = await apiCalls.getGamePlayers(gameId);
+      console.log(res);
+        
+      if (!res.error) {
+        const players = res.data;
+        setPlayersList(players);
+      }
+    }
+  };
+
+
   const changeChoice = (id) => {
     setSelected(id);
   };
@@ -34,7 +47,7 @@ export default function VoteForCheif({ voted }) {
           <Typography align="center" variant="h3" sx={{ mb: 3 }}>
             Please Vote For Your Village Chief
           </Typography>
-          <VotingPlayersGrid voted={handleVote}/>
+          <VotingPlayersGrid players={playersList} voted={handleVote}/>
         </>
       )}
       {isVoted && <VotingStatus />}

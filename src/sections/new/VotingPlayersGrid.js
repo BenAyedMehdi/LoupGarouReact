@@ -10,7 +10,7 @@ import StaticPlayerWidget from './StaticPlayerWidget';
 
 // ----------------------------------------------------------------------
 
-export default function VotingPlayersGrid({ voted }) {
+export default function VotingPlayersGrid({ players,  voted }) {
   const [selected, setSelected] = useState(0);
   const [vote, setVote] = useState(0);
   const [isVoted, setIsVoted] = useState(false);
@@ -24,6 +24,21 @@ export default function VotingPlayersGrid({ voted }) {
     { id: 6, name: 'Ghassen', avatarUrl: '/assets/images/avatars/avatar_5.jpg' },
     { id: 7, name: 'Iheb', avatarUrl: '/assets/images/avatars/avatar_12.jpg' },
   ];
+
+  const avatars = [
+    '/assets/images/avatars/avatar_2.jpg' ,
+    '/assets/images/avatars/avatar_5.jpg',
+    '/assets/images/avatars/avatar_12.jpg' ,
+    '/assets/images/avatars/avatar_19.jpg',
+    '/assets/images/avatars/avatar_2.jpg' ,
+    '/assets/images/avatars/avatar_5.jpg',
+    '/assets/images/avatars/avatar_12.jpg',
+    '/assets/images/avatars/avatar_2.jpg' ,
+    '/assets/images/avatars/avatar_5.jpg',
+    '/assets/images/avatars/avatar_12.jpg' ,
+    '/assets/images/avatars/avatar_19.jpg',
+  ];
+
   const changeChoice = (id) => {
     setSelected(id);
   };
@@ -37,30 +52,30 @@ export default function VotingPlayersGrid({ voted }) {
       <Grid container spacing={3}>
         {!isVoted && (
           <>
-            {PLAYERS.map((player) => {
+            {players.map((player, index) => {
               if (player.id === selected) {
                 return (
-                  <Grid key={player.id} item xs={6} sm={4} md={4}>
+                  <Grid key={player.playerId} item xs={6} sm={4} md={4}>
                     <ClickablePlayerWidget
                       voted={handleVote}
                       clicked={changeChoice}
-                      id={player.id}
+                      id={player.playerId}
                       name={player.name}
                       color="success"
-                      iconUrl={player.avatarUrl}
+                      iconUrl={avatars[index]? avatars[index]: '/assets/images/avatars/avatar_2.jpg'}
                     />
                   </Grid>
                 );
               }
               return (
-                <Grid key={player.id} item xs={6} sm={4} md={4}>
+                <Grid key={player.playerId} item xs={6} sm={4} md={4}>
                   <ClickablePlayerWidget
                     voted={handleVote}
                     clicked={changeChoice}
-                    id={player.id}
+                    id={player.playerId}
                     name={player.name}
                     color="primary"
-                    iconUrl={player.avatarUrl}
+                    iconUrl={avatars[index]? avatars[index]: '/assets/images/avatars/avatar_2.jpg'}
                   />
                 </Grid>
               );

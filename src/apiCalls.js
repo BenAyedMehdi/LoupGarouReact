@@ -72,4 +72,14 @@ export default class apiCalls {
       return { data: null, error: e };
     }
   };
+
+  static creqteVotingSession = async (request) => {
+    try {
+      const response = await axios.post(`${url}/api/votingSessions`, request);
+      return { data: response.data, error: null };
+    } catch (e) {
+      console.log(e);
+      return { data: null, error: e };
+    }
+  };
 }

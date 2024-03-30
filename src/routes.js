@@ -16,11 +16,11 @@ import PlayerGame from './pages/PlayerGame';
 export default function Router() {
   const routes = useRoutes([
     {
-      path: '/dashboard',
+      path: '/',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/main" />, index: true },
-        { path: 'main', element: <MainPage /> },
+        { element: <Navigate to="/home" />, index: true },
+        { path: 'home', element: <MainPage /> },
         { path: 'create-game', element: <CreateGamePage /> },
         { path: 'host', element: <StartGamePage /> },
         { path: 'join-game', element: <JoinGamePage /> },
@@ -35,7 +35,7 @@ export default function Router() {
     {
       element: <SimpleLayout />,
       children: [
-        { element: <Navigate to="/dashboard/main" />, index: true },
+        { element: <Navigate to="/home" />, index: true },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

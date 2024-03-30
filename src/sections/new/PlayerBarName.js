@@ -27,7 +27,7 @@ export default function PlayerBarName({ clicked, id, player }) {
   };
 
   return (
-    <Box sx={{ mb: 1, mx: 2.5 }}>
+    <Box sx={{ m: 1, mx: 2.5 }}>
       <Link underline="none">
       <StyledAccount sx={[(player.isDead && { backgroundColor: 'error.main' }),(player.isProtected&&{backgroundColor:'#03a9f4'})]}>
           <Avatar src={account.photoURL} alt="photoURL" />

@@ -22,7 +22,7 @@ const account = {
 
 export default function CardBarName({ clicked, id, card }) {
   return (
-    <Box sx={{ mb: 1, mx: 2.5 }}>
+    <Box sx={{ m: 1, mx: 2.5 }}>
       <Link underline="none">
         <StyledAccount>
           <Avatar src={account.photoURL} alt="photoURL" />

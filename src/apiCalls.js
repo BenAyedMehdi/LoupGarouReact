@@ -3,6 +3,7 @@ import axios from 'axios';
 const url = 'https://localhost:7074';
 
 export default class apiCalls {
+  
   static createGame = async (request) => {
     try {
       const response = await axios.post(`${url}/api/games`, request);

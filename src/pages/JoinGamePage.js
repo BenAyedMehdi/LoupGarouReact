@@ -34,9 +34,7 @@ export default function JoinGamePage() {
   };
   const handlePlayerCreated = (p) => {
     setPlayerDetails(p);
-    console.log('player from context',playerDetails)
     localStorage.setItem('playerObject', JSON.stringify(p));
-    console.log('player from local storage',localStorage.getItem('playerObject'))
     nextStep();
   };
 

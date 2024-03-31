@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import { Grid, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
@@ -8,19 +8,20 @@ import PlayersListTable from './PlayersListTable';
 import PosterJoinGame from './PosterJoinGame';
 import CardsListTable from './CardsListTable';
 import TextWidget from './TextWidget';
+import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
 export default function RolesDistribution() {
   const [error, setError] = useState(false);
-
+  const [gameDetails,setGameDetails]=useContext(GameContext)
   useEffect(() => {
     assignRolesToPlayers();
   }, []);
 
   const assignRolesToPlayers = async () => {
-    const gameJson = localStorage.getItem('memoryObject');
-    const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
+    const gameJson = gameDetails;
+    const gameId = gameJson ? gameDetails.gameId : null;
     
     if (gameId !== null) {
       const res = await apiCalls.assignRolesToPlayer(gameId);

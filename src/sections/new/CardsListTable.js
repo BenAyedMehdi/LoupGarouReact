@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 // @mui
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
 // utils
 // components
+
 import PlayerBarName from './PlayerBarName';
 import CardBarName from './CardBarName';
 import apiCalls from '../../apiCalls';
-import storage from '../../storage';
+import GameContext from '../../contexts/GameContext';
 
 
 export default function CardsListTable({roles}) {
   
   const [rolesList, setRolesList] = useState([]);
-
+  const [gameDetails,setgameDetails]=useContext(GameContext)
   useEffect(() => {
     getGameRoles();
   }, []);
@@ -24,7 +25,10 @@ export default function CardsListTable({roles}) {
   }, [roles]);
   
   const getGameRoles = async () => {
-    const gameId = storage.getGameId();
+    const gameJson = gameDetails;
+    const gameId = gameJson ? gameDetails.gameId : null;
+    
+    console.log(gameId)
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
       if (!res.error) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
@@ -9,10 +9,11 @@ import useResponsive from '../hooks/useResponsive';
 // components
 import { HostLobby, InitialStepper, VoteForCheif, AssignedRole, PlayersLobby } from '../sections/new';
 import Iconify from '../components/iconify';
+import GameContext from "../contexts/GameContext"
 // ----------------------------------------------------------------------
 
 export default function JoinGamePage() {
-  const [player, setPlayer] = useState({});
+  const [playerDetails,setPlayerDetails] = useContext(GameContext);
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
@@ -31,8 +32,8 @@ export default function JoinGamePage() {
     setCurrentStep(currentStep + 1);
   };
   const handlePlayerCreated = (p) => {
-    setPlayer(p);
-    localStorage.setItem('memoryObject', JSON.stringify(p));
+    setPlayerDetails(p);
+    localStorage.setItem('playerObject', JSON.stringify(p));
     nextStep();
   };
 

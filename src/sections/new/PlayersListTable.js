@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // @mui
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
 // utils
 // components
 import PlayerBarName from './PlayerBarName';
 import apiCalls from '../../apiCalls';
-import storage from '../../storage';
+import GameContext from '../../contexts/GameContext';
 
 
 export default function PlayersListTable({players}) {
   const [playersList, setPlayersList] = useState([]);
-
+  const [gameDetails]=useContext(GameContext)
   useEffect(() => {
     getGamePlayers();
   }, []);
@@ -25,7 +25,9 @@ export default function PlayersListTable({players}) {
   
 
   const getGamePlayers = async () => {
-    const gameId = storage.getGameId();
+    const gameJson = gameDetails;
+    const gameId = gameJson ? gameDetails.gameId : null;
+    console.log(gameId)
 
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';  
 import apiCalls from '../../apiCalls';
 import PlayersListTable from './PlayersListTable';
 import CardsListTable from './CardsListTable';
-import storage from '../../storage';
+import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
@@ -13,14 +13,15 @@ export default function PlayersLobby() {
   const [error, setError] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
   const [gameRoles, setGameRoles] = useState([]);
-
+  const [gameDetails,setGameDetails]=useContext(GameContext)
   useEffect(() => {
     getGameRoles();
     getGamePlayers();
   }, []);
 
   const getGameRoles = async (e) => {
-    const gameId = storage.getGameId();
+    const gameJson = gameDetails;
+    const gameId = gameJson ? gameDetails.gameId : null;
     
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
@@ -37,7 +38,8 @@ export default function PlayersLobby() {
   };
 
   const getGamePlayers = async (e) => {
-    const gameId = storage.getGameId();
+    const gameJson = gameDetails;
+    const gameId = gameJson ? gameDetails.gameId : null;
     
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);

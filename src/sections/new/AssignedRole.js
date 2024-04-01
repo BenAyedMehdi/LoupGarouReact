@@ -23,14 +23,14 @@ export default function AssignedRole() {
   const getPlayerRole = async () => {
     const playerId = storage.getPlayerId();
     
-    console.log(playerId)
     if (playerId !== null) {
       const res = await apiCalls.getPlayerRole(playerId);
-      console.log(res)
       if (!res.error) {
         const role = res.data;
+        console.log(role); 
         setRole(role);
       }else{
+        console.log(res.error)
         setRole({card:{cardName:'Error',imageName:'error'}});
       }
     }

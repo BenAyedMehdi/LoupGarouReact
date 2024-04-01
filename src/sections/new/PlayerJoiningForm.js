@@ -32,9 +32,9 @@ export default function PlayerJoiningForm({ returnedPlayer }) {
       };
 
       const res = await apiCalls.addPlayer(req);
-      console.log(res);
 
       if (res.error) {
+        console.log(res.error);
         setError(true);
         if (res.error.code === 'ERR_BAD_REQUEST' || res.error.code === 'ERR_NOT_FOUND') {
           setErrorMessage(res.error.response.data);

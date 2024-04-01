@@ -29,10 +29,10 @@ export default function PlayersListTable({players}) {
 
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
-      console.log(res);
-        
+      
       if (!res.error) {
         const players = res.data;
+        console.log(players);
         setPlayersList(players);
       }
     }

@@ -24,10 +24,10 @@ export default function VoteForCheif() {
   const getGamePlayers = async () => {
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
-      console.log(res);
-
+      
       if (!res.error) {
         const players = res.data;
+        console.log(players);
         setPlayersList(players);
       }
     }
@@ -36,23 +36,22 @@ export default function VoteForCheif() {
   const getCurrentVotingSession = async () => {
     if (gameId !== null) {
       const res = await apiCalls.getCurrentVotingSession(gameId);
-      console.log(res);
-
+      
       if (!res.error) {
         const votingSession = res.data;
+        console.log(votingSession);
         setVotingSession(votingSession);
       }
     }
   };
 
   const handleVote = async (targetId, name) => {
-    console.log('player voted for: ', targetId, ': ', name);
     const voterId = storage.getPlayerId();
     const req = DTOs.createVoteRequest(voterId, targetId, votingSession.votingSessionId);
     const res = await apiCalls.createVote(req);
-    console.log(res);
     if (!res.error) {
       const vote = res.data;
+      console.log(vote);
       setIsVoted(true);
     }
   };

@@ -24,12 +24,13 @@ export default function PlayersLobby() {
     
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
-      console.log(res);
       if (res.error) {
+        console.log(res.error);
         setError(true);
       } else {
         setError(false);
         const roles = res.data;
+        console.log(roles);
         setGameRoles(roles);
       }
     }
@@ -40,13 +41,14 @@ export default function PlayersLobby() {
     
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
-      console.log(res);
       
       if (res.error) {
+        console.log(res.error);
         setError(true);
       } else {
         const players = res.data;
         setError(false);
+        console.log(players);
         setGamePlayers(players);
       }
     }

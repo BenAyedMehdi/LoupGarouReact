@@ -51,7 +51,7 @@ export default function CreateGamePage() {
 
   const handleGameCreated = (g) => {
     setGame(g);
-    localStorage.setItem("memoryObject", JSON.stringify(g));
+    localStorage.setItem('memoryObject', JSON.stringify(g));
     nextStep();
   };
 

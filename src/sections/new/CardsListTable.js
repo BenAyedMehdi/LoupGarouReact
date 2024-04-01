@@ -6,6 +6,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper
 import PlayerBarName from './PlayerBarName';
 import CardBarName from './CardBarName';
 import apiCalls from '../../apiCalls';
+import storage from '../../storage';
 
 
 export default function CardsListTable({roles}) {
@@ -23,9 +24,7 @@ export default function CardsListTable({roles}) {
   }, [roles]);
   
   const getGameRoles = async () => {
-    const jsonObject = localStorage.getItem('memoryObject');
-    const gameId = jsonObject ? JSON.parse(jsonObject).gameId : null;
-    
+    const gameId = storage.getGameId();
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
       if (!res.error) {

@@ -45,7 +45,7 @@ export default function VotingPlayersGrid({ players,  voted }) {
   const handleVote = (id,name) => {
     setIsVoted(true);
     setVote(id);
-    voted(name);
+    voted(id, name);
   };
   return (
     <>

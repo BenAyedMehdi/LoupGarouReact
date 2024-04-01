@@ -7,6 +7,7 @@ import TextWidget from './TextWidget';
 import StaticPlayerWidget from './StaticPlayerWidget';
 import PlayersListTable from './PlayersListTable';
 import CardsListTable from './CardsListTable';
+import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 
@@ -19,8 +20,7 @@ export default function VotingStatus() {
   }, []);
 
   const createCheifVotingSession = async () => {
-    const gameJson = localStorage.getItem('memoryObject');
-    const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
+    const gameId = storage.getGameId();
     
     if (gameId !== null) {
       const req = DTOs.createVotingSessionRequest(gameId, 'chief');

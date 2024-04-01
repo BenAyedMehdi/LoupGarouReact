@@ -7,6 +7,7 @@ import apiCalls from '../../apiCalls';
 import PlayersListTable from './PlayersListTable';
 import PosterJoinGame from './PosterJoinGame';
 import CardsListTable from './CardsListTable';
+import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 
@@ -26,8 +27,7 @@ export default function HostLobby({boardingCompleted}) {
   }, [gamePlayers, gameRoles]);
 
   const getGameRoles = async () => {
-    const gameJson = localStorage.getItem('memoryObject');
-    const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
+    const gameId = storage.getGameId();
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
       console.log(res);
@@ -42,9 +42,7 @@ export default function HostLobby({boardingCompleted}) {
   };
 
   const getGamePlayers = async () => {
-    const gameJson = localStorage.getItem('memoryObject');
-    const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
-    
+    const gameId = storage.getGameId();
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
       console.log(res);

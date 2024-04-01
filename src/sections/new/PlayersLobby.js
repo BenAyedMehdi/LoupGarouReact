@@ -5,6 +5,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import apiCalls from '../../apiCalls';
 import PlayersListTable from './PlayersListTable';
 import CardsListTable from './CardsListTable';
+import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 
@@ -19,8 +20,7 @@ export default function PlayersLobby() {
   }, []);
 
   const getGameRoles = async (e) => {
-    const playerJson = localStorage.getItem('memoryObject');
-    const gameId = playerJson ? JSON.parse(playerJson).gameId : null;
+    const gameId = storage.getGameId();
     
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
@@ -36,8 +36,7 @@ export default function PlayersLobby() {
   };
 
   const getGamePlayers = async (e) => {
-    const playerJson = localStorage.getItem('memoryObject');
-    const gameId = playerJson ? JSON.parse(playerJson).gameId : null;
+    const gameId = storage.getGameId();
     
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);

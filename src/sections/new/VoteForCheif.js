@@ -5,6 +5,7 @@ import VotingStatus from './VotingStatus';
 import VotingPlayersGrid from './VotingPlayersGrid';
 import apiCalls from '../../apiCalls';
 import storage from '../../storage';
+import DTOs from 'src/DTOs';
 
 // ----------------------------------------------------------------------
 
@@ -46,7 +47,8 @@ export default function VoteForCheif() {
     }
   }
 
-  const handleVote = (id) => {
+  const handleVote = (id, name) => {
+    const req = DTOs.createVoteRequest()
     setIsVoted(true);
   };
   return (

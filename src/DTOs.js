@@ -20,5 +20,13 @@ export default class DTOs {
     };
   }
 
+  static createVoteRequest(voter, target, session) {
+    return {
+      voterId: voter,
+      targetId: target,
+      votingSessionId: session,
+    };
+  }
+
   // Define other DTOs here...
 }

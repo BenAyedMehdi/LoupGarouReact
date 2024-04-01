@@ -11,6 +11,11 @@ export default class storage {
     return playerId;
   }
 
+  static getGameCode() {
+    const gameJson = localStorage.getItem('memoryObject');
+    const gameCode = gameJson ? JSON.parse(gameJson).gameCode : 'XYZK';
+    return gameCode;
+  }
 
-  // Define other DTOs here...
+  // Define other storage functions here...
 }

@@ -7,6 +7,7 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper
 // components
 import PlayerBarName from './PlayerBarName';
 import apiCalls from '../../apiCalls';
+import storage from '../../storage';
 
 
 export default function PlayersListTable({players}) {
@@ -24,8 +25,7 @@ export default function PlayersListTable({players}) {
   
 
   const getGamePlayers = async () => {
-    const jsonObject = localStorage.getItem('memoryObject');
-    const gameId = jsonObject ? JSON.parse(jsonObject).gameId : null;
+    const gameId = storage.getGameId();
 
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);

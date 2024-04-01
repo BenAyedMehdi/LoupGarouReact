@@ -8,6 +8,7 @@ import PlayersListTable from './PlayersListTable';
 import PosterJoinGame from './PosterJoinGame';
 import CardsListTable from './CardsListTable';
 import TextWidget from './TextWidget';
+import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 
@@ -19,9 +20,8 @@ export default function RolesDistribution() {
   }, []);
 
   const assignRolesToPlayers = async () => {
-    const gameJson = localStorage.getItem('memoryObject');
-    const gameId = gameJson ? JSON.parse(gameJson).gameId : null;
-    
+    const gameId = storage.getGameId();
+
     if (gameId !== null) {
       const res = await apiCalls.assignRolesToPlayer(gameId);
       console.log(res);

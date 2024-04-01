@@ -24,7 +24,7 @@ import useResponsive from '../hooks/useResponsive';
 import {
   HostLobby,
   InitialStepper,
-  VotingStatus,
+  VotingSession,
   CreateGameSettings,
 } from '../sections/new';
 // ----------------------------------------------------------------------
@@ -101,7 +101,7 @@ export default function CreateGamePage() {
         )}
         {currentStep === 3 && (
           <>
-            <VotingStatus />
+            <VotingSession />
           </>
         )}
       </Container>

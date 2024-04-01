@@ -82,7 +82,7 @@ export default function VotingPlayersGrid({ players,  voted }) {
             })}
           </>
         )}
-        {isVoted && (
+        {/* {isVoted && (
           <>
             <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={4} md={4}>
               <></>
@@ -100,7 +100,7 @@ export default function VotingPlayersGrid({ players,  voted }) {
               <></>
             </Grid>
           </>
-        )}
+        )} */}
       </Grid>
     </>
   );

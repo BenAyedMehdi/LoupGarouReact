@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import { Stack, Box, Card, Typography } from '@mui/material';
 import TextWidget from './TextWidget';
+import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 const StyledProductImg = styled('img')({
@@ -11,8 +12,7 @@ const StyledProductImg = styled('img')({
 
 export default function PosterJoinGame({ title, value, color = 'primary', sx, ...other }) {
 
-  const gameJson = localStorage.getItem('memoryObject')
-  const gameCode = gameJson ? JSON.parse(gameJson).gameCode : 'XYZK'
+  const gameCode = storage.getGameCode();
 
 
   return (

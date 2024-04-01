@@ -5,6 +5,7 @@ export { default as InitialStepper } from './InitialStepper';
 export { default as VoteForCheif } from './VoteForCheif';
 export { default as StaticPlayerWidget } from './StaticPlayerWidget';
 export { default as VotingStatus } from './VotingStatus';
+export { default as VotingSession } from './VotingSession';
 export { default as AssignedRole } from './AssignedRole';
 export { default as CreateGameSettings } from './CreateGameSettings';
 export { default as PlayersListTable } from './PlayersListTable';

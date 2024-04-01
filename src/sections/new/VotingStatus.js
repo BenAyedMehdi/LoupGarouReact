@@ -11,30 +11,32 @@ import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 
-export default function VotingStatus() {
+export default function VotingStatus({votingSession}) {
   const [error, setError] = useState(false);
   const [isVoteCompleted, setIsVoteCompleted] = useState(false);
 
   useEffect(() => {
-    createCheifVotingSession();
+    getVotingSessionStatus();
   }, []);
 
-  const createCheifVotingSession = async () => {
-    const gameId = storage.getGameId();
+  const getVotingSessionStatus = async () => {
+    // TODO
+    // const gameId = storage.getGameId();
     
-    if (gameId !== null) {
-      const req = DTOs.createVotingSessionRequest(gameId, 'chief');
-      const res = await apiCalls.createVotingSession(req);
-      console.log(res);
+    // if (gameId !== null) {
+    //   const req = DTOs.createVotingSessionRequest(gameId, 'chief');
+    //   const res = await apiCalls.createVotingSession(req);
+    //   console.log(res);
       
-      if (res.error) {
-        setError(true);
-      } else {
-        const votingSessions = res.data;
-        setError(false);
-        console.log(votingSessions);
-      }
-    }
+    //   if (res.error) {
+    //     setError(true);
+    //   } else {
+    //     const votingSessions = res.data;
+    //     setError(false);
+    //     console.log(votingSessions);
+    //   }
+    // }
+    
   };
 
   return (
@@ -44,7 +46,7 @@ export default function VotingStatus() {
           <PlayersListTable />
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
-          {isVoteCompleted ? (
+          {!isVoteCompleted ? (
             <>
               <LinearProgress color="warning" />
               <LinearProgress color="error" />

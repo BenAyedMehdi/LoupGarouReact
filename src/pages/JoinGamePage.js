@@ -16,7 +16,6 @@ export default function JoinGamePage() {
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
-  const [isVoted, setIsVoted] = useState(false);
   const steps = ['Join  a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
 
   const handleNext = (e) => {
@@ -35,10 +34,6 @@ export default function JoinGamePage() {
     setPlayer(p);
     localStorage.setItem('memoryObject', JSON.stringify(p));
     nextStep();
-  };
-
-  const handleVote = (id) => {
-    setIsVoted(true);
   };
 
   return (
@@ -82,7 +77,7 @@ export default function JoinGamePage() {
         )}
         {currentStep === 3 && (
           <>
-            <VoteForCheif voted={handleVote} key={1} />
+            <VoteForCheif key={1} />
           </>
         )}
       </Container>

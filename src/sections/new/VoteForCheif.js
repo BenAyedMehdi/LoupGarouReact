@@ -8,10 +8,9 @@ import storage from '../../storage';
 
 // ----------------------------------------------------------------------
 
-export default function VoteForCheif({ voted }) {
+export default function VoteForCheif() {
   const [playersList, setPlayersList] = useState([]);
   const [votingSession, setVotingSession] = useState({});
-  const [selected, setSelected] = useState(2);
   const [isVoted, setIsVoted] = useState(false);
   
   useEffect(() => {
@@ -20,20 +19,6 @@ export default function VoteForCheif({ voted }) {
   }, []);
   
   const gameId = storage.getGameId();
-
-  const getCurrentVotingSession = async () => {
-
-    if (gameId !== null) {
-      const res = await apiCalls.getCurrentVotingSession(gameId);
-      console.log(res);
-        
-      if (!res.error) {
-        const votingSession = res.data;
-        setVotingSession(votingSession);
-      }
-    }
-  }
-
 
   const getGamePlayers = async () => {
 
@@ -48,13 +33,21 @@ export default function VoteForCheif({ voted }) {
     }
   };
 
+  const getCurrentVotingSession = async () => {
 
-  const changeChoice = (id) => {
-    setSelected(id);
-  };
+    if (gameId !== null) {
+      const res = await apiCalls.getCurrentVotingSession(gameId);
+      console.log(res);
+        
+      if (!res.error) {
+        const votingSession = res.data;
+        setVotingSession(votingSession);
+      }
+    }
+  }
+
   const handleVote = (id) => {
     setIsVoted(true);
-    voted(id);
   };
   return (
     <>

@@ -28,16 +28,14 @@ ClickablePlayerWidget.propTypes = {
 };
 
 export default function ClickablePlayerWidget({ voted, clicked, id, name, total, iconUrl, color = 'primary', sx, ...other }) {
-  const [vote, setVote] = useState('');
 
   const PlayerClicked = () => {
     clicked(id);
   };
   const handleVoted = (e) => {
     e.preventDefault();
-    setVote(name);
+    console.log('player voted for: ', id, ': ', name);
     voted(id,name);
-    console.log('player voted for: ', id);
   };
   return (
     <Card

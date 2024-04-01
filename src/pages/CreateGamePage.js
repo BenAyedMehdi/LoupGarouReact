@@ -34,7 +34,6 @@ export default function CreateGamePage() {
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
-  const [gameDetails, setgameDetails] = useContext(GameContext);
   const steps = ['Create a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
   
   const handleNext = (e) => {

@@ -34,8 +34,12 @@ export default function JoinGamePage() {
   const handlePlayerCreated = (p) => {
     setPlayerDetails(p);
     localStorage.setItem('playerObject', JSON.stringify(p));
+    
     nextStep();
   };
+  useEffect(()=>{
+    console.log("context player details",playerDetails)
+  },[playerDetails])
 
   return (
     <>

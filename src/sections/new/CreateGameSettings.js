@@ -71,10 +71,7 @@ export default function CreateGameSettings({nextStepCall}) {
       setError(false);
     }
   };
-  useEffect(()=>{
-    console.log("from context",gameDetails)
 
-  },[gameDetails])
 
   const handleCardsCountChange = (cardsToAdd) => {
     setChosenCards((prevCards) => {

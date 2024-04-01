@@ -38,8 +38,7 @@ export default function PlayersLobby() {
   };
 
   const getGamePlayers = async (e) => {
-    const gameJson = gameDetails;
-    const gameId = gameJson ? gameDetails.gameId : null;
+    const {gameId} = gameDetails 
     
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);

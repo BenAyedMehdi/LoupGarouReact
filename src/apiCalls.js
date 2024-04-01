@@ -102,5 +102,25 @@ export default class apiCalls {
       return { data: null, error: e };
     }
   };
+
+  static getVotingSession = async (sessionId) => {
+    try {
+      const response = await axios.get(`${url}/api/votingSessions/${sessionId}`);
+      return { data: response.data, error: null };
+    } catch (e) {
+      console.log(e);
+      return { data: null, error: e };
+    }
+  };
+
+  static getPlayer = async (playerId) => {
+    try {
+      const response = await axios.get(`${url}/api/players/${playerId}`);
+      return { data: response.data, error: null };
+    } catch (e) {
+      console.log(e);
+      return { data: null, error: e };
+    }
+  };
   
 }

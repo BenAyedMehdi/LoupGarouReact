@@ -27,7 +27,6 @@ export default function CreateGameSettings({ returnedGame }) {
 
   useEffect(() => {
     const total = chosenCards.reduce((sum, card) => sum + card.numberOfCards, 0);
-    console.log('total: ', total);
     setTotalPlayers(total);
   }, [chosenCards]);
 

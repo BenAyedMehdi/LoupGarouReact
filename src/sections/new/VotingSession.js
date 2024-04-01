@@ -21,14 +21,14 @@ export default function VotingSession() {
   }, []);
 
   const createCheifVotingSession = async () => {
-    const gameId = storage.getGameId();
+    const game = storage.getGame();
 
-    if (gameId !== null) {
-      const req = DTOs.createVotingSessionRequest(gameId, 'chief');
+    if (game !== null) {
+      const req = DTOs.createVotingSessionRequest(game.gameId, 'chief', game.numberOfPlayers);
       const res = await apiCalls.createVotingSession(req);
-      console.log(res);
-
+      
       if (res.error) {
+        console.log(res.error);
         setError(true);
       } else {
         const votingSession = res.data;

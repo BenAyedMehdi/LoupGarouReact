@@ -68,4 +68,4 @@ export default function VoteForCheif() {
       {isVoted && <VotingStatus votingSession={votingSession}/>}
     </>
   );
-}
+}VotingStatus

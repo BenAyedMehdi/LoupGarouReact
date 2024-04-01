@@ -13,10 +13,11 @@ export default class DTOs {
     };
   }
 
-  static createVotingSessionRequest(currentGameId, votingType) {
+  static createVotingSessionRequest(currentGameId, votingType, votesCount) {
     return {
       gameId: currentGameId,
       votingSessionType: votingType,
+      expectedVotesCount: votesCount
     };
   }
 

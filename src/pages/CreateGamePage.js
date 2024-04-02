@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
@@ -27,13 +27,13 @@ import {
   VotingSession,
   CreateGameSettings,
 } from '../sections/new';
+import GameContext from "../contexts/GameContext"
 // ----------------------------------------------------------------------
 
 export default function CreateGamePage() {
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
-  const [game, setGame] = useState({});
   const steps = ['Create a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
   
   const handleNext = (e) => {
@@ -49,9 +49,7 @@ export default function CreateGamePage() {
     setCurrentStep(currentStep + 1);
   };
 
-  const handleGameCreated = (g) => {
-    setGame(g);
-    localStorage.setItem('memoryObject', JSON.stringify(g));
+  const nextStepCall= () => {
     nextStep();
   };
 
@@ -86,7 +84,7 @@ export default function CreateGamePage() {
         </Stack>
         {currentStep === 0 && (
           <>
-            <CreateGameSettings returnedGame={handleGameCreated} />
+            <CreateGameSettings nextStepCall={nextStepCall} />
           </>
         )}
         {currentStep === 1 && (

@@ -15,14 +15,15 @@
     "react-hooks",
     "prettier"
   ],
-  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 8,
     "requireConfigFile": false,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
-      "impliedStrict": true
-    }
+      "impliedStrict": true,
+      "jsx": true // Add this line
+    },
+    "sourceType": "module" // Add this line if not already present
   },
   "rules": {
     "no-new": 0,
@@ -63,6 +64,7 @@
     "react/function-component-definition": 0,
     "react/jsx-no-constructed-context-values": 0,
     "no-unused-vars": 0,
+    "react-hooks/exhaustive-deps": 0,
     "react/prop-types": 0,
     "prefer-destructuring": [
       1,

@@ -20,11 +20,6 @@
       "react-app"
     ]
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -65,8 +60,6 @@
     "web-vitals": "^3.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@babel/eslint-parser": "^7.19.1",
     "eslint": "^8.34.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",

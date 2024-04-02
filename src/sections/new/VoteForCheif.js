@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import { Typography } from '@mui/material';
 import VotingStatus from './VotingStatus';
@@ -6,6 +6,7 @@ import VotingPlayersGrid from './VotingPlayersGrid';
 import apiCalls from '../../apiCalls';
 import storage from '../../storage';
 import DTOs from '../../DTOs';
+import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
@@ -13,13 +14,14 @@ export default function VoteForCheif() {
   const [playersList, setPlayersList] = useState([]);
   const [votingSession, setVotingSession] = useState({});
   const [isVoted, setIsVoted] = useState(false);
-
+  const [gameDetails,setgameDetails]=useContext(GameContext)
+  const [playerDetails,setPlayerDetails]=useContext(GameContext)
   useEffect(() => {
     getGamePlayers();
     getCurrentVotingSession();
   }, []);
 
-  const gameId = storage.getGameId();
+  const {gameId} = gameDetails;
 
   const getGamePlayers = async () => {
     if (gameId !== null) {
@@ -46,7 +48,7 @@ export default function VoteForCheif() {
   };
 
   const handleVote = async (targetId, name) => {
-    const voterId = storage.getPlayerId();
+    const voterId = playerDetails.playerId;
     const req = DTOs.createVoteRequest(voterId, targetId, votingSession.votingSessionId);
     const res = await apiCalls.createVote(req);
     if (!res.error) {
@@ -68,4 +70,4 @@ export default function VoteForCheif() {
       {isVoted && <VotingStatus votingSession={votingSession}/>}
     </>
   );
-}VotingStatus
+}

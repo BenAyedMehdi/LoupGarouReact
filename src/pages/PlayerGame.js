@@ -13,7 +13,6 @@ import DayPhase from '../sections/game/DayPhase';
 
 
 export default function PlayerGame() {
-  const [deadPlayer,setDeadPlayer]=useState("");
   const isDesktop = useResponsive('up', 'lg');
   const [light, setLight] = useState(false);
   const [voted, setVoted] = useState(false);

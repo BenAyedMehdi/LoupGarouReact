@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Grid, LinearProgress } from '@mui/material';
+import { Button, Grid, LinearProgress } from '@mui/material';
 import apiCalls from '../../apiCalls';
 import DTOs from '../../DTOs';
 import TextWidget from './TextWidget';
@@ -15,20 +15,21 @@ export default function VotingStatus({ votingSession }) {
   const [error, setError] = useState(false);
   const [isVoteCompleted, setIsVoteCompleted] = useState(false);
   const [mostVotedPlayer, setMostVotedPlayer] = useState({name: "Njoura"});
-
+  const [currentSession,setCurrentSession]=useState({})
   // TODO add a refresh button to refresh the voting status
 
-  useEffect(() => {
-    if (votingSession !== null){
-      getVotingSessionStatus();
+
+  const handleRefreshVotes=async()=>{
+    console.log("refresh votes",currentSession)
+      await getVotingSessionStatus()
     }
-  }, []);
+    
 
   const getVotingSessionStatus = async () => {
     console.log(votingSession)
     if (votingSession.votingSessionId !== null || votingSession.votingSessionId !== undefined) {
       const res = await apiCalls.getVotingSession(votingSession.votingSessionId);
-
+      setCurrentSession(res.data)
       if (res.error) {
         console.log(res.error);
         setError(true);
@@ -44,6 +45,11 @@ export default function VotingStatus({ votingSession }) {
       }
     }
   };
+  useEffect(() => {
+    if (votingSession != null){
+      getVotingSessionStatus();
+    }
+  }, [votingSession]);
 
   const getMostVotedPlayer = async (mostvotedGuid) => {
     if (mostvotedGuid !== null) {
@@ -69,6 +75,9 @@ export default function VotingStatus({ votingSession }) {
         <Grid item xs={12} sm={6} md={6}>
           {!isVoteCompleted ? (
             <>
+            <Button onClick={handleRefreshVotes} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+            Refresh
+          </Button>
               <LinearProgress color="warning" />
               <LinearProgress color="error" />
               <TextWidget

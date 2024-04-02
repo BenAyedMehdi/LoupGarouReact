@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import { Grid, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
@@ -7,7 +7,7 @@ import apiCalls from '../../apiCalls';
 import PlayersListTable from './PlayersListTable';
 import PosterJoinGame from './PosterJoinGame';
 import CardsListTable from './CardsListTable';
-import storage from '../../storage';
+import GameContext from "../../contexts/GameContext"
 
 // ----------------------------------------------------------------------
 
@@ -16,18 +16,20 @@ export default function HostLobby({boardingCompleted}) {
   const [allplayersJoined, setAllplayersJoined] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
   const [gameRoles, setGameRoles] = useState([]);
+  const [gameDetails, setGameDetails] = useContext(GameContext);
 
   useEffect(() => {
     getGameRoles();
     getGamePlayers();
-  }, []);
+  }, [gameDetails]);
 
   useEffect(() => {
     setAllplayersJoined(gameRoles.length === gamePlayers.length);
   }, [gamePlayers, gameRoles]);
 
   const getGameRoles = async () => {
-    const gameId = storage.getGameId();
+    const gameJson = gameDetails;
+    const gameId = gameJson ? gameDetails.gameId : null;
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
       console.log(res);
@@ -42,10 +44,11 @@ export default function HostLobby({boardingCompleted}) {
   };
 
   const getGamePlayers = async () => {
-    const gameId = storage.getGameId();
+    const gameJson = gameDetails;
+    const gameId = gameJson ? gameDetails.gameId : null;
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
-      console.log(res);
+      console.log("getGamePlayers response",res);
       
       if (res.error) {
         setError(true);
@@ -93,7 +96,7 @@ export default function HostLobby({boardingCompleted}) {
           <PlayersListTable players={gamePlayers} />
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
-          <PosterJoinGame />
+          <PosterJoinGame  />
         </Grid>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <CardsListTable roles={gameRoles} />

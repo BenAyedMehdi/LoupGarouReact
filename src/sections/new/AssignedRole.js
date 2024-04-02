@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 // @mui
 import { styled } from '@mui/material/styles';
@@ -7,7 +7,7 @@ import { Grid, LinearProgress, Box } from '@mui/material';
 // components
 import apiCalls from '../../apiCalls';
 import TextWidget from './TextWidget';
-import storage from '../../storage';
+import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
@@ -15,13 +15,10 @@ export default function AssignedRole() {
   const [showComponent1, setShowComponent1] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
   const [role, setRole] = useState({});
-
-  useEffect(() => {
-    getPlayerRole();
-  }, []);
-
+  const [playerDetails,setPlayerDetails]=useContext(GameContext)
   const getPlayerRole = async () => {
-    const playerId = storage.getPlayerId();
+    
+    const playerId = playerDetails ? playerDetails.playerId : null;
     
     if (playerId !== null) {
       const res = await apiCalls.getPlayerRole(playerId);
@@ -35,6 +32,11 @@ export default function AssignedRole() {
       }
     }
   };
+  useEffect(() => {
+    getPlayerRole();
+  }, []);
+
+
 
   useEffect(() => {
     setTimeout(() => setShowComponent1(false), 4000);

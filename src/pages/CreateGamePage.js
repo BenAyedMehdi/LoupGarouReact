@@ -44,7 +44,7 @@ export default function CreateGamePage() {
   const nextStep = () => {
     if (currentStep === 3) {
       console.log('Create a game');
-      navigate('/dashboard/host');
+      navigate('/host');
     }
     setCurrentStep(currentStep + 1);
   };

@@ -27,7 +27,7 @@ export default function JoinGamePage() {
   const nextStep = () => {
     if (currentStep === 3) {
       console.log('Joined the game');
-      navigate('/dashboard/game');
+      navigate('/game');
     }
     setCurrentStep(currentStep + 1);
   };

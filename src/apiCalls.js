@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const url = 'https://localhost:7074';
+// const url = 'https://localhost:7074';
+const url = 'https://loupgarou.azurewebsites.net/';
 
 export default class apiCalls {
   

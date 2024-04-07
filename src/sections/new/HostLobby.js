@@ -11,7 +11,7 @@ import GameContext from "../../contexts/GameContext"
 
 // ----------------------------------------------------------------------
 
-export default function HostLobby({boardingCompleted}) {
+export default function HostLobby({gameId, boardingCompleted}) {
   const [error, setError] = useState(false);
   const [allplayersJoined, setAllplayersJoined] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
@@ -28,8 +28,6 @@ export default function HostLobby({boardingCompleted}) {
   }, [gamePlayers, gameRoles]);
 
   const getGameRoles = async () => {
-    const gameJson = gameDetails;
-    const gameId = gameJson ? gameDetails.gameId : null;
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
       console.log(res);

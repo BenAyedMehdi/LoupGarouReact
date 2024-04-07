@@ -10,6 +10,7 @@ import CreateGamePage from './pages/CreateGamePage';
 import JoinGamePage from './pages/JoinGamePage';
 import StartGamePage from './pages/StartGamePage';
 import PlayerGame from './pages/PlayerGame';
+import HostLobbyPage from './pages/HostLobbyPage';
 
 // ----------------------------------------------------------------------
 
@@ -22,6 +23,7 @@ export default function Router() {
         { element: <Navigate to="/home" />, index: true },
         { path: 'home', element: <MainPage /> },
         { path: 'create-game', element: <CreateGamePage /> },
+        { path: 'host-lobby/:gameId', element: <HostLobbyPage /> },
         { path: 'host', element: <StartGamePage /> },
         { path: 'join-game', element: <JoinGamePage /> },
         { path: 'game', element: <PlayerGame/> },

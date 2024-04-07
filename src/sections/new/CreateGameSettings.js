@@ -9,7 +9,7 @@ import GameContext from "../../contexts/GameContext"
 
 // ----------------------------------------------------------------------
 
-export default function CreateGameSettings({nextStepCall}) {
+export default function CreateGameSettings({createdGame}) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('Unable to connect to the server.');
   const [loading, setLoading] = useState(false);
@@ -67,7 +67,7 @@ export default function CreateGameSettings({nextStepCall}) {
       console.log(game);
       setGameDetails(game)
       localStorage.setItem("gameObject", JSON.stringify(game));
-      nextStepCall();      
+      createdGame(game);      
       setError(false);
     }
   };

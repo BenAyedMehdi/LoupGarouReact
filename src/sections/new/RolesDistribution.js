@@ -12,28 +12,48 @@ import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
-export default function RolesDistribution() {
+export default function RolesDistribution({gameId, rolesDistributed}) {
   const [error, setError] = useState(false);
-  const [gameDetails,setGameDetails]=useContext(GameContext)
+  const {gameDetails, updateGameDetails} = useContext(GameContext);
+
   useEffect(() => {
-    assignRolesToPlayers();
+    AssignRolesIfNotAlreadyAssigned();
   }, []);
+  
+
+  const AssignRolesIfNotAlreadyAssigned = async () => {
+    console.log("gameDetails: ", gameDetails)
+    if (gameDetails.currentPhase !== 'assign-roles') {
+      console.log("Roles not assigned yet..")
+      assignRolesToPlayers();
+    }
+  };
+
 
   const assignRolesToPlayers = async () => {
-    const gameJson = gameDetails;
-    const gameId = gameJson ? gameDetails.gameId : null;
-    
+    console.log("Assigning roles.. ")
+
     if (gameId !== null) {
       const res = await apiCalls.assignRolesToPlayer(gameId);
       console.log(res);
-      
+
       if (res.error) {
         setError(true);
       } else {
         const updatedGame = res.data;
         setError(false);
         console.log(updatedGame);
+        updateGameDetails(updatedGame);
       }
+    }
+  };
+
+  const handleNext =  (e) => {
+    e.preventDefault();
+    console.log("next: ", gameDetails)
+    if (gameDetails.currentPhase === 'assign-roles') {
+      console.log("Roles assigned ")
+      rolesDistributed();
     }
   };
 
@@ -48,6 +68,11 @@ export default function RolesDistribution() {
             </Alert>
           </Grid>
         )}
+        
+        <Button onClick={handleNext} variant="contained" sx={{ width: '100%', height: 66, mb: 3 }}>
+            Next
+        </Button>
+          
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
           <PlayersListTable />
         </Grid>

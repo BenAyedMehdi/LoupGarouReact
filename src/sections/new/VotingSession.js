@@ -1,22 +1,17 @@
 import { useState, useEffect, useContext } from 'react';
 
-import { Grid, LinearProgress } from '@mui/material';
+import { Button } from '@mui/material';
 import apiCalls from '../../apiCalls';
 import DTOs from '../../DTOs';
-import TextWidget from './TextWidget';
-import StaticPlayerWidget from './StaticPlayerWidget';
-import PlayersListTable from './PlayersListTable';
-import CardsListTable from './CardsListTable';
-import storage from '../../storage';
 import VotingStatus from './VotingStatus';
 import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
-export default function VotingSession() {
+export default function VotingSession({VoteEnded}) {
   const [error, setError] = useState(false);
   const [votingSession, setVotingSession] = useState({});
-  const [gameDetails]=useContext(GameContext);
+  const {gameDetails}=useContext(GameContext);
   useEffect(() => {
     createCheifVotingSession();
   }, []);
@@ -38,9 +33,21 @@ export default function VotingSession() {
       }
     }
   };
+  const handleNext =  (e) => {
+    e.preventDefault();
+    console.log("next: ", gameDetails)
+    if (gameDetails.currentPhase === 'assign-roles') {
+      console.log("Roles assigned ")
+      VoteEnded();
+    }
+  };
 
   return (
     <>
+      <Button onClick={handleNext} variant="contained" sx={{ width: '100%', height: 66, mb: 3 }}>
+        Next
+      </Button>
+      
       <VotingStatus votingSession={votingSession} />
     </>
   );

@@ -16,7 +16,7 @@ export default function HostLobby({gameId, boardingCompleted}) {
   const [allplayersJoined, setAllplayersJoined] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
   const [gameRoles, setGameRoles] = useState([]);
-  const [gameDetails, setGameDetails] = useContext(GameContext);
+  const {gameDetails, updateGameDetails} = useContext(GameContext);
 
   useEffect(() => {
     getGameRoles();
@@ -30,7 +30,6 @@ export default function HostLobby({gameId, boardingCompleted}) {
   const getGameRoles = async () => {
     if (gameId !== null) {
       const res = await apiCalls.getGameRoles(gameId);
-      console.log(res);
       if (res.error) {
         setError(true);
       } else {
@@ -46,7 +45,6 @@ export default function HostLobby({gameId, boardingCompleted}) {
     const gameId = gameJson ? gameDetails.gameId : null;
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
-      console.log("getGamePlayers response",res);
       
       if (res.error) {
         setError(true);
@@ -65,7 +63,6 @@ export default function HostLobby({gameId, boardingCompleted}) {
 
   const handleStartGame = async (e) => {
     e.preventDefault();
-    console.log("Start Game")
     boardingCompleted();
   };
 

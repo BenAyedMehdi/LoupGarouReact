@@ -12,7 +12,7 @@ import GameContext from '../../contexts/GameContext';
 
 export default function PlayersListTable({players}) {
   const [playersList, setPlayersList] = useState([]);
-  const [gameDetails]=useContext(GameContext)
+  const {gameDetails, updateGameDetails}=useContext(GameContext)
   useEffect(() => {
     getGamePlayers();
   }, []);
@@ -27,14 +27,12 @@ export default function PlayersListTable({players}) {
   const getGamePlayers = async () => {
     const gameJson = gameDetails;
     const gameId = gameJson ? gameDetails.gameId : null;
-    console.log(gameId)
 
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
       
       if (!res.error) {
         const players = res.data;
-        console.log(players);
         setPlayersList(players);
       }
     }

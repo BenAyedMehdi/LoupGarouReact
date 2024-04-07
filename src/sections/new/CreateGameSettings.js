@@ -16,7 +16,7 @@ export default function CreateGameSettings({createdGame}) {
   const [allCardsFromDb, setAllCardsFromDb] = useState([]);
   const [chosenCards, setChosenCards] = useState([]);
   const [totalPlayers, setTotalPlayers] = useState(0);
-  const [gameDetails, setGameDetails] = useContext(GameContext);
+  const {gameDetails, updateGameDetails} = useContext(GameContext);
 
   useEffect(() => {
     setLoading(true);
@@ -34,7 +34,6 @@ export default function CreateGameSettings({createdGame}) {
 
   const getAllCardsInDb = async (e) => {
     const res = await apiCalls.getAllCards();
-    console.log(res);
     if (res.error) {
       setError(true);
       setLoading(false);
@@ -50,10 +49,8 @@ export default function CreateGameSettings({createdGame}) {
     e.preventDefault();
 
     const request = DTOs.createGameRequest(totalPlayers, chosenCards);
-    console.log(request);
 
     const res = await apiCalls.createGame(request);
-    console.log(res);
 
     if (res.error) {
       setError(true);
@@ -65,7 +62,7 @@ export default function CreateGameSettings({createdGame}) {
     } else {
       const game = res.data;
       console.log(game);
-      setGameDetails(game)
+      updateGameDetails(game)
       localStorage.setItem("gameObject", JSON.stringify(game));
       createdGame(game);      
       setError(false);

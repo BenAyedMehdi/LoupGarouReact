@@ -29,13 +29,11 @@ export default function CreateGamePage() {
 
       <Container sx={{ paddingTop: 5 }} maxWidth="xl">
         <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center">
-          {isDesktop ? (
+          {isDesktop && (
             <>
               <InitialStepper currentStep={currentStep} steps={steps} />
             </>
-          ) : (
-            <></>
-          )}
+          ) }
         </Stack>
 
         <CreateGameSettings createdGame={gameCreated} />

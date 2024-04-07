@@ -13,7 +13,7 @@ export default function PlayersLobby() {
   const [error, setError] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
   const [gameRoles, setGameRoles] = useState([]);
-  const [gameDetails,setGameDetails]=useContext(GameContext)
+  const {gameDetails, updateGameDetails}=useContext(GameContext)
   useEffect(() => {
     getGameRoles();
     getGamePlayers();

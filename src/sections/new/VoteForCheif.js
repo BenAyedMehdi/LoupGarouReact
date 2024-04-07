@@ -14,7 +14,7 @@ export default function VoteForCheif() {
   const [playersList, setPlayersList] = useState([]);
   const [votingSession, setVotingSession] = useState({});
   const [isVoted, setIsVoted] = useState(false);
-  const [gameDetails,setgameDetails]=useContext(GameContext)
+  const {gameDetails, updateGameDetails}=useContext(GameContext)
   const [playerDetails,setPlayerDetails]=useContext(GameContext)
   useEffect(() => {
     getGamePlayers();

@@ -12,7 +12,7 @@ const StyledProductImg = styled('img')({
 
 export default function PosterJoinGame({ title, value, color = 'primary', sx, ...other }) {
 
-  const [gameDetails, setGameDetails] = useContext(GameContext);
+  const {gameDetails, updateGameDetails} = useContext(GameContext);
 
 
 

@@ -33,21 +33,31 @@ export default function VotingSession({VoteEnded}) {
       }
     }
   };
-  const handleNext =  (e) => {
+  const handleStartGame = async (e) => {
     e.preventDefault();
-    console.log("next: ", gameDetails)
-    if (gameDetails.currentPhase === 'assign-roles') {
-      console.log("Roles assigned ")
-      VoteEnded();
+    if(votingSession !== null){
+      const res = await apiCalls.getVotingSession(votingSession.votingSessionId);
+      if(res.error){
+        console.log(res.error)
+        setError(true)
+      }else{
+        const session = res.data;
+        setError(false);
+        console.log(session);
+        setVotingSession(session);
+        if (session.isCompleted) {
+          VoteEnded();
+        }
+      }
     }
   };
 
   return (
     <>
-      <Button onClick={handleNext} variant="contained" sx={{ width: '100%', height: 66, mb: 3 }}>
-        Next
+      <Button onClick={handleStartGame} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+        Start Game
       </Button>
-      
+
       <VotingStatus votingSession={votingSession} />
     </>
   );

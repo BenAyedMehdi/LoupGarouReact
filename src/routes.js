@@ -12,6 +12,7 @@ import StartGamePage from './pages/StartGamePage';
 import PlayerGame from './pages/PlayerGame';
 import HostLobbyPage from './pages/HostLobbyPage';
 import AssigningRolesPage from './pages/AssigningRolesPage';
+import ChiefVotePage from './pages/ChiefVotePage';
 
 // ----------------------------------------------------------------------
 
@@ -26,6 +27,7 @@ export default function Router() {
         { path: 'create-game', element: <CreateGamePage /> },
         { path: 'host-lobby/:gameId', element: <HostLobbyPage /> },
         { path: 'assign-roles/:gameId', element: <AssigningRolesPage /> },
+        { path: 'chief-vote/:gameId', element: <ChiefVotePage /> },
         { path: 'host', element: <StartGamePage /> },
         { path: 'join-game', element: <JoinGamePage /> },
         { path: 'game', element: <PlayerGame/> },

@@ -14,27 +14,19 @@ import storage from '../../storage';
 export default function VotingStatus({ votingSession }) {
   const [error, setError] = useState(false);
   const [isVoteCompleted, setIsVoteCompleted] = useState(false);
-  const [mostVotedPlayer, setMostVotedPlayer] = useState({name: "Njoura"});
-  const [currentSession,setCurrentSession]=useState({})
-  // TODO add a refresh button to refresh the voting status
+  const [mostVotedPlayer, setMostVotedPlayer] = useState({ name: 'Njoura' });
+  const [currentSession, setCurrentSession] = useState({});
 
-
-  const handleRefreshVotes=async()=>{
-    console.log("refresh votes",currentSession)
-      await getVotingSessionStatus()
-    }
-    
 
   const getVotingSessionStatus = async () => {
-    console.log(votingSession)
     if (votingSession.votingSessionId !== null || votingSession.votingSessionId !== undefined) {
       const res = await apiCalls.getVotingSession(votingSession.votingSessionId);
-      setCurrentSession(res.data)
       if (res.error) {
         console.log(res.error);
         setError(true);
       } else {
         const session = res.data;
+        setCurrentSession(session);
         setError(false);
         console.log(session);
         if (session.isCompleted) {
@@ -46,10 +38,10 @@ export default function VotingStatus({ votingSession }) {
     }
   };
   useEffect(() => {
-    if (votingSession != null){
+    if (votingSession != null) {
       getVotingSessionStatus();
     }
-  }, [votingSession]);
+  }, []);
 
   const getMostVotedPlayer = async (mostvotedGuid) => {
     if (mostvotedGuid !== null) {
@@ -62,7 +54,7 @@ export default function VotingStatus({ votingSession }) {
         setError(false);
         console.log('most voted player: ', player);
         setMostVotedPlayer(player);
-        }
+      }
     }
   };
 
@@ -75,9 +67,9 @@ export default function VotingStatus({ votingSession }) {
         <Grid item xs={12} sm={6} md={6}>
           {!isVoteCompleted ? (
             <>
-            <Button onClick={handleRefreshVotes} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
-            Refresh
-          </Button>
+              <Button onClick={getVotingSessionStatus} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+                Refresh
+              </Button>
               <LinearProgress color="warning" />
               <LinearProgress color="error" />
               <TextWidget

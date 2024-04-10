@@ -69,7 +69,7 @@ export default function RolesDistribution({gameId, rolesDistributed}) {
           </Grid>
         )}
         
-        <Button onClick={handleNext} variant="contained" sx={{ width: '100%', height: 66, mb: 3 }}>
+        <Button onClick={handleNext} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
             Next
         </Button>
           

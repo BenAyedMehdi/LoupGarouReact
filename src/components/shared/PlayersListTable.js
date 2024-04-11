@@ -7,28 +7,24 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper
 // components
 import PlayerBarName from './PlayerBarName';
 import apiCalls from '../../apiCalls';
-import GameContext from '../../contexts/GameContext';
 
 
-export default function PlayersListTable({players}) {
+export default function PlayersListTable({players, gameId}) {
   const [playersList, setPlayersList] = useState([]);
-  const {gameDetails, updateGameDetails}=useContext(GameContext)
-  useEffect(() => {
-    getGamePlayers();
-  }, []);
 
   useEffect(() => {
     if(players!==null && players !== undefined){
       setPlayersList(players);
     }
+    else{
+      getGamePlayers();
+    }
   }, [players]);
   
 
   const getGamePlayers = async () => {
-    const gameJson = gameDetails;
-    const gameId = gameJson ? gameDetails.gameId : null;
 
-    if (gameId !== null) {
+    if (gameId !== null && gameId !== undefined) {
       const res = await apiCalls.getGamePlayers(gameId);
       
       if (!res.error) {

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';  
+import AlertTitle from '@mui/material/AlertTitle';
 import apiCalls from '../../apiCalls';
 import PlayersListTable from '../shared/PlayersListTable';
 import CardsListTable from '../shared/CardsListTable';
@@ -9,40 +9,25 @@ import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
-export default function PlayersLobby() {
+export default function PlayersLobby({ playerName, gameId, seeMyCard }) {
   const [error, setError] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
   const [gameRoles, setGameRoles] = useState([]);
-  const {gameDetails, updateGameDetails}=useContext(GameContext)
+  const [allplayersJoined, setAllplayersJoined] = useState(false);
+
   useEffect(() => {
     getGameRoles();
     getGamePlayers();
-  }, []);
+  }, [gameId]);
 
-  const getGameRoles = async (e) => {
-    const gameJson = gameDetails;
-    const gameId = gameJson ? gameDetails.gameId : null;
-    
-    if (gameId !== null) {
-      const res = await apiCalls.getGameRoles(gameId);
-      if (res.error) {
-        console.log(res.error);
-        setError(true);
-      } else {
-        setError(false);
-        const roles = res.data;
-        console.log(roles);
-        setGameRoles(roles);
-      }
-    }
-  };
+  useEffect(() => {
+    setAllplayersJoined(gameRoles.length === gamePlayers.length);
+  }, [gamePlayers, gameRoles]);
 
   const getGamePlayers = async (e) => {
-    const {gameId} = gameDetails 
-    
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
-      
+
       if (res.error) {
         console.log(res.error);
         setError(true);
@@ -55,11 +40,28 @@ export default function PlayersLobby() {
     }
   };
 
+  const getGameRoles = async () => {
+    if (gameId !== null) {
+      const res = await apiCalls.getGameRoles(gameId);
+      if (res.error) {
+        setError(true);
+      } else {
+        setError(false);
+        const roles = res.data;
+        setGameRoles(roles);
+      }
+    }
+  };
+
   const handleRefreshPlayers = async (e) => {
     e.preventDefault();
     await getGamePlayers();
   };
 
+  const handleReceiveCard = async (e) => {
+    e.preventDefault();
+    seeMyCard();
+  };
   return (
     <>
       <Grid container spacing={3}>
@@ -71,9 +73,19 @@ export default function PlayersLobby() {
             </Alert>
           </Grid>
         )}
-        <Button onClick={handleRefreshPlayers} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
-          Refresh
-        </Button>
+        <Typography align="center" variant="h6" sx={{ opacity: 0.72, m: 3 }}>
+          Hi {playerName}! Sit back and relax while your friends join the game.
+        </Typography>
+        {!allplayersJoined && (
+          <Button onClick={handleRefreshPlayers} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+            Refresh
+          </Button>
+        )}
+        {allplayersJoined && (
+          <Button onClick={handleReceiveCard} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+            Receive my card
+          </Button>
+        )}
         <Grid item xs={12} sm={6} md={3}>
           <PlayersListTable players={gamePlayers}/>
         </Grid>
@@ -85,7 +97,7 @@ export default function PlayersLobby() {
         </Grid>
 
         <Grid item sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }} xs={12} sm={6} md={3}>
-          <CardsListTable roles={gameRoles}/>
+          <CardsListTable gameId={gameId} />
         </Grid>
       </Grid>
     </>

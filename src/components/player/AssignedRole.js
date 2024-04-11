@@ -15,7 +15,8 @@ export default function AssignedRole() {
   const [showComponent1, setShowComponent1] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
   const [role, setRole] = useState({});
-  const [playerDetails,setPlayerDetails]=useContext(GameContext)
+  const {playerDetails}=useContext(GameContext)
+
   const getPlayerRole = async () => {
     
     const playerId = playerDetails ? playerDetails.playerId : null;

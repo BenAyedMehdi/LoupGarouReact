@@ -16,12 +16,11 @@ export default function HostLobby({gameId, boardingCompleted}) {
   const [allplayersJoined, setAllplayersJoined] = useState(false);
   const [gamePlayers, setGamePlayers] = useState([]);
   const [gameRoles, setGameRoles] = useState([]);
-  const {gameDetails, updateGameDetails} = useContext(GameContext);
 
   useEffect(() => {
     getGameRoles();
     getGamePlayers();
-  }, [gameDetails]);
+  }, [gameId]);
 
   useEffect(() => {
     setAllplayersJoined(gameRoles.length === gamePlayers.length);
@@ -41,8 +40,6 @@ export default function HostLobby({gameId, boardingCompleted}) {
   };
 
   const getGamePlayers = async () => {
-    const gameJson = gameDetails;
-    const gameId = gameJson ? gameDetails.gameId : null;
     if (gameId !== null) {
       const res = await apiCalls.getGamePlayers(gameId);
       

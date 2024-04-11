@@ -6,28 +6,24 @@ import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper
 
 import CardBarName from './CardBarName';
 import apiCalls from '../../apiCalls';
-import GameContext from '../../contexts/GameContext';
 
 
-export default function CardsListTable({roles}) {
+export default function CardsListTable({roles, gameId}) {
   
   const [rolesList, setRolesList] = useState([]);
-  const {gameDetails, updateGameDetails}=useContext(GameContext)
-  useEffect(() => {
-    getGameRoles();
-  }, []);
 
   useEffect(() => {
     if(roles!==null && roles !== undefined){
       setRolesList(roles);
     }
+    else{
+      getGameRoles();
+    }
   }, [roles]);
   
   const getGameRoles = async () => {
-    const gameJson = gameDetails;
-    const gameId = gameJson ? gameDetails.gameId : null;
     
-    if (gameId !== null) {
+    if (gameId !== null && gameId !== undefined) {
       const res = await apiCalls.getGameRoles(gameId);
       if (!res.error) {
         const roles = res.data;
@@ -41,7 +37,7 @@ export default function CardsListTable({roles}) {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Characters ({rolesList.length}) </TableCell>
+            <TableCell>Roles ({rolesList.length}) </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

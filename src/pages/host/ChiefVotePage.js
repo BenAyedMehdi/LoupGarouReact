@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -7,23 +6,24 @@ import {
   Stack,
   Container,
 } from '@mui/material';
-import RolesDistribution from '../sections/new/RolesDistribution';
-import useResponsive from '../hooks/useResponsive';
+import useResponsive from '../../hooks/useResponsive';
 // sections
-import { InitialStepper } from '../sections/new';
+import { InitialStepper, VotingSession } from '../../components';
 // ----------------------------------------------------------------------
 
-export default function AssigningRolesPage() {
+export default function ChiefVotePage() {
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(2); // 2= Assigning roles
+  const [currentStep, setCurrentStep] = useState(3); // 3= Vote for the leader
   const steps = ['Create a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
   const { gameId } = useParams();
 
-  const handleDistributedRoles = () => {
-    console.log('All roles distributed');
-    const url = `/chief-vote/${gameId}`;
-    navigate(url);
+  const nextStep = () => {
+    if (currentStep === 3) {
+      console.log('Create a game');
+      navigate('/host');
+    }
+    setCurrentStep(currentStep + 1);
   };
 
   return (
@@ -40,9 +40,9 @@ export default function AssigningRolesPage() {
             </>
           )}
         </Stack>
-        
-        <RolesDistribution gameId={gameId} rolesDistributed= {handleDistributedRoles}/>
-        
+
+        <VotingSession VoteEnded={nextStep}/>
+      
       </Container>
     </>
   );

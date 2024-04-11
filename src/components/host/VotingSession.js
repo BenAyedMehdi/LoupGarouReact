@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Button } from '@mui/material';
 import apiCalls from '../../apiCalls';
 import DTOs from '../../DTOs';
-import VotingStatus from './VotingStatus';
+import VotingStatus from '../shared/VotingStatus';
 import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------

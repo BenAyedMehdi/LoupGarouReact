@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Stack, Container } from '@mui/material';
-import useResponsive from '../hooks/useResponsive';
+import useResponsive from '../../hooks/useResponsive';
 // sections
-import { InitialStepper, CreateGameSettings } from '../sections/new';
+import { InitialStepper, CreateGameSettings } from '../../components';
 
 // ----------------------------------------------------------------------
 

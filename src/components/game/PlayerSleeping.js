@@ -5,8 +5,8 @@ import useSound from 'use-sound';
 import { Grid } from '@mui/material';
 // utils
 // components
-import TextWidget from '../new/TextWidget';
-import { CardsListTable, PlayersListTable } from '../new';
+import TextWidget from '../shared/TextWidget';
+import { CardsListTable, PlayersListTable } from '..';
 
 // ----------------------------------------------------------------------
 

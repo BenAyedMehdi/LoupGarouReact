@@ -5,10 +5,10 @@ import { Stack, Container, Button } from '@mui/material';
 import useResponsive from '../hooks/useResponsive';
 
 // sections
-import StartGameIntro from '../sections/game/StartGameIntro';
-import { PlayerNightAction, PlayerSleeping, PostNightAnnouncements } from '../sections/game';
-import { TextWidget, InitialStepper, VotingPlayersGrid } from '../sections/new';
-import DayPhase from '../sections/game/DayPhase';
+import StartGameIntro from '../components/game/StartGameIntro';
+import { PlayerNightAction, PlayerSleeping, PostNightAnnouncements } from '../components/game';
+import { TextWidget, InitialStepper, VotingPlayersGrid } from '../components';
+import DayPhase from '../components/game/DayPhase';
 // ----------------------------------------------------------------------
 
 

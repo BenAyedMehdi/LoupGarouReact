@@ -2,8 +2,8 @@ import React from 'react';
 // @mui
 import { Grid } from '@mui/material';
 // components
-import TextWidget from '../new/TextWidget';
-import { CardsListTable, PlayersListTable } from '../new';
+import TextWidget from '../shared/TextWidget';
+import { CardsListTable, PlayersListTable } from '..';
 
 // ----------------------------------------------------------------------
 

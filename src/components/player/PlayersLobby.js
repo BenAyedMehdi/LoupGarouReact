@@ -3,8 +3,8 @@ import { Grid, Box, Typography, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';  
 import apiCalls from '../../apiCalls';
-import PlayersListTable from './PlayersListTable';
-import CardsListTable from './CardsListTable';
+import PlayersListTable from '../shared/PlayersListTable';
+import CardsListTable from '../shared/CardsListTable';
 import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------

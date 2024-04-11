@@ -13,10 +13,10 @@ import React,{useState,useEffect, useContext}  from 'react';
 import { Grid } from '@mui/material';
 
 // components
-import TextWidget from '../new/TextWidget';
-import StaticPlayerWidget from '../new/StaticPlayerWidget';
-import { CardsListTable, PlayersListTable,VotingPlayersGrid } from '../new';
-import WitchVotingGrid from '../new/WitchVotingGrid';
+import TextWidget from '../shared/TextWidget';
+import StaticPlayerWidget from '../shared/StaticPlayerWidget';
+import { CardsListTable, PlayersListTable,VotingPlayersGrid } from '..';
+import WitchVotingGrid from '../player/WitchVotingGrid';
 // ----------------------------------------------------------------------
 export default function PlayerNightAction({ card, voted }) {
   const [hasVoted, setHasVoted] = useState(false);

@@ -4,19 +4,19 @@ import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
 // @mui
 import { Stack, Grid, Container, Typography, Button, TextField } from '@mui/material';
-import PlayerJoiningForm from '../sections/new/PlayerJoiningForm';
-import useResponsive from '../hooks/useResponsive';
+import PlayerJoiningForm from '../../components/player/PlayerJoiningForm';
+import useResponsive from '../../hooks/useResponsive';
 // components
-import { HostLobby, InitialStepper, VoteForCheif, AssignedRole, PlayersLobby } from '../sections/new';
-import Iconify from '../components/iconify';
-import GameContext from "../contexts/GameContext"
+import { HostLobby, InitialStepper, VoteForCheif, AssignedRole, PlayersLobby } from '../../components';
+import Iconify from '../../components/iconify';
+import GameContext from "../../contexts/GameContext"
 // ----------------------------------------------------------------------
 
 export default function JoinGamePage() {
-  const [playerDetails,setPlayerDetails] = useContext(GameContext);
+  const {playerDetails,updatePlayerDetails} = useContext(GameContext);
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0); // 0 = Join a game
   const steps = ['Join  a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
 
   const handleNext = (e) => {
@@ -32,9 +32,7 @@ export default function JoinGamePage() {
     setCurrentStep(currentStep + 1);
   };
   const handlePlayerCreated = (p) => {
-    setPlayerDetails(p);
-    localStorage.setItem('playerObject', JSON.stringify(p));
-    
+    updatePlayerDetails(p);    
     nextStep();
   };
   useEffect(()=>{

@@ -6,7 +6,7 @@ import { Grid, LinearProgress, Box } from '@mui/material';
 // utils
 // components
 import apiCalls from '../../apiCalls';
-import TextWidget from './TextWidget';
+import TextWidget from '../shared/TextWidget';
 import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------

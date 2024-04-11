@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Button, Grid, Typography, Container, CircularProgress } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import RolesCountBar from './RolesCountBar';
+import RolesCountBar from '../shared/RolesCountBar';
 import apiCalls from '../../apiCalls';
 import DTOs from '../../DTOs';
 import GameContext from "../../contexts/GameContext"

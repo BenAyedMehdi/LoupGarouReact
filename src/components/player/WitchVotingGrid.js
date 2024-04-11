@@ -4,8 +4,8 @@
 import { useState } from 'react';
 
 import { Grid } from '@mui/material';
-import StaticPlayerWidget from './StaticPlayerWidget';
-import YesOrNoWidget from './YesOrNoWidget';
+import StaticPlayerWidget from '../shared/StaticPlayerWidget';
+import YesOrNoWidget from '../shared/YesOrNoWidget';
 import VotingPlayersGrid from './VotingPlayersGrid';
 
 // ----------------------------------------------------------------------

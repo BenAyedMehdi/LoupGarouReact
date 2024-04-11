@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 
 import { Typography } from '@mui/material';
-import VotingStatus from './VotingStatus';
+import VotingStatus from '../shared/VotingStatus';
 import VotingPlayersGrid from './VotingPlayersGrid';
 import apiCalls from '../../apiCalls';
 import storage from '../../storage';

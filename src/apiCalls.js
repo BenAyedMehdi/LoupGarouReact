@@ -6,7 +6,7 @@ import axios from 'axios';
 export default class apiCalls {
   
   static createGame = async (request) => {
-    try {
+    try { 
       const response = await axios.post(`${url}/api/games`, request);
       return { data: response.data, error: null };
     } catch (e) {

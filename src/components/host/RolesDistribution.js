@@ -4,10 +4,10 @@ import { Grid, Button } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import apiCalls from '../../apiCalls';
-import PlayersListTable from './PlayersListTable';
-import PosterJoinGame from './PosterJoinGame';
-import CardsListTable from './CardsListTable';
-import TextWidget from './TextWidget';
+import PlayersListTable from '../shared/PlayersListTable';
+import PosterJoinGame from '../shared/PosterJoinGame';
+import CardsListTable from '../shared/CardsListTable';
+import TextWidget from '../shared/TextWidget';
 import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------

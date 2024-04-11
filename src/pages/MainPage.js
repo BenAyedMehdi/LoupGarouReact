@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 // @mui
 import { Grid, Container, Typography, Button } from '@mui/material';
 // components
-import { TextWidget } from '../sections/new';
+import { TextWidget } from '../components';
 import Iconify from '../components/iconify';
 // sections
 

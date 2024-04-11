@@ -6,13 +6,13 @@ import SimpleLayout from './layouts/simple';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import MainPage from './pages/MainPage';
-import CreateGamePage from './pages/CreateGamePage';
-import JoinGamePage from './pages/JoinGamePage';
+import CreateGamePage from './pages/host/CreateGamePage';
+import JoinGamePage from './pages/player/JoinGamePage';
 import StartGamePage from './pages/StartGamePage';
 import PlayerGame from './pages/PlayerGame';
-import HostLobbyPage from './pages/HostLobbyPage';
-import AssigningRolesPage from './pages/AssigningRolesPage';
-import ChiefVotePage from './pages/ChiefVotePage';
+import HostLobbyPage from './pages/host/HostLobbyPage';
+import AssigningRolesPage from './pages/host/AssigningRolesPage';
+import ChiefVotePage from './pages/host/ChiefVotePage';
 
 // ----------------------------------------------------------------------
 

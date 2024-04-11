@@ -5,9 +5,9 @@ import React from 'react';
 import { Grid } from '@mui/material';
 // utils
 // components
-import TextWidget from '../new/TextWidget';
-import StaticPlayerWidget from '../new/StaticPlayerWidget';
-import { CardsListTable, PlayersListTable } from '../new';
+import TextWidget from '../shared/TextWidget';
+import StaticPlayerWidget from '../shared/StaticPlayerWidget';
+import { CardsListTable, PlayersListTable } from '..';
 
 // ----------------------------------------------------------------------
 

@@ -5,8 +5,8 @@
 import { useState } from 'react';
 
 import { Grid } from '@mui/material';
-import ClickablePlayerWidget from './ClickablePlayerWidget';
-import StaticPlayerWidget from './StaticPlayerWidget';
+import ClickablePlayerWidget from '../shared/ClickablePlayerWidget';
+import StaticPlayerWidget from '../shared/StaticPlayerWidget';
 
 // ----------------------------------------------------------------------
 

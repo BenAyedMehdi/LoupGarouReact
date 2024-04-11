@@ -2,28 +2,23 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 // @mui
-import {
-  Stack,
-  Container,
-} from '@mui/material';
-import useResponsive from '../hooks/useResponsive';
+import { Stack, Container } from '@mui/material';
+import useResponsive from '../../hooks/useResponsive';
 // sections
-import { InitialStepper, VotingSession } from '../sections/new';
+import { HostLobby, InitialStepper } from '../../components';
 // ----------------------------------------------------------------------
 
-export default function ChiefVotePage() {
+export default function HostLobbyPage() {
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(3); // 3= Vote for the leader
+  const [currentStep, setCurrentStep] = useState(1); // 1= Players joining
   const steps = ['Create a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
   const { gameId } = useParams();
 
-  const nextStep = () => {
-    if (currentStep === 3) {
-      console.log('Create a game');
-      navigate('/host');
-    }
-    setCurrentStep(currentStep + 1);
+  const handleBoardingComplete = () => {
+    console.log('Boarding complete');
+    const url = `/assign-roles/${gameId}`;
+    navigate(url);
   };
 
   return (
@@ -40,9 +35,8 @@ export default function ChiefVotePage() {
             </>
           )}
         </Stack>
-
-        <VotingSession VoteEnded={nextStep}/>
-      
+        
+        <HostLobby gameId={gameId} boardingCompleted={handleBoardingComplete} />
       </Container>
     </>
   );

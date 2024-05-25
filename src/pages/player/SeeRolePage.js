@@ -66,11 +66,6 @@ export default function SeeRolePage() {
 
         <AssignedRole cardIsSeen={handleCardIsSeen}/>
 
-        {currentStep === 3 && (
-          <>
-            <VoteForCheif key={1} />
-          </>
-        )}
       </Container>
     </>
   );

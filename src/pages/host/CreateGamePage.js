@@ -27,6 +27,21 @@ export default function CreateGamePage() {
         <title> Create a game </title>
       </Helmet>
 
+      {isDesktop && (
+        <Container sx={{ paddingTop: 5  }} maxWidth="xl">
+        <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center">
+          {isDesktop && (
+            <>
+              <InitialStepper currentStep={currentStep} steps={steps} />
+            </>
+          ) }
+        </Stack>
+
+        <CreateGameSettings createdGame={gameCreated} />
+
+      </Container>
+      )}
+
       <Container sx={{ paddingTop: 5 }} maxWidth="xl">
         <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center">
           {isDesktop && (

@@ -21,8 +21,8 @@ export default function VotingSession({VoteEnded}) {
     if (game !== null) {
       const req = DTOs.createVotingSessionRequest(game.gameId, 'chief', game.numberOfPlayers);
       const res = await apiCalls.createVotingSession(req);
-      console.log("create vhieve vote session req ",req)
-      console.log("create vhieve vote session res ",res)
+      console.log("create chief vote session req ",req)
+      console.log("create chief vote session res ",res)
       if (res.error) {
         console.log(res.error);
         setError(true);

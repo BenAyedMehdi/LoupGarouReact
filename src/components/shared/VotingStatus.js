@@ -17,7 +17,12 @@ export default function VotingStatus({ votingSession }) {
   const [mostVotedPlayer, setMostVotedPlayer] = useState({ name: 'Njoura' });
   const [currentSession, setCurrentSession] = useState({});
 
-
+  useEffect(() => {
+    if (votingSession != null) {
+      getVotingSessionStatus();
+    }
+  }, []);
+  
   const getVotingSessionStatus = async () => {
     if (votingSession.votingSessionId !== null || votingSession.votingSessionId !== undefined) {
       const res = await apiCalls.getVotingSession(votingSession.votingSessionId);
@@ -37,11 +42,6 @@ export default function VotingStatus({ votingSession }) {
       }
     }
   };
-  useEffect(() => {
-    if (votingSession != null) {
-      getVotingSessionStatus();
-    }
-  }, []);
 
   const getMostVotedPlayer = async (mostvotedGuid) => {
     if (mostvotedGuid !== null) {

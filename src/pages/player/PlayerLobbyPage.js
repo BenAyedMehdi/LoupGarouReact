@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { Stack, Container, Button } from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
 // components
-import { InitialStepper, VoteForCheif, AssignedRole, PlayersLobby } from '../../components';
+import { InitialStepper, PlayersLobby } from '../../components';
 import Iconify from '../../components/iconify';
 import GameContext from '../../contexts/GameContext';
 // ----------------------------------------------------------------------

@@ -5,12 +5,12 @@ import { Helmet } from 'react-helmet-async';
 import { Stack, Container, Button } from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
 // components
-import { InitialStepper, VoteForCheif, AssignedRole, PlayersLobby } from '../../components';
+import { InitialStepper, VoteForCheif } from '../../components';
 import Iconify from '../../components/iconify';
 import GameContext from '../../contexts/GameContext';
 // ----------------------------------------------------------------------
 
-export default function SeeRolePage() {
+export default function ChiefVotePage() {
   const { playerDetails, updatePlayerDetails } = useContext(GameContext);
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
@@ -36,11 +36,6 @@ export default function SeeRolePage() {
     setCurrentStep(currentStep + 1);
   };
 
-  const handleCardIsSeen = () => {
-    const url = `/${gameId}/chief-vote/${playerId}`;
-    navigate(url);
-  };
-
   return (
     <>
       <Helmet>
@@ -64,13 +59,8 @@ export default function SeeRolePage() {
           </Button>
         </Stack>
 
-        <AssignedRole cardIsSeen={handleCardIsSeen}/>
+        <VoteForCheif key={1} />
 
-        {currentStep === 3 && (
-          <>
-            <VoteForCheif key={1} />
-          </>
-        )}
       </Container>
     </>
   );

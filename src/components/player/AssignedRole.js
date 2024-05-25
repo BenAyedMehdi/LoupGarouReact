@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 
 // @mui
 import { styled } from '@mui/material/styles';
-import { Grid, LinearProgress, Box } from '@mui/material';
+import { Grid, LinearProgress, Box, Button } from '@mui/material';
 // utils
 // components
 import apiCalls from '../../apiCalls';
@@ -11,7 +11,7 @@ import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
-export default function AssignedRole() {
+export default function AssignedRole({cardIsSeen}) {
   const [showComponent1, setShowComponent1] = useState(true);
   const [showComponent2, setShowComponent2] = useState(false);
   const [role, setRole] = useState({});
@@ -38,6 +38,10 @@ export default function AssignedRole() {
     }
   };
 
+  const handleCardSeen = async (e) => {
+    e.preventDefault();
+    cardIsSeen();
+  };
 
 
   useEffect(() => {
@@ -69,6 +73,9 @@ export default function AssignedRole() {
           ) : null}
           {showComponent2 ? (
             <>
+            <Button onClick={handleCardSeen} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+              Vote for chief
+            </Button>
             <TextWidget title="Your role is" value={role.card.cardName} color="warning" icon={'ant-design:windows-filled'} />
             <Box sx={{ mt: 3, pt: '100%', position: 'relative' }}>
               <StyledProductImg alt={'card'} src={`/assets/images/cards/${role.card.imageName}.png`} />

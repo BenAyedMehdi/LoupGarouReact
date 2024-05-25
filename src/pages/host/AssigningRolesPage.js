@@ -22,7 +22,7 @@ export default function AssigningRolesPage() {
 
   const handleDistributedRoles = () => {
     console.log('All roles distributed');
-    const url = `/chief-vote/${gameId}`;
+    const url = `/chief-vote-session/${gameId}`;
     navigate(url);
   };
 

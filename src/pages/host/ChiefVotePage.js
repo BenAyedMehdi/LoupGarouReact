@@ -11,7 +11,7 @@ import useResponsive from '../../hooks/useResponsive';
 import { InitialStepper, VotingSession } from '../../components';
 // ----------------------------------------------------------------------
 
-export default function ChiefVotePage() {
+export default function ChiefVoteResultPage() {
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(3); // 3= Vote for the leader

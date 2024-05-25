@@ -12,9 +12,10 @@ import StartGamePage from './pages/StartGamePage';
 import PlayerGame from './pages/PlayerGame';
 import HostLobbyPage from './pages/host/HostLobbyPage';
 import AssigningRolesPage from './pages/host/AssigningRolesPage';
-import ChiefVotePage from './pages/host/ChiefVotePage';
+import ChiefVoteResultPage from './pages/host/ChiefVotePage';
 import PlayerLobbyPage from './pages/player/PlayerLobbyPage';
 import SeeRolePage from './pages/player/SeeRolePage';
+import ChiefVotePage from './pages/player/ChiefVotePage';
 
 // ----------------------------------------------------------------------
 
@@ -29,12 +30,13 @@ export default function Router() {
         { path: 'create-game', element: <CreateGamePage /> },
         { path: 'host-lobby/:gameId', element: <HostLobbyPage /> },
         { path: 'assign-roles/:gameId', element: <AssigningRolesPage /> },
-        { path: 'chief-vote/:gameId', element: <ChiefVotePage /> },
+        { path: 'chief-vote-session/:gameId', element: <ChiefVoteResultPage /> },
         { path: 'host', element: <StartGamePage /> },
 
         { path: 'join-game', element: <JoinGamePage /> },
         { path: ':gameId/lobby/:playerId', element: <PlayerLobbyPage /> },
         { path: ':gameId/role/:playerId', element: <SeeRolePage /> },
+        { path: ':gameId/chief-vote/:playerId', element: <ChiefVotePage /> },
         { path: 'game', element: <PlayerGame/> },
         
       ],

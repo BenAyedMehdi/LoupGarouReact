@@ -18,6 +18,9 @@ This website is replacing the narrator of the game. The solution is assigning ro
 - Delete non-used pages and components
 - Add GameOver component (wolves won / villagers won)
 
+## Current development
+
+- Add chief voting feature
 
 ## Contributers
 

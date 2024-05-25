@@ -10,11 +10,11 @@ import Iconify from '../../components/iconify';
 import GameContext from '../../contexts/GameContext';
 // ----------------------------------------------------------------------
 
-export default function PlayerLobbyPage() {
+export default function SeeRolePage() {
   const { playerDetails, updatePlayerDetails } = useContext(GameContext);
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
-  const [currentStep, setCurrentStep] = useState(1); // 1= Players joining
+  const [currentStep, setCurrentStep] = useState(2); // 2= See Role
   const steps = ['Join  a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
   const { gameId, playerId } = useParams();
 
@@ -32,14 +32,10 @@ export default function PlayerLobbyPage() {
       console.log('Joined the game');
       navigate('/game');
     }
-    console.log("next step")
+    console.log('next step');
     setCurrentStep(currentStep + 1);
   };
 
-  const handleSeeMyCard = () => {
-    const url = `/${gameId}/role/${playerId}`;
-    navigate(url);
-  };
   return (
     <>
       <Helmet>
@@ -63,8 +59,13 @@ export default function PlayerLobbyPage() {
           </Button>
         </Stack>
 
-        <PlayersLobby playerName={playerDetails.name} gameId={gameId} seeMyCard={handleSeeMyCard}/>
+        <AssignedRole />
 
+        {currentStep === 3 && (
+          <>
+            <VoteForCheif key={1} />
+          </>
+        )}
       </Container>
     </>
   );

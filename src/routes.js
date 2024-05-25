@@ -14,6 +14,7 @@ import HostLobbyPage from './pages/host/HostLobbyPage';
 import AssigningRolesPage from './pages/host/AssigningRolesPage';
 import ChiefVotePage from './pages/host/ChiefVotePage';
 import PlayerLobbyPage from './pages/player/PlayerLobbyPage';
+import SeeRolePage from './pages/player/SeeRolePage';
 
 // ----------------------------------------------------------------------
 
@@ -30,9 +31,10 @@ export default function Router() {
         { path: 'assign-roles/:gameId', element: <AssigningRolesPage /> },
         { path: 'chief-vote/:gameId', element: <ChiefVotePage /> },
         { path: 'host', element: <StartGamePage /> },
-        
+
         { path: 'join-game', element: <JoinGamePage /> },
         { path: ':gameId/lobby/:playerId', element: <PlayerLobbyPage /> },
+        { path: ':gameId/role/:playerId', element: <SeeRolePage /> },
         { path: 'game', element: <PlayerGame/> },
         
       ],

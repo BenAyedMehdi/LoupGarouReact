@@ -17,6 +17,10 @@ export default function AssignedRole() {
   const [role, setRole] = useState({});
   const {playerDetails}=useContext(GameContext)
 
+  useEffect(() => {
+    getPlayerRole();
+  }, []);
+
   const getPlayerRole = async () => {
     
     const playerId = playerDetails ? playerDetails.playerId : null;
@@ -33,15 +37,12 @@ export default function AssignedRole() {
       }
     }
   };
-  useEffect(() => {
-    getPlayerRole();
-  }, []);
 
 
 
   useEffect(() => {
-    setTimeout(() => setShowComponent1(false), 4000);
-    setTimeout(() => setShowComponent2(true), 4000);
+    setTimeout(() => setShowComponent1(false), 1000);
+    setTimeout(() => setShowComponent2(true), 1000);
   }, []);
 
   const StyledProductImg = styled('img')({

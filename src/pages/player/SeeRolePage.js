@@ -47,21 +47,13 @@ export default function SeeRolePage() {
         <title> Join a game </title>
       </Helmet>
 
-      <Container sx={{ paddingTop: 5 }} maxWidth="xl">
+      <Container maxWidth="xl">
         <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" mb={2}>
           {isDesktop && (
             <>
               <InitialStepper currentStep={currentStep} steps={steps} />
             </>
           )}
-          <Button
-            variant="contained"
-            onClick={handleNext}
-            sx={{ width: '70%', height: 66, mb: 3 }}
-            startIcon={<Iconify icon="eva:plus-fill" />}
-          >
-            Next
-          </Button>
         </Stack>
 
         <AssignedRole cardIsSeen={handleCardIsSeen}/>

@@ -14,8 +14,8 @@ import storage from '../../storage';
 export default function VotingStatus({ votingSession }) {
   const [error, setError] = useState(false);
   const [isVoteCompleted, setIsVoteCompleted] = useState(false);
-  const [mostVotedPlayer, setMostVotedPlayer] = useState({ name: 'Njoura' });
-  const [currentSession, setCurrentSession] = useState({});
+  const [mostVotedPlayer, setMostVotedPlayer] = useState({ name: '' });
+  const [currentSession, setCurrentSession] = useState(votingSession);
 
   useEffect(() => {
     if (votingSession != null) {
@@ -62,7 +62,7 @@ export default function VotingStatus({ votingSession }) {
     <>
       <Grid container spacing={3}>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <PlayersListTable />
+          <PlayersListTable gameId={currentSession.gameId}/>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           {!isVoteCompleted ? (
@@ -89,7 +89,7 @@ export default function VotingStatus({ votingSession }) {
           )}
         </Grid>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <CardsListTable />
+          <CardsListTable gameId={currentSession.gameId}/>
         </Grid>
       </Grid>
     </>

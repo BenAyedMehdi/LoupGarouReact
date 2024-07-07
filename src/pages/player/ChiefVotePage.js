@@ -22,11 +22,6 @@ export default function ChiefVotePage() {
   //   console.log('context player details', playerDetails);
   // }, [playerDetails]);
 
-  const handleNext = (e) => {
-    e.preventDefault();
-    nextStep();
-  };
-
   const nextStep = () => {
     if (currentStep === 3) {
       console.log('Joined the game');
@@ -49,14 +44,6 @@ export default function ChiefVotePage() {
               <InitialStepper currentStep={currentStep} steps={steps} />
             </>
           )}
-          <Button
-            variant="contained"
-            onClick={handleNext}
-            sx={{ width: '70%', height: 66, mb: 3 }}
-            startIcon={<Iconify icon="eva:plus-fill" />}
-          >
-            Next
-          </Button>
         </Stack>
 
         <VoteForCheif gameId={gameId} playerId={playerId} />

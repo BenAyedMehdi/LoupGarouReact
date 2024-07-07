@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { Stack, Container, Button } from '@mui/material';
+import apiCalls from '../../apiCalls';
 import useResponsive from '../../hooks/useResponsive';
 // components
 import { InitialStepper, PlayersLobby } from '../../components';
@@ -22,23 +23,25 @@ export default function PlayerLobbyPage() {
     console.log('context player details', playerDetails);
   }, [playerDetails]);
 
-  const handleNext = (e) => {
-    e.preventDefault();
-    nextStep();
-  };
-
-  const nextStep = () => {
-    if (currentStep === 3) {
-      console.log('Joined the game');
-      navigate('/game');
+  
+  const handleSeeMyCard = async () => {
+    try {
+      const { data, error } = await apiCalls.getPlayerRole(playerId);
+      if (error) {
+        console.error("Error fetching player role:", error);
+        alert("There was an error checking your role. Please try again.");
+        return;
+      }
+      const url = `/${gameId}/role/${playerId}`;
+      navigate(url);
+      // if (data && data.role) { // Assuming the API returns an object with a role property
+      // } else {
+      //   alert("Your role has not been assigned yet. Please wait.");
+      // }
+    } catch (e) {
+      console.error("An unexpected error occurred:", e);
+      alert("There was an unexpected error. Please try again.");
     }
-    console.log("next step")
-    setCurrentStep(currentStep + 1);
-  };
-
-  const handleSeeMyCard = () => {
-    const url = `/${gameId}/role/${playerId}`;
-    navigate(url);
   };
   return (
     <>
@@ -53,14 +56,6 @@ export default function PlayerLobbyPage() {
               <InitialStepper currentStep={currentStep} steps={steps} />
             </>
           )}
-          <Button
-            variant="contained"
-            onClick={handleNext}
-            sx={{ width: '70%', height: 66, mb: 3 }}
-            startIcon={<Iconify icon="eva:plus-fill" />}
-          >
-            Next
-          </Button>
         </Stack>
 
         <PlayersLobby playerName={playerDetails.name} gameId={gameId} seeMyCard={handleSeeMyCard}/>

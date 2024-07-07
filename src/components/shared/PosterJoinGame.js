@@ -29,24 +29,20 @@ export default function PosterJoinGame({ title, value, color = 'primary', sx, ..
         }}
         {...other}
       >
-        <Stack direction={{ xs: 'column', sm: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" m={5} mb={2}>
-          <Box>
+        <TextWidget title="Game ID" value={gameDetails.gameCode} color="warning" sx={{ m: 3 }} />
+        <Box>
             <Typography variant="h6" sx={{ opacity: 0.72 }}>
               Navigate to this link
             </Typography>
 
-            <Typography variant="h2" sx={{ mr: 2, opacity: 0.72 }}>
+            <Typography variant="h2" sx={{ mr: 2, opacity: 0.72, paddingBottom: 5 }}>
               loupgarou.netlify.app
             </Typography>
-          </Box>
-          <Box>
             <Typography variant="h6" sx={{ opacity: 0.72 }}>
               Or use the QR code
             </Typography>
-            <Box component="img" src="/assets/images/qrcode.png" sx={{ minWidth:100, width: "100%", pt: 2 }} />
+            <Box component="img" src="/assets/images/qrcode.png" sx={{ minWidth:100, width: "70%", paddingLeft: "30%", pt: 2, marginBottom: 5 }} />
           </Box>
-        </Stack>
-        <TextWidget title="Game ID" value={gameDetails.gameCode} color="warning" sx={{ m: 3 }} />
       </Card>
     </>
   );

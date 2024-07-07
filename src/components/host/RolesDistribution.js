@@ -74,7 +74,7 @@ export default function RolesDistribution({gameId, rolesDistributed}) {
         </Button>
           
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <PlayersListTable />
+          <PlayersListTable gameId={gameId}/>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
           <TextWidget
@@ -85,7 +85,7 @@ export default function RolesDistribution({gameId, rolesDistributed}) {
           />
         </Grid>
         <Grid item sx={{ display: { xs: 'none', sm: 'block' } }} xs={12} sm={6} md={3}>
-          <CardsListTable />
+          <CardsListTable gameId={gameId} />
         </Grid>
       </Grid>
     </>

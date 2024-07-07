@@ -25,7 +25,7 @@ export default function CardBarName({ clicked, id, card }) {
     <Box sx={{ m: 1, mx: 2.5 }}>
       <Link underline="none">
         <StyledAccount>
-          <Avatar src={account.photoURL} alt="photoURL" />
+          <Avatar src={`/assets/images/cards/${card.imageName}.png`} alt="photoURL" />
 
           <Box sx={{ ml: 2 }}>
             <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>

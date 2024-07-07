@@ -73,7 +73,7 @@ export default function AssignedRole({cardIsSeen}) {
           ) : null}
           {showComponent2 ? (
             <>
-            <Button onClick={handleCardSeen} variant="contained" sx={{ width: '100%', height: 66, m: 3 }}>
+            <Button onClick={handleCardSeen} variant="contained" sx={{ width: '90%', height: 66, m: 3 }}>
               Vote for chief
             </Button>
             <TextWidget title="Your role is" value={role.card.cardName} color="warning" icon={'ant-design:windows-filled'} />

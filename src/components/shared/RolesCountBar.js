@@ -12,7 +12,7 @@ const StyledAccount = styled('div')(({ theme }) => ({
   justifyContent: 'space-around',
   padding: theme.spacing(1.5, 1.5),
   borderRadius: Number(theme.shape.borderRadius) * 1.5,
-  backgroundColor: alpha(theme.palette.grey[500], 0.52),
+  backgroundColor: alpha(theme.palette.grey[400], 0.52),
 }));
 
 const account = {
@@ -34,6 +34,7 @@ export default function RolesCountBar({ card, addCards }) {
     <Box sx={{ m: 2.5 }}>
       <Link underline="none">
         <StyledAccount>
+          <Avatar src={`/assets/images/cards/${card.imageName}.png`} alt="photoURL" />
           <div>
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
@@ -46,7 +47,6 @@ export default function RolesCountBar({ card, addCards }) {
             </Box>
           </div>
           <InputSlider valueChanged={handleValueChanged} />
-          <Avatar src={account.photoURL} alt="photoURL" />
         </StyledAccount>
       </Link>
     </Box>

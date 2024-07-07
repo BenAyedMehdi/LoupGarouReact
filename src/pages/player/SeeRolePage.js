@@ -8,6 +8,7 @@ import useResponsive from '../../hooks/useResponsive';
 import { InitialStepper, VoteForCheif, AssignedRole, PlayersLobby } from '../../components';
 import Iconify from '../../components/iconify';
 import GameContext from '../../contexts/GameContext';
+import apiCalls from '../../apiCalls';
 // ----------------------------------------------------------------------
 
 export default function SeeRolePage() {
@@ -36,9 +37,22 @@ export default function SeeRolePage() {
     setCurrentStep(currentStep + 1);
   };
 
-  const handleCardIsSeen = () => {
-    const url = `/${gameId}/chief-vote/${playerId}`;
-    navigate(url);
+  const handleCardIsSeen = async () => {
+    // check if the player can start voting 
+    try {
+      const { data, error } = await apiCalls.getCurrentVotingSession(gameId);
+      if (error) {
+        console.error("Error: ", error);
+        alert("There is no active voting session. Please wait.");
+        return;
+      }
+      const url = `/${gameId}/chief-vote/${playerId}`;
+      navigate(url);
+    } catch (e) {
+      console.error("An unexpected error occurred:", e);
+      alert("There was an unexpected error. Please try again.");
+    }
+
   };
 
   return (
@@ -47,30 +61,17 @@ export default function SeeRolePage() {
         <title> Join a game </title>
       </Helmet>
 
-      <Container sx={{ paddingTop: 5 }} maxWidth="xl">
-        <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" mb={2}>
+      <Container maxWidth="xl">
+        <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" m={2}>
           {isDesktop && (
             <>
               <InitialStepper currentStep={currentStep} steps={steps} />
             </>
           )}
-          <Button
-            variant="contained"
-            onClick={handleNext}
-            sx={{ width: '70%', height: 66, mb: 3 }}
-            startIcon={<Iconify icon="eva:plus-fill" />}
-          >
-            Next
-          </Button>
         </Stack>
 
         <AssignedRole cardIsSeen={handleCardIsSeen}/>
 
-        {currentStep === 3 && (
-          <>
-            <VoteForCheif key={1} />
-          </>
-        )}
       </Container>
     </>
   );

@@ -19,7 +19,7 @@ export default function PlayersListTable({players, gameId}) {
     else{
       getGamePlayers();
     }
-  }, [players]);
+  }, [players, gameId]);
   
 
   const getGamePlayers = async () => {
@@ -27,6 +27,7 @@ export default function PlayersListTable({players, gameId}) {
     if (gameId !== null && gameId !== undefined) {
       const res = await apiCalls.getGamePlayers(gameId);
       
+      console.log("game players:",res)
       if (!res.error) {
         const players = res.data;
         setPlayersList(players);

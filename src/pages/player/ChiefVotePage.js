@@ -11,21 +11,16 @@ import GameContext from '../../contexts/GameContext';
 // ----------------------------------------------------------------------
 
 export default function ChiefVotePage() {
-  const { playerDetails, updatePlayerDetails } = useContext(GameContext);
+  // const { playerDetails, updatePlayerDetails } = useContext(GameContext);
   const isDesktop = useResponsive('up', 'lg');
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(2); // 2= See Role
   const steps = ['Join  a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
   const { gameId, playerId } = useParams();
 
-  useEffect(() => {
-    console.log('context player details', playerDetails);
-  }, [playerDetails]);
-
-  const handleNext = (e) => {
-    e.preventDefault();
-    nextStep();
-  };
+  // useEffect(() => {
+  //   console.log('context player details', playerDetails);
+  // }, [playerDetails]);
 
   const nextStep = () => {
     if (currentStep === 3) {
@@ -49,17 +44,9 @@ export default function ChiefVotePage() {
               <InitialStepper currentStep={currentStep} steps={steps} />
             </>
           )}
-          <Button
-            variant="contained"
-            onClick={handleNext}
-            sx={{ width: '70%', height: 66, mb: 3 }}
-            startIcon={<Iconify icon="eva:plus-fill" />}
-          >
-            Next
-          </Button>
         </Stack>
 
-        <VoteForCheif key={1} />
+        <VoteForCheif gameId={gameId} playerId={playerId} />
 
       </Container>
     </>

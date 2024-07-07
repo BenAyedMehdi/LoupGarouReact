@@ -1,16 +1,14 @@
-
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 // @mui
-import {
-  Stack,
-  Container,
-} from '@mui/material';
+import { Stack, Container } from '@mui/material';
 import RolesDistribution from '../../components/host/RolesDistribution';
 import useResponsive from '../../hooks/useResponsive';
 // sections
 import { InitialStepper } from '../../components';
+import apiCalls from '../../apiCalls';
+import DTOs from '../../DTOs';
 // ----------------------------------------------------------------------
 
 export default function AssigningRolesPage() {
@@ -20,10 +18,36 @@ export default function AssigningRolesPage() {
   const steps = ['Create a game', 'Players joining...', 'Assigning roles', 'Vote for the leader'];
   const { gameId } = useParams();
 
-  const handleDistributedRoles = () => {
-    console.log('All roles distributed');
-    const url = `/chief-vote-session/${gameId}`;
+  const handleDistributedRoles = async ()  => {
+    const session = await createNewVotingSessions(gameId);
+    console.log('Created voting session: ', session);
+    
+    const url = `/chief-vote-session/${gameId}/${session.votingSessionId}`;
     navigate(url);
+  };
+
+  const createNewVotingSessions = async (gameId) => {
+    // get current game
+    const res = await apiCalls.getGame(gameId);
+
+    if (res.error) {
+      console.log(res.error);
+    } else {
+      const game = res.data;
+      if (game.gameId !== null || game.gameId !== undefined) {
+        const req = DTOs.createVotingSessionRequest(game.gameId, 'chief', game.numberOfPlayers);
+        const res = await apiCalls.createVotingSession(req);
+        console.log('create chief vote session req ', req);
+        console.log('create chief vote session res ', res);
+        if (res.error) {
+          console.log(res.error);
+        } else {
+          const votingSession = res.data;
+          return votingSession;
+        }
+      }
+    }
+    return null;
   };
 
   return (
@@ -40,9 +64,8 @@ export default function AssigningRolesPage() {
             </>
           )}
         </Stack>
-        
-        <RolesDistribution gameId={gameId} rolesDistributed= {handleDistributedRoles}/>
-        
+
+        <RolesDistribution gameId={gameId} rolesDistributed={handleDistributedRoles} />
       </Container>
     </>
   );

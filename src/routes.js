@@ -30,7 +30,7 @@ export default function Router() {
         { path: 'create-game', element: <CreateGamePage /> },
         { path: 'host-lobby/:gameId', element: <HostLobbyPage /> },
         { path: 'assign-roles/:gameId', element: <AssigningRolesPage /> },
-        { path: 'chief-vote-session/:gameId', element: <ChiefVoteResultPage /> },
+        { path: 'chief-vote-session/:gameId/:sessionId', element: <ChiefVoteResultPage /> },
         { path: 'host', element: <StartGamePage /> },
 
         { path: 'join-game', element: <JoinGamePage /> },

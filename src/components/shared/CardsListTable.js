@@ -19,7 +19,7 @@ export default function CardsListTable({roles, gameId}) {
     else{
       getGameRoles();
     }
-  }, [roles]);
+  }, [roles, gameId]);
   
   const getGameRoles = async () => {
     

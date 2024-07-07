@@ -8,6 +8,7 @@ import useResponsive from '../../hooks/useResponsive';
 import { InitialStepper, VoteForCheif, AssignedRole, PlayersLobby } from '../../components';
 import Iconify from '../../components/iconify';
 import GameContext from '../../contexts/GameContext';
+import apiCalls from '../../apiCalls';
 // ----------------------------------------------------------------------
 
 export default function SeeRolePage() {
@@ -36,9 +37,22 @@ export default function SeeRolePage() {
     setCurrentStep(currentStep + 1);
   };
 
-  const handleCardIsSeen = () => {
-    const url = `/${gameId}/chief-vote/${playerId}`;
-    navigate(url);
+  const handleCardIsSeen = async () => {
+    // check if the player can start voting 
+    try {
+      const { data, error } = await apiCalls.getCurrentVotingSession(gameId);
+      if (error) {
+        console.error("Error: ", error);
+        alert("There is no active voting session. Please wait.");
+        return;
+      }
+      const url = `/${gameId}/chief-vote/${playerId}`;
+      navigate(url);
+    } catch (e) {
+      console.error("An unexpected error occurred:", e);
+      alert("There was an unexpected error. Please try again.");
+    }
+
   };
 
   return (
@@ -48,7 +62,7 @@ export default function SeeRolePage() {
       </Helmet>
 
       <Container maxWidth="xl">
-        <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" mb={2}>
+        <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" m={2}>
           {isDesktop && (
             <>
               <InitialStepper currentStep={currentStep} steps={steps} />

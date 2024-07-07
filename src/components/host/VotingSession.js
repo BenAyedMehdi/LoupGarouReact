@@ -8,21 +8,19 @@ import GameContext from '../../contexts/GameContext';
 
 // ----------------------------------------------------------------------
 
-export default function VotingSession({VoteEnded}) {
+export default function VotingSession({sessionId, VoteEnded}) {
   const [error, setError] = useState(false);
   const [votingSession, setVotingSession] = useState({});
   const {gameDetails}=useContext(GameContext);
   useEffect(() => {
-    createCheifVotingSession();
+    console.log(sessionId)
+    getCheifVotingSession(sessionId);
   }, []);
 
-  const createCheifVotingSession = async () => {
-    const game = gameDetails;
-    if (game !== null) {
-      const req = DTOs.createVotingSessionRequest(game.gameId, 'chief', game.numberOfPlayers);
-      const res = await apiCalls.createVotingSession(req);
-      console.log("create chief vote session req ",req)
-      console.log("create chief vote session res ",res)
+  const getCheifVotingSession = async (sessionId) => { 
+    if (sessionId !== null || sessionId !== undefined) {
+      const res = await apiCalls.getVotingSession(sessionId);
+      console.log("Fetched session: ",res)
       if (res.error) {
         console.log(res.error);
         setError(true);
@@ -32,7 +30,12 @@ export default function VotingSession({VoteEnded}) {
         setVotingSession(votingSession);
       }
     }
+    else{  
+      console.log("sessionId is null")
+      alert("sessionId is null");
+    }
   };
+
   const handleStartGame = async (e) => {
     e.preventDefault();
     if(votingSession !== null){
@@ -48,6 +51,9 @@ export default function VotingSession({VoteEnded}) {
         if (session.isCompleted) {
           VoteEnded();
         }
+        else{
+          alert("Voting is not completed yet")
+        }
       }
     }
   };
@@ -58,7 +64,7 @@ export default function VotingSession({VoteEnded}) {
         Start Game
       </Button>
 
-      <VotingStatus votingSession={votingSession} />
+      <VotingStatus sessionId={sessionId} votingSession={votingSession} />
     </>
   );
 }

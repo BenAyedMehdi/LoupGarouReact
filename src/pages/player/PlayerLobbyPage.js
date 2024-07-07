@@ -29,7 +29,7 @@ export default function PlayerLobbyPage() {
       const { data, error } = await apiCalls.getPlayerRole(playerId);
       if (error) {
         console.error("Error fetching player role:", error);
-        alert("There was an error checking your role. Please try again.");
+        alert("All players should join first. Please wait.");
         return;
       }
       const url = `/${gameId}/role/${playerId}`;

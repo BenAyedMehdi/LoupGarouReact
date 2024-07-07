@@ -41,6 +41,10 @@ export default function VoteForCheif({ gameId, playerId }) {
         console.log(votingSession);
         setVotingSession(votingSession);
       }
+      // Alert if there is no voting session
+      else {
+        console.log(res.error);
+      }
     }
   };
 

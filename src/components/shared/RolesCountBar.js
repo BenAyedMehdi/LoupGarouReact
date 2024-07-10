@@ -31,7 +31,7 @@ export default function RolesCountBar({ card, addCards }) {
   };
 
   return (
-    <Box sx={{ m: 2.5 }}>
+    <Box sx={{ my: 2.5 }}>
       <Link underline="none">
         <StyledAccount>
           <Avatar src={`/assets/images/cards/${card.imageName}.png`} alt="photoURL" />

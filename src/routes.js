@@ -6,24 +6,37 @@ import SimpleLayout from './layouts/simple';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import MainPage from './pages/MainPage';
-import CreateGamePage from './pages/CreateGamePage';
-import JoinGamePage from './pages/JoinGamePage';
+import CreateGamePage from './pages/host/CreateGamePage';
+import JoinGamePage from './pages/player/JoinGamePage';
 import StartGamePage from './pages/StartGamePage';
 import PlayerGame from './pages/PlayerGame';
+import HostLobbyPage from './pages/host/HostLobbyPage';
+import AssigningRolesPage from './pages/host/AssigningRolesPage';
+import ChiefVoteResultPage from './pages/host/ChiefVotePage';
+import PlayerLobbyPage from './pages/player/PlayerLobbyPage';
+import SeeRolePage from './pages/player/SeeRolePage';
+import ChiefVotePage from './pages/player/ChiefVotePage';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const routes = useRoutes([
     {
-      path: '/dashboard',
+      path: '/',
       element: <DashboardLayout />,
       children: [
-        { element: <Navigate to="/dashboard/main" />, index: true },
-        { path: 'main', element: <MainPage /> },
+        { element: <Navigate to="/home" />, index: true },
+        { path: 'home', element: <MainPage /> },
         { path: 'create-game', element: <CreateGamePage /> },
+        { path: 'host-lobby/:gameId', element: <HostLobbyPage /> },
+        { path: 'assign-roles/:gameId', element: <AssigningRolesPage /> },
+        { path: 'chief-vote-session/:gameId/:sessionId', element: <ChiefVoteResultPage /> },
         { path: 'host', element: <StartGamePage /> },
+
         { path: 'join-game', element: <JoinGamePage /> },
+        { path: ':gameId/lobby/:playerId', element: <PlayerLobbyPage /> },
+        { path: ':gameId/role/:playerId', element: <SeeRolePage /> },
+        { path: ':gameId/chief-vote/:playerId', element: <ChiefVotePage /> },
         { path: 'game', element: <PlayerGame/> },
         
       ],
@@ -35,7 +48,7 @@ export default function Router() {
     {
       element: <SimpleLayout />,
       children: [
-        { element: <Navigate to="/dashboard/main" />, index: true },
+        { element: <Navigate to="/home" />, index: true },
         { path: '404', element: <Page404 /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

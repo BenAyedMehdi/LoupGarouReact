@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 // @mui
 import { styled } from '@mui/material/styles';
+import ResponsiveAppBar from './ResponsiveAppBar';
 
 // ----------------------------------------------------------------------
 
@@ -27,6 +28,7 @@ export default function DashboardLayout() {
   return (
     <StyledRoot>
       <Main>
+        <ResponsiveAppBar />
         <Outlet />
       </Main>
     </StyledRoot>

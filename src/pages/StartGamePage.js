@@ -21,13 +21,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import useResponsive from '../hooks/useResponsive';
 // sections
-import GetReadyToStart from '../sections/game/GetReadyToStart';
-import StartGameIntro from '../sections/game/StartGameIntro';
-import { DayVote, PostNightAnnouncements, RoleNightTask } from '../sections/game';
-import { TextWidget, InitialStepper, VotingStatus, CreateGameSettings } from '../sections/new';
+import GetReadyToStart from '../components/game/GetReadyToStart';
+import StartGameIntro from '../components/game/StartGameIntro';
+import { DayVote, PostNightAnnouncements, RoleNightTask } from '../components/game';
+import { TextWidget, InitialStepper, CreateGameSettings } from '../components';
 // components
 import Iconify from '../components/iconify';
-import DayPhase from '../sections/game/DayPhase';
+import DayPhase from '../components/game/DayPhase';
 // ----------------------------------------------------------------------
 
 export default function StartGamePage() {
@@ -68,7 +68,13 @@ export default function StartGamePage() {
           <title> Game Started </title>
         </Helmet>
 
-        <Container sx={{ paddingTop: 5 }} maxWidth="xl">
+        <Container sx={{
+          minHeight: '95vh',
+          paddingTop: 5,
+          backgroundImage: 'url(/assets/darkvillage.png)',
+          backgroundSize: 'cover',
+          minWidth: '100vw'
+      }} maxWidth="xl">
           <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center">
             {isDesktop ? (
               <>

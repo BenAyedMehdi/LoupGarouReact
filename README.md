@@ -7,6 +7,8 @@
 
 Welcome to the Werewolf Role Distributor! This web application simplifies the setup and role distribution process for the popular social deduction game, Werewolf. Whether you're playing in-person or virtually, our app ensures a smooth start to your game by assigning roles efficiently and privately.
 
+# v1.0.0
+
 ## Key Features
 - **Create New Games**: Easily set up a new game by specifying the number of players and selecting the roles you want to include.
 - **Join Existing Games**: Players can join a game using a unique session code, making it easy to get everyone involved.

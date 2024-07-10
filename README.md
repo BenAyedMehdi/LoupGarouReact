@@ -3,6 +3,7 @@
 ![preview](public/assets/preview1.JPG)
 ![preview](public/assets/preview6.jpg)
 
+## static version 1.0
 
 ## About the game:
 Loup Garou is a social game that takes place over a series of game rounds. Each round has two phases - day and night. During the day the village discusses who they think is guilty, during the night players may use special powers and the werewolves make their kill. One narrator is needed to moderate the game. 
@@ -23,4 +24,5 @@ This website is replacing the narrator of the game. The solution is assigning ro
 
 -  [Mehdi Ben Ayed](https://github.com/BenAyedMehdi) 
 -  [Hatem Khabir](https://github.com/HatemKhabir) 
+
 

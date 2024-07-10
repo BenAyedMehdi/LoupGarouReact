@@ -1,6 +1,6 @@
 // @mui
 import PropTypes from 'prop-types';
-import { Card, Typography, CardHeader, CardContent } from '@mui/material';
+import { Card, Typography, CardHeader, CardContent, Box } from '@mui/material';
 import { Timeline, TimelineDot, TimelineItem, TimelineContent, TimelineSeparator, TimelineConnector } from '@mui/lab';
 // utils
 import { fDateTime } from '../../utils/formatTime';
@@ -15,7 +15,7 @@ AppOrderTimeline.propTypes = {
 
 export default function AppOrderTimeline({ title, subheader, list, ...other }) {
   return (
-    <Card {...other}>
+    <Card {...other} sx={{ textAlign: 'center' }}>
       <CardHeader title={title} subheader={subheader} />
 
       <CardContent
@@ -35,7 +35,6 @@ export default function AppOrderTimeline({ title, subheader, list, ...other }) {
   );
 }
 
-
 OrderItem.propTypes = {
   isLast: PropTypes.bool,
   item: PropTypes.shape({
@@ -48,27 +47,27 @@ OrderItem.propTypes = {
 function OrderItem({ item, isLast }) {
   const { type, title, time } = item;
   return (
-    <TimelineItem>
-      <TimelineSeparator>
-        <TimelineDot
-          color={
-            (type === 'order1' && 'primary') ||
-            (type === 'order2' && 'success') ||
-            (type === 'order3' && 'info') ||
-            (type === 'order4' && 'warning') ||
-            'error'
-          }
-        />
-        {isLast ? null : <TimelineConnector />}
-      </TimelineSeparator>
+      <TimelineItem>
+        <TimelineSeparator>
+          <TimelineDot
+            color={
+              (type === 'order1' && 'primary') ||
+              (type === 'order2' && 'success') ||
+              (type === 'order3' && 'info') ||
+              (type === 'order4' && 'warning') ||
+              'error'
+            }
+          />
+          {isLast ? null : <TimelineConnector />}
+        </TimelineSeparator>
 
-      <TimelineContent>
-        <Typography variant="subtitle2">{title}</Typography>
+        <TimelineContent>
+          <Typography variant="subtitle2">{title}</Typography>
 
-        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-          {fDateTime(time)}
-        </Typography>
-      </TimelineContent>
-    </TimelineItem>
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            {fDateTime(time)}
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
   );
 }

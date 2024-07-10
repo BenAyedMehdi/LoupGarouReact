@@ -72,7 +72,7 @@ export default function PlayerJoiningForm({ returnedPlayer }) {
             margin="normal"
             required
             id="outlined-required"
-            label="Name"
+            label="Your name"
             fullWidth
           />
           <TextField

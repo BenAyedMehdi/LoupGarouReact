@@ -10,6 +10,7 @@ Loup Garou is a social game that takes place over a series of game rounds. Each 
 
 ## About the Project:
 This website is replacing the narrator of the game. The solution is assigning roles to players, tell them what to do, record thir votes and decisions, and ensure the game rules are being respected. A server of the game is created, players can join with their phones. The concept is a bit similar to Kahoot or JackBox. The server-side development is ongoing.
+-  [Check the backend repository](https://github.com/BenAyedMehdi/LoupGarouAPI) 
 
 ## Possible frontend improvements
 

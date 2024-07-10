@@ -17,10 +17,14 @@ export default function GameUpdatesTimeline({
 }) {
   return (
     <AppOrderTimeline
-      title="Story Timeline"
+      title="How it works"
       list={[...Array(5)].map((_, index) => ({
         id: faker.datatype.uuid(),
-        title: ['Met dhib', 'Met salvador', 'Metet sorciere', 'Metet l 9arya lkol', 'Met l narrateur'][index],
+        title: ['Start a new game',
+           'Choose the roles and the number of player',
+            'The player join using the generate code',
+             'Each player receives a card on their device',
+              'Vote for the village chief'][index],
         type: `order${index + 1}`,
       }))}
     />

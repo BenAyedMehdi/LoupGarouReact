@@ -58,10 +58,16 @@ export default function SeeRolePage() {
   return (
     <>
       <Helmet>
-        <title> Join a game </title>
+        <title> Get my role </title>
       </Helmet>
 
-      <Container maxWidth="xl">
+      <Container sx={{
+          minHeight: '95vh',
+          paddingTop: 5,
+          backgroundImage: 'url(/assets/darkvillage.png)',
+          backgroundSize: 'cover',
+          minWidth: '100vw'
+      }} maxWidth="xl">
         <Stack direction={{ xs: 'row', sm: 'row' }} alignItems="stretch" justifyContent="center" m={2}>
           {isDesktop && (
             <>

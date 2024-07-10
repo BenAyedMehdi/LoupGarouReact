@@ -63,7 +63,7 @@ export default function PlayerJoiningForm({ returnedPlayer }) {
         <Grid item xs={12} sm={3} md={4}>
           <></>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid sx={{ padding: '24px', backgroundColor: 'white', borderRadius:'16px'}} item xs={12} sm={6} md={4}>
           <TextField
             value={name}
             onChange={handleNameChange}

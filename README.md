@@ -34,4 +34,5 @@ This website is replacing the narrator of the game. The solution is assigning ro
 
 -  [Mehdi Ben Ayed](https://github.com/BenAyedMehdi) 
 -  [Hatem Khabir](https://github.com/HatemKhabir) 
+-  [Aziz Najjar](https://github.com/Njoura7) 
 

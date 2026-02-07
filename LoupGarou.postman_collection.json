@@ -1,0 +1,892 @@
+{
+  "info": {
+    "_postman_id": "6f7fef06-c770-4097-9dcb-22d0c96c9689",
+    "name": "LoupGarou",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32721491"
+  },
+  "item": [
+    {
+      "name": "Games",
+      "item": [
+        {
+          "name": "Create a game",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"numberOfPlayers\": 3,\r\n  \"gameCards\": [\r\n    {\r\n      \"card\": {\r\n        \"cardId\": \"89f15666-16c1-4aa0-ea40-08dc4080623d\",\r\n        \"cardName\": \"Werewolf\",\r\n        \"description\": \"Werewolves work together to kill all the village. They choose a player to kill every night, and they pretend to be villagers during the day.\",\r\n        \"imageName\": \"werewolf\"\r\n    },\r\n      \"numberOfCards\": 2\r\n    },\r\n    {\r\n      \"card\": {\r\n        \"cardId\": \"bef30148-f9a8-41de-ea41-08dc4080623d\",\r\n        \"cardName\": \"Villager\",\r\n        \"description\": \"This role has no superpowers, sleeping all night and only votes during the day.\",\r\n        \"imageName\": \"villager\"\r\n    },\r\n      \"numberOfCards\": 1\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/games",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "games"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all games",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/games",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "games"
+              ]
+            },
+            "description": "This endpoint makes an HTTP GET request to retrieve a list of games from the API. The response will be in JSON format and will include an array of game objects. Each game object contains details such as gameId, gameCode, numberOfPlayers, currentPhase, status, players, roles, votes, and actions. The players array within each game object includes playerId, name, roleId, isProtected, isLover, and status for each player. The roles array includes the roles available in the game. The response status for a successful request will be 200."
+          },
+          "response": []
+        },
+        {
+          "name": "Get game by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/games/166e5fa4-3049-4f06-8657-9c655a662f18",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "games",
+                "166e5fa4-3049-4f06-8657-9c655a662f18"
+              ],
+              "query": [
+                {
+                  "key": "gameId",
+                  "value": "166e5fa4-3049-4f06-8657-9c655a662f18",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get game by Code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/games/code/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "games",
+                "code",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "gameId",
+                  "value": "166e5fa4-3049-4f06-8657-9c655a662f18",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a game",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/games/cf6b8c7a-3d93-4bd4-afcb-69252a4a66b1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "games",
+                "cf6b8c7a-3d93-4bd4-afcb-69252a4a66b1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete all games",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/games/cf6b8c7a-3d93-4bd4-afcb-69252a4a66b1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "games",
+                "cf6b8c7a-3d93-4bd4-afcb-69252a4a66b1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Assign roles to players",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/games/cf6b8c7a-3d93-4bd4-afcb-69252a4a66b1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "games",
+                "cf6b8c7a-3d93-4bd4-afcb-69252a4a66b1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Players",
+      "item": [
+        {
+          "name": "Create a player",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"gameCode\": \"ROLE\",\r\n  \"playerName\": \"Player02\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/players",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "players"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all players",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/players",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "players"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get player by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/players/4d9afb1f-d49a-400e-8eb9-4f4def080733",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "players",
+                "4d9afb1f-d49a-400e-8eb9-4f4def080733"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a game's players",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// No changes made\r",
+                  "var template = `\r",
+                  "<style type=\"text/css\">\r",
+                  "    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+                  "    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+                  "    .tftable tr {background-color:#ffffff;}\r",
+                  "    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+                  "    .tftable tr:hover {background-color:#e0ffff;}\r",
+                  "</style>\r",
+                  "\r",
+                  "<table class=\"tftable\" border=\"1\">\r",
+                  "    <tr>\r",
+                  "        <th>Player ID</th>\r",
+                  "        <th>Name</th>\r",
+                  "        <th>Role ID</th>\r",
+                  "        <th>Is Protected</th>\r",
+                  "        <th>Is Lover</th>\r",
+                  "        <th>Status</th>\r",
+                  "        <th>Game ID</th>\r",
+                  "    </tr>\r",
+                  "    \r",
+                  "    {{#each response}}\r",
+                  "        <tr>\r",
+                  "            <td>{{playerId}}</td>\r",
+                  "            <td>{{name}}</td>\r",
+                  "            <td>{{roleId}}</td>\r",
+                  "            <td>{{isProtected}}</td>\r",
+                  "            <td>{{isLover}}</td>\r",
+                  "            <td>{{status}}</td>\r",
+                  "            <td>{{gameId}}</td>\r",
+                  "        </tr>\r",
+                  "    {{/each}}\r",
+                  "</table>\r",
+                  "`;\r",
+                  "\r",
+                  "function constructVisualizerPayload() {\r",
+                  "    return {response: pm.response.json()}\r",
+                  "}\r",
+                  "\r",
+                  "pm.visualizer.set(template, constructVisualizerPayload());"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/games/8e17581a-5dab-4410-9206-df7a18b01c92/players",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "games",
+                "8e17581a-5dab-4410-9206-df7a18b01c92",
+                "players"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete player",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/players/adf85089-8af6-4659-a601-c71384ca8ef2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "players",
+                "adf85089-8af6-4659-a601-c71384ca8ef2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "item": [
+        {
+          "name": "Create a Card",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"cardName\": \"test\",\r\n  \"description\": \"This role has no superpowers, sleeping all night and only votes during the day.\",\r\n  \"imageName\": \"None\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cards"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create many Cards",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n  {\r\n    \"cardName\": \"Werewolf\",\r\n    \"description\": \"Werewolves work together to kill all the village. They choose a player to kill every night, and they pretend to be villagers during the day.\",\r\n    \"imageName\": \"werewolf\"\r\n  },\r\n  {\r\n    \"cardName\": \"Villager\",\r\n    \"description\": \"This role has no superpowers, sleeping all night and only votes during the day.\",\r\n    \"imageName\": \"villager\"\r\n  },\r\n  {\r\n    \"cardName\": \"Protector\",\r\n    \"description\": \"The protector chooses a player to protect from the werewolves every night. He can protect himself, and he cannot protect the same player twice in a row.\",\r\n    \"imageName\": \"protector\"\r\n  },\r\n  {\r\n    \"cardName\": \"Witch\",\r\n    \"description\": \"The witch has two potions: one that can heal the werewolves' target, the other that can kill any player.\",\r\n    \"imageName\": \"witch\"\r\n  }\r\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/cards/many",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cards",
+                "many"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Cards",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var template = `\r",
+                  "<style type=\"text/css\">\r",
+                  "    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+                  "    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+                  "    .tftable tr {background-color:#ffffff;}\r",
+                  "    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+                  "    .tftable tr:hover {background-color:#e0ffff;}\r",
+                  "</style>\r",
+                  "\r",
+                  "<table class=\"tftable\" border=\"1\">\r",
+                  "    <tr>\r",
+                  "        <th>Card ID</th>\r",
+                  "        <th>Card Name</th>\r",
+                  "        <th>Description</th>\r",
+                  "        <th>Image Name</th>\r",
+                  "    </tr>\r",
+                  "    \r",
+                  "    {{#each response}}\r",
+                  "        <tr>\r",
+                  "            <td>{{cardId}}</td>\r",
+                  "            <td>{{cardName}}</td>\r",
+                  "            <td>{{description}}</td>\r",
+                  "            <td>{{imageName}}</td>\r",
+                  "        </tr>\r",
+                  "    {{/each}}\r",
+                  "</table>\r",
+                  "`;\r",
+                  "\r",
+                  "function constructVisualizerPayload() {\r",
+                  "    return { response: pm.response.json() }\r",
+                  "}\r",
+                  "\r",
+                  "pm.visualizer.set(template, constructVisualizerPayload());"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/cards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cards"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get card by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/cards/89f15666-16c1-4aa0-ea40-08dc4080623d",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cards",
+                "89f15666-16c1-4aa0-ea40-08dc4080623d"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete player Copy",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/cards/7427917b-4279-40e0-abb0-08dc4bc2f034",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "cards",
+                "7427917b-4279-40e0-abb0-08dc4bc2f034"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Create a Role",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"gameId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"cardId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/roles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Roles",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var template = `",
+                  "<style type=\"text/css\">",
+                  "    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+                  "    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+                  "    .tftable tr {background-color:#ffffff;}",
+                  "    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+                  "    .tftable tr:hover {background-color:#e0ffff;}",
+                  "</style>",
+                  "",
+                  "<table class=\"tftable\" border=\"1\">",
+                  "    <tr>",
+                  "        <th>Role ID</th>",
+                  "        <th>Role Name</th>",
+                  "        <th>Description</th>",
+                  "        <th>Ability</th>",
+                  "    </tr>",
+                  "    ",
+                  "    {{#each response}}",
+                  "        <tr>",
+                  "            <td>{{roleId}}</td>",
+                  "            <td>{{roleName}}</td>",
+                  "            <td>{{description}}</td>",
+                  "            <td>{{ability}}</td>",
+                  "        </tr>",
+                  "    {{/each}}",
+                  "</table>",
+                  "`;",
+                  "",
+                  "function constructVisualizerPayload() {",
+                  "    return { response: pm.response.json() }",
+                  "}",
+                  "",
+                  "pm.visualizer.set(template, constructVisualizerPayload());"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/roles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "roles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get role by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/roles/d730b6fd-5a4b-46d2-b0f2-08dc346a654d\t",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "roles",
+                "d730b6fd-5a4b-46d2-b0f2-08dc346a654d\t"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete player Copy",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/roles/d730b6fd-5a4b-46d2-b0f2-08dc346a654d\t",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "roles",
+                "d730b6fd-5a4b-46d2-b0f2-08dc346a654d\t"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "VotingSessions",
+      "item": [
+        {
+          "name": "Create a VotingSession",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"gameId\": \"e6840986-e6ea-4222-b67f-7ad0bc78387f\",\r\n  \"votingSessionType\": \"salva\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/votingSessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "votingSessions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all VotingSessions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var template = `",
+                  "<style type=\"text/css\">",
+                  "    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+                  "    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+                  "    .tftable tr {background-color:#ffffff;}",
+                  "    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+                  "    .tftable tr:hover {background-color:#e0ffff;}",
+                  "</style>",
+                  "",
+                  "<table class=\"tftable\" border=\"1\">",
+                  "    <tr>",
+                  "        <th>Role ID</th>",
+                  "        <th>Role Name</th>",
+                  "        <th>Description</th>",
+                  "        <th>Ability</th>",
+                  "    </tr>",
+                  "    ",
+                  "    {{#each response}}",
+                  "        <tr>",
+                  "            <td>{{roleId}}</td>",
+                  "            <td>{{roleName}}</td>",
+                  "            <td>{{description}}</td>",
+                  "            <td>{{ability}}</td>",
+                  "        </tr>",
+                  "    {{/each}}",
+                  "</table>",
+                  "`;",
+                  "",
+                  "function constructVisualizerPayload() {",
+                  "    return { response: pm.response.json() }",
+                  "}",
+                  "",
+                  "pm.visualizer.set(template, constructVisualizerPayload());"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/votingSessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "votingSessions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get VotingSession by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/votingSessions/35a81189-7ac4-4195-7726-08dc4bc6d507",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "votingSessions",
+                "35a81189-7ac4-4195-7726-08dc4bc6d507"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Votes",
+      "item": [
+        {
+          "name": "Create a vote",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"votingSessionId\": \"09b75acb-cca8-471c-faef-08dc4bc67100\",\r\n  \"voterId\": \"8f59e1a0-5c00-45f9-8125-30f1af62b673\",\r\n  \"targetId\": \"f763cc39-b3a8-4f3b-82b3-2662bce60dcc\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/votes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "votes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all players",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/votes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "votes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get vote by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/votes/c66e176f-eb31-436e-bf0c-08dc4bc776a4",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "votes",
+                "c66e176f-eb31-436e-bf0c-08dc4bc776a4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a Session's votes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/votingSession/09b75acb-cca8-471c-faef-08dc4bc67100/votes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "votingSession",
+                "09b75acb-cca8-471c-faef-08dc4bc67100",
+                "votes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:7074"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://loupgarou.azurewebsites.net",
+      "type": "string",
+      "disabled": true
+    }
+  ]
+}

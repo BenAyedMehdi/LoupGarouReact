@@ -32,4 +32,53 @@ This website is replacing the narrator of the game. The solution is assigning ro
 
 -  [Mehdi Ben Ayed](https://github.com/BenAyedMehdi) 
 -  [Hatem Khabir](https://github.com/HatemKhabir) 
+-  [Njoura](https://github.com/Njoura7) 
 
+---
+
+## Docker Setup
+ 
+The full stack is orchestrated from the [LoupGarouInfra](https://github.com/BenAyedMehdi/LoupGarouInfra) repository. **You do not need to run anything inside this repo directly** — just make sure the folder structure below is in place and follow the instructions in `LoupGarouInfra`.
+ 
+### Prerequisites
+ 
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
+- This repo, [LoupGarouAPI](https://github.com/BenAyedMehdi/LoupGarouAPI), and [LoupGarouInfra](https://github.com/BenAyedMehdi/LoupGarouInfra) all cloned side by side:
+```
+projects/
+├── LoupGarouAPI/
+├── LoupGarouReact/     ← this repo
+└── LoupGarouInfra/
+```
+ 
+### Start the full stack
+ 
+```bash
+cd LoupGarouInfra
+docker compose up --build
+```
+ 
+Once all containers are green in Docker Desktop:
+ 
+| Service | URL |
+|---|---|
+| Frontend | `http://localhost:3000` |
+| API + Swagger | `http://localhost:8080` |
+ 
+### How API calls work in Docker
+ 
+The React app is built as static files served by nginx. In Docker, all API calls are proxied through nginx — the browser calls `/api/...` on port 3000 and nginx forwards them internally to the API container. No CORS issues, no hardcoded hostnames.
+ 
+For local development outside Docker, the app reads `REACT_APP_API_URL` from `.env.development` and calls the API directly on `http://localhost:8080`.
+ 
+### Stopping the stack
+ 
+```bash
+docker compose down
+```
+ 
+To fully reset including all database data:
+ 
+```bash
+docker compose down -v
+```

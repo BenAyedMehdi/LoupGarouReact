@@ -69,7 +69,7 @@ Once all containers are green in Docker Desktop:
  
 The React app is built as static files served by nginx. In Docker, all API calls are proxied through nginx — the browser calls `/api/...` on port 3000 and nginx forwards them internally to the API container. No CORS issues, no hardcoded hostnames.
  
-For local development outside Docker, the app reads `REACT_APP_API_URL` from `.env.development` and calls the API directly on `http://localhost:8080`.
+For local development outside Docker, the app reads `REACT_APP_API_URL` from `.env.development` and calls the API directly on `http://localhost:5245`.
  
 ### Stopping the stack
  

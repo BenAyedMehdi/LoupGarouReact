@@ -77,6 +77,7 @@ For local development outside Docker, the app reads `REACT_APP_API_URL` from `.e
 docker compose down
 ```
  
+ 
 To fully reset including all database data:
  
 ```bash
